@@ -23,6 +23,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MATFWars
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        Player.h Player.cpp
+        Function.h Function.cpp
+        PlayerWar.h PlayerWar.cpp
+        PlayerGuess.h PlayerGuess.cpp
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MATFWars APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
