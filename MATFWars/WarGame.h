@@ -6,7 +6,14 @@
 class WarGame
 {
 public:
-    WarGame();
+    WarGame(QString address);
+    static WarGame* activeGame;
+    static bool bothConnected;
+    startGame();
+    addPlayer();
+    removePlayer();
+    endGame();
+private:
 };
 
 #endif // WARGAME_H
