@@ -30,7 +30,17 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         GuessGame.h GuessGame.cpp
         WarGame.h WarGame.cpp
         Obstacle.h Obstacle.cpp
-
+        lib/muparser/muParser.cpp lib/muparser/muParser.h
+        lib/muparser/muParserBase.cpp lib/muparser/muParserBase.h
+        lib/muparser/muParserBytecode.cpp lib/muparser/muParserBytecode.h
+        lib/muparser/muParserCallback.cpp lib/muparser/muParserCallback.h
+        lib/muparser/muParserDef.h lib/muparser/muParserDLL.cpp
+        lib/muparser/muParserDLL.h lib/muparser/muParserError.cpp
+        lib/muparser/muParserError.h lib/muparser/muParserFixes.h
+        lib/muparser/muParserInt.cpp lib/muparser/muParserInt.h
+        lib/muparser/muParserTemplateMagic.h lib/muparser/muParserTest.cpp
+        lib/muparser/muParserTest.h lib/muparser/muParserToken.h
+        lib/muparser/muParserTokenReader.cpp lib/muparser/muParserTokenReader.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MATFWars APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
