@@ -45,14 +45,14 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="back_pop1_button">
        <property name="text">
         <string>BACK</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="create_pop1_button">
        <property name="text">
         <string>CREATE</string>
        </property>

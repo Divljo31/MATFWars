@@ -38,7 +38,7 @@
          <widget class="QLineEdit" name="lineEdit"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="fire_war_button">
           <property name="text">
            <string>FIRE</string>
           </property>
@@ -49,14 +49,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="back_war_button">
           <property name="text">
            <string>BACK</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="quit_war_button">
           <property name="text">
            <string>QUIT</string>
           </property>

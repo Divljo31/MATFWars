@@ -28,14 +28,14 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="war_game_button">
         <property name="text">
          <string>War game</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="guess_game_button">
         <property name="text">
          <string>Guess game</string>
         </property>
@@ -46,21 +46,21 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="create_main_button">
         <property name="text">
          <string>Create</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="join_main_button">
         <property name="text">
          <string>Join</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="leaderboard_main_button">
         <property name="text">
          <string>Leaderboard</string>
         </property>
