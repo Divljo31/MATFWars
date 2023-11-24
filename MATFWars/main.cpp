@@ -2,7 +2,6 @@
 
 #include <QApplication>
 
-#include "lib/muparser/muParser.h"
 #include "Function.h"
 
 double MySqr(double a_fVal) {  return a_fVal*a_fVal; }
@@ -12,14 +11,16 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    Function f("sin(x)^2 + cos(x)^2");
+    Function f("x^2 + 2", -10, 10, 100, 0, 0);
 
-    for (double x : f.linspaceXCoords(-5, 5, 100))
-        std::cout << x << " ";
-    std::cout << std::endl;
+//    for (QPointF point : f.points()) {
+//        std::cout << point.x() << ", ";
+//    }
+//    std::cout << std::endl;
 
-    for (double x : f.linspaceYCoords(-5, 5, 100))
-        std::cout << x << " ";
+    for (QPointF point : f.points()) {
+        std::cout << point.y() << ", ";
+    }
     std::cout << std::endl;
 
 //    double fVal;

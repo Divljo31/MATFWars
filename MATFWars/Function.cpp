@@ -1,19 +1,21 @@
 #include "Function.h"
 
-Function::Function(std::string function) {
+Function::Function(std::string function,  double startX, double endX, int numX, double newCoorX, double newCoorY) {
     try {
-        m_parser.DefineVar("x", &m_var_x);
+        m_parser.DefineVar("x", &m_varX);
         m_parser.SetExpr(function);
+        setPoints(startX, endX, numX);
+        translatePoints(newCoorX, newCoorY);
+
     } catch (mu::Parser::exception_type &e) {
         std::cerr << e.GetMsg() << std::endl;
         //TODO: show invalid function message
     }
-
 }
 
 double Function::eval(double val_x) {
     try {
-        m_var_x = val_x;
+        m_varX = val_x;
         return m_parser.Eval();
     } catch (mu::Parser::exception_type &e) {
         std::cerr << e.GetMsg() << std::endl;
@@ -22,35 +24,81 @@ double Function::eval(double val_x) {
     }
 }
 
-QVector<double> Function::linspaceXCoords(double start, double end, int num) {
-    QVector<double> linspaced(num);
+QVector<double> Function::getXCoords(double start, double end, int num) {
+    QVector<double> xCoords(num);
 
-    if (num == 0) return linspaced;
+    if (num == 0) return xCoords;
 
     if (num == 1) {
-        linspaced[0] = start;
-        return linspaced;
+        xCoords[0] = start;
+        return xCoords;
     }
 
     double delta = (end - start) / (num - 1);
 
     for (int i = 0; i < num - 1; i++)
-        linspaced[i] = start + delta*i;
-    linspaced[num - 1] = end;
+        xCoords[i] = start + delta*i;
+    xCoords[num - 1] = end;
 
-    return linspaced;
-}
+    return xCoords;
+};
 
-QVector<double> Function::linspaceYCoords(double start, double end, int num) {
-    QVector<double> linspacedX = linspaceXCoords(start, end, num);
-    QVector<double> linspacedY(num);
+QVector<double> Function::getYCoords(double start, double end, int num) {
+    QVector<double> xCoords = getXCoords(start, end, num);
+    QVector<double> yCoords(num);
 
     for (int i = 0; i < num - 1; i ++) {
-        linspacedY[i] = eval(linspacedX[i]);
+        yCoords[i] = eval(xCoords[i]);
     }
 
-    linspacedY[num-1] = eval(linspacedX[num-1]);
+    yCoords[num-1] = eval(xCoords[num-1]);
 
-    return linspacedY;
+    return yCoords;
 }
+
+void Function::setPoints(double start, double end, int num) {
+    QVector<double> xCoords = getXCoords(start, end, num);
+    QVector<double> yCoords = getYCoords(start, end, num);
+
+    for (int i = 0; i < num; i++) {
+        double x = xCoords[i];
+        double y = yCoords[i];
+
+        m_points.append(QPointF(x, y));
+    }
+
+    // TODO: mozda ovde da bude i translatePoints
+}
+
+QVector<QPointF> Function::points() {
+    return m_points;
+}
+
+void Function::translatePoints(double coorX, double coorY) {
+
+    double fixedY = points().at(0).y();
+
+    for (QPointF &point : m_points) {
+        double currentX = point.x();
+        double currentY = point.y();
+        point.setX(currentX + coorX); // ovo je ok
+
+        // TODO: proveriti kada budemo imali WarGame VAZNO!!!
+        point.setY(currentY + coorY - fixedY);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
