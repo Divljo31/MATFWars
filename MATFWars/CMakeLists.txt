@@ -30,6 +30,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         GuessGame.h GuessGame.cpp
         WarGame.h WarGame.cpp
         Obstacle.h Obstacle.cpp
+        guessgame.h guessgame.cpp guessgame.ui
+        wargame.h wargame.cpp wargame.ui
+        create.h create.cpp create.ui
+        join.h join.cpp join.ui
+        waitingroom.h waitingroom.cpp waitingroom.ui
+        winner.h winner.cpp winner.ui
+        check.h check.cpp check.ui
+        warchoose.h warchoose.cpp warchoose.ui
 
     )
 # Define target properties for Android with Qt 6 as:
