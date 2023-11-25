@@ -32,6 +32,17 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         GuessGame.h GuessGame.cpp
         WarGame.h WarGame.cpp
         Obstacle.h Obstacle.cpp
+        lib/muparser/muParser.cpp lib/muparser/muParser.h
+        lib/muparser/muParserBase.cpp lib/muparser/muParserBase.h
+        lib/muparser/muParserBytecode.cpp lib/muparser/muParserBytecode.h
+        lib/muparser/muParserCallback.cpp lib/muparser/muParserCallback.h
+        lib/muparser/muParserDef.h lib/muparser/muParserDLL.cpp
+        lib/muparser/muParserDLL.h lib/muparser/muParserError.cpp
+        lib/muparser/muParserError.h lib/muparser/muParserFixes.h
+        lib/muparser/muParserInt.cpp lib/muparser/muParserInt.h
+        lib/muparser/muParserTemplateMagic.h lib/muparser/muParserTest.cpp
+        lib/muparser/muParserTest.h lib/muparser/muParserToken.h
+        lib/muparser/muParserTokenReader.cpp lib/muparser/muParserTokenReader.h
         Server.h Server.cpp
         guessgame.h guessgame.cpp guessgame.ui
         wargame.h wargame.cpp wargame.ui
