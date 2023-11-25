@@ -12,6 +12,7 @@ public:
 
     void setYCoordinate(int newYCoordinate);
 
+
 private:
     int m_xCoordinate;
     int m_yCoordinate;

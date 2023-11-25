@@ -52,6 +52,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         winner.h winner.cpp winner.ui
         check.h check.cpp check.ui
         warchoose.h warchoose.cpp warchoose.ui
+        Canvas.h Canvas.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
