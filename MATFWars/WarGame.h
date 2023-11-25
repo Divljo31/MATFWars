@@ -6,7 +6,17 @@
 class WarGame
 {
 public:
+
     WarGame();
+    static WarGame* activeGame;
+    static bool bothConnected;
+    static bool startGame();
+    static bool addPlayer();
+    static bool removePlayer();
+    static bool endGame();
+
+
+private:
 };
 
 #endif // WARGAME_H
