@@ -46,20 +46,6 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="create_main_button">
-        <property name="text">
-         <string>Create</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="join_main_button">
-        <property name="text">
-         <string>Join</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="leaderboard_main_button">
         <property name="text">
          <string>Leaderboard</string>
