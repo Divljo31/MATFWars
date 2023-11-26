@@ -3,18 +3,28 @@
 
 //TODO: id, location, diameter
 #include <QPointF>
+#include <QRandomGenerator>
+
 
 class Obstacle
 {
 public:
     Obstacle();
 
-    QPointF coordinates() const;
-    void setCoordinates(QPointF newCoordinates);
+    QPointF center() const;
+    void setCenter(QPointF newCoordinates);
+
+    float diameter() const;
+    void setDiameter(float newDiameter);
+
+    float generateDiameter(int numOfObstacles);
+
 
 private:
-    int m_id;
-    QPointF m_coordinates;
+    float m_diameter;
+    QPointF m_center;
+
+
 };
 
 #endif // OBSTACLE_H

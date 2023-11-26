@@ -1,7 +1,7 @@
 #ifndef WARGAME_H
 #define WARGAME_H
 
-#include <vector>
+#include <QVector>
 #include "PlayerWar.h"
 #include "Obstacle.h"
 #include "Canvas.h"
@@ -18,6 +18,9 @@ public:
     static bool removePlayer();
     static bool endGame();
 
+    QVector<Obstacle> generateObstacles(int x, int y);
+    QPointF randomPoint(int x, int y);
+
 
     PlayerWar player1() const;
 
@@ -31,7 +34,7 @@ private:
     PlayerWar m_player1;
     PlayerWar m_player2;
     Canvas m_canvas;
-    std::vector<Obstacle> m_obstacles;
+    QVector<Obstacle> m_obstacles;
 };
 
 #endif // WARGAME_H
