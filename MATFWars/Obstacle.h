@@ -2,22 +2,19 @@
 #define OBSTACLE_H
 
 //TODO: id, location, diameter
+#include <QPointF>
 
 class Obstacle
 {
 public:
     Obstacle();
-    void setXCoordinate(int newXCoordinate);
 
-    int yCoordinate() const;
-    void setYCoordinate(int newYCoordinate);
-
-    int xCoordinate() const;
+    QPointF coordinates() const;
+    void setCoordinates(QPointF newCoordinates);
 
 private:
     int m_id;
-    int m_xCoordinate;
-    int m_yCoordinate;
+    QPointF m_coordinates;
 };
 
 #endif // OBSTACLE_H

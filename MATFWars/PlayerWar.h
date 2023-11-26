@@ -2,20 +2,19 @@
 #define PLAYERWAR_H
 
 #include "Player.h"
+#include <QPointF>
 
 class PlayerWar: public Player
 {
 public:
     PlayerWar(QString name = "player");
 
-    void setXCoordinate(int newXCoordinate);
+    QPointF coordinates() const;
 
-    void setYCoordinate(int newYCoordinate);
-
+    void setCoordinates(QPointF newCoordinates);
 
 private:
-    int m_xCoordinate;
-    int m_yCoordinate;
+    QPointF m_coordinates;
 };
 
 #endif // PLAYERWAR_H

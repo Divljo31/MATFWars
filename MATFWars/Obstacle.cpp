@@ -5,24 +5,24 @@ Obstacle::Obstacle()
 
 }
 
-void Obstacle::setXCoordinate(int newXCoordinate)
+QPointF Obstacle::coordinates() const
 {
-    m_xCoordinate = newXCoordinate;
+    return m_coordinates;
 }
 
-int Obstacle::xCoordinate() const
+void Obstacle::setCoordinates(QPointF newCoordinates)
 {
-    return m_xCoordinate;
+    m_coordinates = newCoordinates;
 }
 
-int Obstacle::yCoordinate() const
+int Obstacle::diameter() const
 {
-    return m_yCoordinate;
+    return m_diameter;
 }
 
-void Obstacle::setYCoordinate(int newYCoordinate)
+void Obstacle::setDiameter(int newDiameter)
 {
-    m_yCoordinate = newYCoordinate;
+    m_diameter = newDiameter;
 }
 
 

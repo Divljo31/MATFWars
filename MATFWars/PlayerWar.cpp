@@ -5,14 +5,14 @@ PlayerWar::PlayerWar(QString name)
 
 }
 
-void PlayerWar::setXCoordinate(int newXCoordinate)
+QPointF PlayerWar::coordinates() const
 {
-    m_xCoordinate = newXCoordinate;
+    return m_coordinates;
 }
 
-void PlayerWar::setYCoordinate(int newYCoordinate)
+void PlayerWar::setCoordinates(QPointF newCoordinates)
 {
-    m_yCoordinate = newYCoordinate;
+    m_coordinates = newCoordinates;
 }
 
 

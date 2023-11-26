@@ -25,11 +25,7 @@ public:
 
     Obstacle getObstacle(size_t index) const;
 
-    WarGame getActiveGame() const;
-
     Canvas canvas() const;
-
-    int gameId() const;
 
 private:
     PlayerWar m_player1;
