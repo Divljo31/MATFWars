@@ -33,7 +33,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="back_choose_button">
      <property name="text">
       <string>BACK</string>
      </property>

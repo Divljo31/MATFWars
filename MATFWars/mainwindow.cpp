@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -9,18 +10,25 @@ MainWindow::MainWindow(QWidget *parent)
     ptrWarChoose=new WarChoose();
     ptrGuessGame=new GuessGame();
 
+    // menjam
+    connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
 }
+
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete ptrWarChoose;
     delete ptrGuessGame;
+
 }
 
 
 void MainWindow::on_war_game_button_clicked()
 {
+    // menjam
+    this->hide();
     ptrWarChoose->show();
 }
 
