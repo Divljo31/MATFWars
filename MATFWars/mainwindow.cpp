@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ptrWarChoose=new WarChoose();
     ptrGuessGame=new GuessGame();
+    ptrLeaderboard=new Leaderboard();
 
     // menjam
     connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
@@ -21,6 +22,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete ptrWarChoose;
     delete ptrGuessGame;
+    delete ptrLeaderboard;
 
 }
 
@@ -36,5 +38,11 @@ void MainWindow::on_war_game_button_clicked()
 void MainWindow::on_guess_game_button_clicked()
 {
     ptrGuessGame->show();
+}
+
+
+void MainWindow::on_leaderboard_main_button_clicked()
+{
+    ptrLeaderboard->show();
 }
 
