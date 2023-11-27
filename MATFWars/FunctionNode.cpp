@@ -1,0 +1,26 @@
+#include "FunctionNode.h"
+#include "Function.h"
+#include <iostream>
+#include <QPainter>
+
+FunctionNode::FunctionNode(Function *function)
+    : QGraphicsItem()
+    , m_functionNode(function)
+{
+
+}
+
+QRectF FunctionNode::boundingRect() const
+{
+    return QRectF(0, 0, width(), height());
+}
+
+void FunctionNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
+    //std::cout << "paint Function" << std::endl;
+    //painter->fillRect(boundingRect(), QColor::fromRgb(118, 83, 219));
+    painter->setPen(Qt::black);
+    painter->drawPolyline(m_functionNode->points());
+
+}

@@ -1,9 +1,9 @@
 #include "Function.h"
 
-Function::Function(std::string function,  double startX, double endX, int numX, double newCoorX, double newCoorY) {
+Function::Function(std::string functionString,  double startX, double endX, int numX, double newCoorX, double newCoorY) {
     try {
         m_parser.DefineVar("x", &m_varX);
-        m_parser.SetExpr(function);
+        m_parser.SetExpr(functionString);
         setPoints(startX, endX, numX);
         translatePoints(newCoorX, newCoorY);
 
