@@ -6,11 +6,13 @@ WarGame::WarGame(QWidget *parent) :
     ui(new Ui::WarGame)
 {
     ui->setupUi(this);
+
 }
 
 WarGame::~WarGame()
 {
     delete ui;
+
 }
 
 PlayerWar WarGame::player1() const
@@ -57,3 +59,12 @@ QPointF WarGame::randomPoint(int x, int y)
     return pointF;
 
 }
+
+void WarGame::on_back_war_button_clicked()
+{
+    emit backWarClicked();
+    this->hide();
+}
+
+
+

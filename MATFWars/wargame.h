@@ -6,6 +6,10 @@
 #include "PlayerWar.h"
 #include "Obstacle.h"
 
+//menjano
+#include <QLineEdit>
+#include <QPushButton>
+
 namespace Ui {
 class WarGame;
 }
@@ -34,11 +38,21 @@ public:
     Obstacle getObstacle(size_t index) const;
 
 
+signals:
+    void backWarClicked();
+
+private slots:
+    void on_back_war_button_clicked();
+
+
+
 private:
     Ui::WarGame *ui;
     PlayerWar m_player1;
     PlayerWar m_player2;
     QVector<Obstacle> m_obstacles;
+
+
 };
 
 #endif // WARGAME_H
