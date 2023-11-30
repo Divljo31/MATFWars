@@ -17,7 +17,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="sound_labellabel">
+      <widget class="QLabel" name="sound_label">
        <property name="text">
         <string>Sound:</string>
        </property>
@@ -27,7 +27,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QSlider" name="horizontalSlider">
+      <widget class="QSlider" name="sound_horizontalSlider">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

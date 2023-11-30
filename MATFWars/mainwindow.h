@@ -5,7 +5,7 @@
 #include "warchoose.h"
 #include "guessgame.h"
 #include "leaderboard.h"
-
+#include "settings.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -25,11 +25,14 @@ private slots:
 
     void on_leaderboard_main_button_clicked();
 
+    void on_tool_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     WarChoose *ptrWarChoose;
     GuessGame *ptrGuessGame;
     Leaderboard *ptrLeaderboard;
+    Settings *ptrSettings;
 
 };
 #endif // MAINWINDOW_H

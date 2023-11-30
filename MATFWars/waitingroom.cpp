@@ -7,6 +7,9 @@ WaitingRoom::WaitingRoom(QWidget *parent) :
 {
     ui->setupUi(this);
     ptrWarGame=new WarGame();
+
+    //menjano!!!
+    connect(ptrWarGame,&WarGame::backWarClicked, this, &WaitingRoom::show);
 }
 
 WaitingRoom::~WaitingRoom()
