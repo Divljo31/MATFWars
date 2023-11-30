@@ -30,7 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         PlayerWar.h PlayerWar.cpp
         PlayerGuess.h PlayerGuess.cpp
         GuessGame.h GuessGame.cpp
-        WarGame.h WarGame.cpp
+
         Obstacle.h Obstacle.cpp
         lib/muparser/muParser.cpp lib/muparser/muParser.h
         lib/muparser/muParserBase.cpp lib/muparser/muParserBase.h
@@ -54,6 +54,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         warchoose.h warchoose.cpp warchoose.ui
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
+
 
     )
 # Define target properties for Android with Qt 6 as:
