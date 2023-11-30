@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="sure_label">
      <property name="text">
       <string>ARE YOU SURE?</string>
      </property>
