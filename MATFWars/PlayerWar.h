@@ -13,6 +13,7 @@ public:
 
     void setCoordinates(QPointF newCoordinates);
 
+
 private:
     QPointF m_coordinates;
 };

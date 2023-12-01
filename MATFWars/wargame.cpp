@@ -38,7 +38,7 @@ QVector<Obstacle> WarGame::generateObstacles(int x, int y)
 
     for(Obstacle &obstacle : obstacleArray){
 
-        obstacle.setCenter(randomPoint(x, y));
+        obstacle.setCenter(randomPoint(x, y, 2.0));
         float newDiameter = obstacle.generateDiameter(numOfObstacles);
         obstacle.setDiameter(newDiameter);
 
@@ -47,10 +47,18 @@ QVector<Obstacle> WarGame::generateObstacles(int x, int y)
     return obstacleArray;
 }
 
-QPointF WarGame::randomPoint(int x, int y)
+PlayerWar WarGame::generatePlayer(int x, int y)
 {
+    PlayerWar player;
+    player.setCoordinates(randomPoint(x, y, 1.0));
+    return player;
+}
+
+QPointF WarGame::randomPoint(int x, int y, float playerOrObstacle)
+{
+    //if generatePlayer is the caller function, then playerOrObstacle = 1.0, else  playerOrObstacle = 2.0
     float xCoord = QRandomGenerator::global()->generateDouble();
-    xCoord = (-x) + xCoord * 2.0*x;
+    xCoord = (-x) + xCoord * playerOrObstacle*x;
     float yCoord = QRandomGenerator::global()->generateDouble();
     yCoord = (-y) + yCoord * 2.0*y;
 

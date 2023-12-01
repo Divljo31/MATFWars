@@ -28,7 +28,8 @@ public:
     static bool endGame();
 
     QVector<Obstacle> generateObstacles(int x, int y);
-    QPointF randomPoint(int x, int y);
+    PlayerWar generatePlayer(int x, int y);
+    QPointF randomPoint(int x, int y, float playerOrObstacle);
 
 
     PlayerWar player1() const;
