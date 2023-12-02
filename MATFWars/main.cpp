@@ -9,9 +9,9 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    WarGame wargame;
-    PlayerWar player = wargame.generatePlayer(25, 15);
-    std::cout << player.coordinates().x() << " , " << player.coordinates().y()<< std::endl;
+//    WarGame wargame;
+//    PlayerWar player = wargame.generatePlayer(25, 15);
+//    std::cout << player.coordinates().x() << " , " << player.coordinates().y()<< std::endl;
 
     return a.exec();
 }

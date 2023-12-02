@@ -11,25 +11,32 @@
 class Client : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Client)
+
 public:
     explicit Client(QObject *parent = nullptr);
-    virtual bool setSocketDescriptor(qintptr socketDescriptor);
-    QString userName() const;
-    void setUserName(const QString &userName);
-    void sendJson(const QJsonObject &jsonData);
-signals:
-    void jsonReceived(const QJsonObject &jsonDoc);
-    void disconnectedFromClient();
-    void error();
-    void logMessage(const QString &msg);
+
+    QTcpSocket *clientSocket() const;
+    void setClientSocket(QTcpSocket *newClientSocket);
+
 public slots:
-    void disconnectFromClient();
+    void connectToServer(const QHostAddress &address, quint16 port);
+    void sendMessage(const QString &text);
+    void disconnectFromHost();
+
 private slots:
-    void receiveJson();
+    void onReadyRead();
+
+signals:
+    void connected();
+    void disconnected();
+    void messageReceived(const QString &sender, const QString &text);
+    void userJoined(const QString &username);
+    void userLeft(const QString &username);
+
 private:
-    QTcpSocket *m_serverSocket;
-    QString m_userName;
+    QTcpSocket *m_clientSocket;
+    void jsonReceived(const QJsonObject &doc);
+
 };
 
 #endif // CLIENT_H

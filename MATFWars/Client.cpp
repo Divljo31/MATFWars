@@ -2,56 +2,59 @@
 
 Client::Client(QObject *parent)
     : QObject(parent)
-    , m_serverSocket(new QTcpSocket(this))
+    , m_clientSocket(new QTcpSocket(this))
 {
-    connect(m_serverSocket, &QTcpSocket::readyRead, this, &Client::receiveJson);
-    connect(m_serverSocket, &QTcpSocket::disconnected, this, &Client::disconnectedFromClient);
-    connect(m_serverSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred), this, &Client::error);
+
+    connect(m_clientSocket, &QTcpSocket::connected, this, &Client::connected);
+    connect(m_clientSocket, &QTcpSocket::disconnected, this, &Client::disconnected);
+    connect(m_clientSocket, &QTcpSocket::readyRead, this, &Client::onReadyRead);
+
 }
 
-bool Client::setSocketDescriptor(qintptr socketDescriptor)
+void Client::connectToServer(const QHostAddress &address, quint16 port)
 {
-    return m_serverSocket->setSocketDescriptor(socketDescriptor);
-}
-void Client::disconnectFromClient()
-{
-    m_serverSocket->disconnectFromHost();
+
+    m_clientSocket->connectToHost(address, port);
+
 }
 
-QString Client::userName() const
+void Client::sendMessage(const QString &text)
 {
-    return m_userName;
+    if (text.isEmpty())
+        return;
+
+    QDataStream clientStream(m_clientSocket);
+
+    QJsonObject message;
+    message["type"] = QStringLiteral("message");
+    message["text"] = text;
+
+    clientStream << QJsonDocument(message).toJson(QJsonDocument::Compact);
+
 }
 
-void Client::setUserName(const QString &userName)
+void Client::disconnectFromHost()
 {
-    m_userName = userName;
+
+    m_clientSocket->disconnectFromHost();
+
 }
 
-void Client::receiveJson()
+void Client::onReadyRead()
 {
 
     QByteArray jsonData;
-    QDataStream socketStream(m_serverSocket);
-
-    socketStream.setVersion(QDataStream::Qt_5_7);
+    QDataStream socketStream(m_clientSocket);
 
     for (;;) {
-
         socketStream.startTransaction();
-
         socketStream >> jsonData;
         if (socketStream.commitTransaction()) {
-
             QJsonParseError parseError;
             const QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &parseError);
             if (parseError.error == QJsonParseError::NoError) {
                 if (jsonDoc.isObject())
-                    emit jsonReceived(jsonDoc.object());
-                else
-                    emit logMessage("Invalid message: " + QString::fromUtf8(jsonData));
-            } else {
-                emit logMessage("Invalid message: " + QString::fromUtf8(jsonData));
+                    jsonReceived(jsonDoc.object());
             }
         } else {
             break;
@@ -59,14 +62,31 @@ void Client::receiveJson()
     }
 }
 
-void Client::sendJson(const QJsonObject &json)
+void Client::jsonReceived(const QJsonObject &docObj)
 {
 
-    const QByteArray jsonData = QJsonDocument(json).toJson(QJsonDocument::Compact);
+    const QJsonValue typeVal = docObj.value(QLatin1String("type"));
+    if (typeVal.isNull() || !typeVal.isString())
+        return;
 
-    emit logMessage("Sending to " + userName() + " - " + QString::fromUtf8(jsonData));
+    if (typeVal.toString().compare(QLatin1String("message"), Qt::CaseInsensitive) == 0) {
+        const QJsonValue textVal = docObj.value(QLatin1String("text"));
+        const QJsonValue senderVal = docObj.value(QLatin1String("sender"));
+        if (textVal.isNull() || !textVal.isString())
+            return;
+        if (senderVal.isNull() || !senderVal.isString())
+            return;
+        emit messageReceived(senderVal.toString(), textVal.toString());
+    } else if (typeVal.toString().compare(QLatin1String("newuser"), Qt::CaseInsensitive) == 0) {
+        const QJsonValue usernameVal = docObj.value(QLatin1String("username"));
+        if (usernameVal.isNull() || !usernameVal.isString())
+            return;
+        emit userJoined(usernameVal.toString());
+    } else if (typeVal.toString().compare(QLatin1String("userdisconnected"), Qt::CaseInsensitive) == 0) {
+        const QJsonValue usernameVal = docObj.value(QLatin1String("username"));
+        if (usernameVal.isNull() || !usernameVal.isString())
+            return;
 
-    QDataStream socketStream(m_serverSocket);
-    socketStream.setVersion(QDataStream::Qt_5_7);
-    socketStream << jsonData;
+        emit userLeft(usernameVal.toString());
+    }
 }

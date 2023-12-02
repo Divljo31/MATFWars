@@ -54,7 +54,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         warchoose.h warchoose.cpp warchoose.ui
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
+        ServerWorker.h ServerWorker.cpp
         Client.h Client.cpp
+
 
 
     )

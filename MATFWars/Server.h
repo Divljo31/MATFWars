@@ -1,43 +1,44 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "Client.h"
+#include "ServerWorker.h"
 
 class Server : public QTcpServer
 {
     Q_OBJECT
     Q_DISABLE_COPY(Server)
 public:
-    explicit Server(QObject* parent = nullptr);
+    explicit Server(QObject* parent = nullptr, quint16 port = 1234 );
     ~Server();
 protected:
-    void incomingConnection(qintptr socketDescriptor) override;
+   // void incomingConnection(qintptr socketDescriptor) override;
 /*
 public slots:
     void connection();
     void communication();
-    void clientDisconnected();
 */
 signals:
     void logMessage(const QString &msg);
 public slots:
     void stopServer();
+    void connection();
+//    void clientDisconnected();
+
 private slots:
-    void broadcast(const QJsonObject &message, Client *exclude);
-    void jsonReceived(Client *sender, const QJsonObject &doc);
-    void userDisconnected(Client *sender);
-    void userError(Client *sender);
+    void broadcast(const QJsonObject &message);
+    void jsonReceived(ServerWorker *sender, const QJsonObject &doc);
+    void userDisconnected(ServerWorker *sender);
+//    void userError(Client *sender);
 
 private:
-    void jsonFromLoggedOut(Client *sender, const QJsonObject &doc);
-    void jsonFromLoggedIn(Client *sender, const QJsonObject &doc);
-    void sendJson(Client *destination, const QJsonObject &message);
-    QVector<Client *> m_clients;
-    /*
+//    void jsonFromLoggedOut(Client *sender, const QJsonObject &doc);
+//    void jsonFromLoggedIn(Client *sender, const QJsonObject &doc);
+    void sendJson(ServerWorker *destination, const QJsonObject &message);
+
+    ServerWorker*  m_client1;
+    ServerWorker*  m_client2;
     QTcpServer* m_server;
-    QTcpSocket* m_client1;
-    QTcpSocket* m_client2;
-    */
+
 };
 
 

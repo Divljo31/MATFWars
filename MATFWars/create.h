@@ -2,6 +2,8 @@
 #define CREATE_H
 
 #include <QDialog>
+#include <QHostAddress>
+#include "Client.h"
 
 #include "waitingroom.h"
 
@@ -17,7 +19,10 @@ public:
     explicit Create(QWidget *parent = nullptr);
     ~Create();
 
-// menjam
+    // menjam
+    QString lastUserName() const;
+    void setLastUserName(const QString &newLastUserName);
+
 signals:
     void backCreatePop1Clicked();
 
@@ -26,9 +31,16 @@ private slots:
 
     void on_create_pop1_button_clicked();
 
+    void attemptConnection();
+
+
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
+    Client* m_client;
+    QString m_lastUserName;
+
+
 };
 
 #endif // CREATE_H
