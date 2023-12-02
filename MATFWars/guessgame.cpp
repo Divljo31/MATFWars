@@ -11,6 +11,7 @@ GuessGame::GuessGame(QWidget *parent) :
 GuessGame::~GuessGame()
 {
     delete ui;
+
 }
 
 void GuessGame::on_back_guess_button_clicked()

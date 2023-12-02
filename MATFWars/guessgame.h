@@ -21,8 +21,10 @@ signals:
 private slots:
     void on_back_guess_button_clicked();
 
+
 private:
     Ui::GuessGame *ui;
+
 };
 
 #endif // GUESSGAME_H
