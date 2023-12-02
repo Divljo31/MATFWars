@@ -10,8 +10,17 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>MATFWars</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/background/background1.png);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -20,7 +29,7 @@
       <item>
        <widget class="QLabel" name="choose_label">
         <property name="text">
-         <string>CHOOSE GAME:</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;CHOOSE GAME:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -40,6 +49,17 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="war_game_button">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/btn1.jpg);
+border-radius:10px;
+</string>
+        </property>
         <property name="text">
          <string>War game</string>
         </property>
@@ -47,6 +67,17 @@
       </item>
       <item>
        <widget class="QPushButton" name="guess_game_button">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/background/btn2.jpg);
+border-radius:10px;
+</string>
+        </property>
         <property name="text">
          <string>Guess game</string>
         </property>
@@ -58,6 +89,16 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="leaderboard_main_button">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:white;
+border-radius:10px;</string>
+        </property>
         <property name="text">
          <string>Leaderboard</string>
         </property>
