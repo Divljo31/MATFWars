@@ -15,7 +15,7 @@ public slots:
     void setFunction(FunctionNode *function);
 
 private:
-    void postionFunctionInCanvas();
+    void centerFunctionInCanvas();
 
     FunctionNode * m_functionNode;
 

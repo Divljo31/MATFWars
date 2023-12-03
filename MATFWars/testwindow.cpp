@@ -36,8 +36,12 @@ void testWindow::setNewFunction()
     std::cout << functionString.toStdString() << std::endl;
 
     const auto newFunction = new Function(functionString.toStdString());
+    newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height());
+    newFunction->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 
-    const auto node = new FunctionNode(newFunction);
+    QRectF sceneRect = QRectF(m_canvas->sceneRect());
+
+    const auto node = new FunctionNode(newFunction, sceneRect.width(), sceneRect.height());
 
     emit newFunctionIsSet(node);
 }

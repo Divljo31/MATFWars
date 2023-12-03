@@ -8,7 +8,7 @@ class Function;
 class FunctionNode : public QGraphicsItem
 {
 public:
-    FunctionNode(Function *function);
+    FunctionNode(Function *function, double width, double height);
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -18,12 +18,9 @@ public:
         return m_functionNode;
     }
 
-    inline qint32 width() const { return 500; }
-    inline qint32 height() const { return 500; }
-
 private:
     Function *m_functionNode;
-
+    QRectF m_boundingRect;
 };
 
 #endif // FUNCTIONNODE_H

@@ -5,7 +5,7 @@ Function::Function(std::string functionString,  double startX, double endX, int 
         m_parser.DefineVar("x", &m_varX);
         m_parser.SetExpr(functionString);
         setPoints(startX, endX, numX);
-        translatePoints(newCoorX, newCoorY);
+        // translatePoints(newCoorX, newCoorY);
 
     } catch (mu::Parser::exception_type &e) {
         std::cerr << e.GetMsg() << std::endl;
@@ -74,19 +74,43 @@ QVector<QPointF> Function::points() {
     return m_points;
 }
 
-void Function::translatePoints(double coorX, double coorY) {
+// ovo koristimo za pointOfView igraca koji puca, bez fixedY bi bilo iz pointOfView posmatraca!!!!!!!!!!!
+void Function::translatePointsPlayerView(double coorX, double coorY) {
 
     double fixedY = points().at(0).y();
 
     for (QPointF &point : m_points) {
         double currentX = point.x();
         double currentY = point.y();
-        point.setX(currentX + coorX); // ovo je ok
+        point.setX(currentX + coorX);
 
-        // TODO: proveriti kada budemo imali WarGame VAZNO!!!
         point.setY(currentY + coorY - fixedY);
     }
 }
+
+void Function::translatePointsObserverView(double coorX, double coorY) {
+    for (QPointF &point : m_points) {
+        double currentX = point.x();
+        double currentY = point.y();
+        point.setX(currentX + coorX);
+
+        point.setY(currentY + coorY);
+    }
+}
+
+// skalira i centrira u canvasu, mozda treba da se to odvoji
+void Function::scaleToCanvas(double width, double height) {
+    for (QPointF &point : m_points) {
+        double currentX = point.x();
+        double currentY = point.y();
+
+        // ovo 30 je ustvari sirina canvasa
+        point.setX(currentX*width/30);
+
+        point.setY(-currentY*width/30);
+    }
+}
+
 
 
 
