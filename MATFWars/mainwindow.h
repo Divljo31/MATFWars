@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMediaPlayer>
 #include "warchoose.h"
 #include "guessgame.h"
 #include "leaderboard.h"
@@ -33,6 +34,6 @@ private:
     GuessGame *ptrGuessGame;
     Leaderboard *ptrLeaderboard;
     Settings *ptrSettings;
-
+    QMediaPlayer *m_mediaPlayer;
 };
 #endif // MAINWINDOW_H

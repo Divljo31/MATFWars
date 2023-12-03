@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     ptrGuessGame=new GuessGame();
     ptrLeaderboard=new Leaderboard();
     ptrSettings=new Settings();
+    m_mediaPlayer = new QMediaPlayer();
+    m_mediaPlayer->setSource(QUrl("qrc:/sounds/sound_background.mp3"));
+    m_mediaPlayer->play();
     // menjam
     connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
     connect(ptrGuessGame, &GuessGame::backGuessClicked, this, &MainWindow::show);
