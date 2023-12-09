@@ -5,7 +5,6 @@ Function::Function(std::string functionString,  double startX, double endX, int 
         m_parser.DefineVar("x", &m_varX);
         m_parser.SetExpr(functionString);
         setPoints(startX, endX, numX);
-        // translatePoints(newCoorX, newCoorY);
 
     } catch (mu::Parser::exception_type &e) {
         std::cerr << e.GetMsg() << std::endl;
@@ -96,6 +95,24 @@ void Function::translatePointsObserverView(double coorX, double coorY) {
 
         point.setY(currentY + coorY);
     }
+}
+
+bool Function::equals(Function* other) {
+
+    if (this->points().size() != other->points().size()) {
+        return false;
+    }
+
+    double tolerance = 1e-5;
+
+    for (int i = 0; i < this->points().size(); ++i) {
+        if (std::abs(this->points().at(i).x() - other->points().at(i).x()) > tolerance ||
+            std::abs(this->points().at(i).y() - other->points().at(i).y()) > tolerance) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 // skalira i centrira u canvasu, mozda treba da se to odvoji

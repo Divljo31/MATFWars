@@ -13,7 +13,7 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    inline const Function *getFunction() const
+    inline const Function *getFunction()
     {
         return m_functionNode;
     }

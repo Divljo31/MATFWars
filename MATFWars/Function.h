@@ -49,6 +49,9 @@ public:
 
     void translatePointsObserverView(double coorX, double coorY);
 
+    // Compares two functions based on points
+    bool equals(Function* otherFunction);
+
 };
 
 #endif // FUNCTION_H

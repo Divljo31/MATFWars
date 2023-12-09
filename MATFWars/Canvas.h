@@ -19,6 +19,7 @@ private:
 
     FunctionNode * m_functionNode;
 
+
 };
 
 #endif // CANVAS_H
