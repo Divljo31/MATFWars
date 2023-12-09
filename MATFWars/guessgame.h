@@ -2,6 +2,7 @@
 #define GUESSGAME_H
 
 #include <QDialog>
+#include "Timer.h"
 
 namespace Ui {
 class GuessGame;
@@ -17,6 +18,7 @@ public:
 
 signals:
     void backGuessClicked();
+    void guessGameStart();
 
 private slots:
     void on_back_guess_button_clicked();
@@ -24,7 +26,7 @@ private slots:
 
 private:
     Ui::GuessGame *ui;
-
+    Timer *m_timer;
 };
 
 #endif // GUESSGAME_H

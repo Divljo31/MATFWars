@@ -101,7 +101,8 @@ font: 600 20pt &quot;URW Bookman&quot;;
            </property>
            <property name="styleSheet">
             <string notr="true">border:7px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-color: rgb(255, 255, 255);</string>
            </property>
           </widget>
          </item>
@@ -184,7 +185,7 @@ border-color: rgb(238, 148, 148);</string>
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="TAJMER">
+      <widget class="QLabel" name="timer_label">
        <property name="styleSheet">
         <string notr="true">color:white;</string>
        </property>
