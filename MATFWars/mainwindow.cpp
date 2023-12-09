@@ -40,7 +40,7 @@ void MainWindow::on_guess_game_button_clicked()
 {
     this->hide();
     ptrGuessGame->show();
-
+    ptrGuessGame->startGuessGame();
 }
 
 

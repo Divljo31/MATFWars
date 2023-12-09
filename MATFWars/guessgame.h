@@ -14,11 +14,11 @@ class GuessGame : public QDialog
 
 public:
     explicit GuessGame(QWidget *parent = nullptr);
+    void startGuessGame();
     ~GuessGame();
 
 signals:
     void backGuessClicked();
-    void guessGameStart();
 
 private slots:
     void on_back_guess_button_clicked();

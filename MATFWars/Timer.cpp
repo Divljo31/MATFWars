@@ -21,8 +21,8 @@ void Timer::run(){
         }
 
         if(m_sek == 0){
+            m_interfejs->timer_label->setText(" ");
             emit tajmerIstekao();
-            m_interfejs->timer_label->setText("END");
 
             while(m_sek < 10){
                 m_sat->start();
