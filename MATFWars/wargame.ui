@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MATFWars</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/background2/background2.png);</string>
+  </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
