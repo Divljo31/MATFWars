@@ -13,21 +13,21 @@ class Timer : public QThread{
 
 public:
     Timer(QObject *parent = nullptr);
-    int saljiSekunde(int s);
-    void setInterfejs(Ui::GuessGame*);
-    void ispisiVreme();
-    void resetujSek();
-    void prekiniBrojanje();
-    void dodajSekunde(int);
+    int getSec(int s);
+    void setInterface(Ui::GuessGame*);
+    void showSec();
+    void resetSec();
+    void stopCount();
+    void addSec(int);
 
 protected:
     void run() override;
-    QElapsedTimer *m_sat;
-    Ui::GuessGame *m_interfejs;
-    int m_sek = 10;
+    QElapsedTimer *m_clock;
+    Ui::GuessGame *m_interface;
+    int m_sec = 10;
 
 signals:
-    void tajmerIstekao();
+    void timerExpired();
 };
 
 

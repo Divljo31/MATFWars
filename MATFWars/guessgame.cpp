@@ -7,15 +7,15 @@ GuessGame::GuessGame(QWidget *parent) :
 {
     ui->setupUi(this);
     m_timer = new Timer();
-    m_timer->setInterfejs(ui);
+    m_timer->setInterface(ui);
 
-    connect(m_timer, SIGNAL(tajmerIstekao()), this, SLOT(on_back_guess_button_clicked()));
+    connect(m_timer, SIGNAL(timerExpired()), this, SLOT(on_back_guess_button_clicked()));
 }
 
 void GuessGame::startGuessGame()
 {
     m_timer->start();
-    m_timer->resetujSek();
+    m_timer->resetSec();
 }
 
 GuessGame::~GuessGame()
@@ -27,7 +27,7 @@ GuessGame::~GuessGame()
 void GuessGame::on_back_guess_button_clicked()
 {
     emit backGuessClicked();
-    m_timer->prekiniBrojanje();
+    m_timer->stopCount();
     ui->timer_label->setText(" ");
     this->hide();
 }

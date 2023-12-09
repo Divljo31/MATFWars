@@ -9,23 +9,23 @@ Timer::Timer(QObject *parent)
 
 
 void Timer::run(){
-    m_sat = new QElapsedTimer();
+    m_clock = new QElapsedTimer();
 
-    m_sat->start();
-    ispisiVreme();
+    m_clock->start();
+    showSec();
 
-    while(m_sek >= 0){
-        if(m_sat->elapsed() >= 1000){
-            ispisiVreme();
-            m_sat->start();
+    while(m_sec >= 0){
+        if(m_clock->elapsed() >= 1000){
+            showSec();
+            m_clock->start();
         }
 
-        if(m_sek == 0){
-            m_interfejs->timer_label->setText(" ");
-            emit tajmerIstekao();
+        if(m_sec == 0){
+            m_interface->timer_label->setText(" ");
+            emit timerExpired();
 
-            while(m_sek < 10){
-                m_sat->start();
+            while(m_sec < 10){
+                m_clock->start();
             }
         }
     }
@@ -33,38 +33,38 @@ void Timer::run(){
 
 
 
-void Timer::setInterfejs(Ui::GuessGame* ui){
-    m_interfejs = ui;
+void Timer::setInterface(Ui::GuessGame* ui){
+    m_interface = ui;
 }
 
 
 
-void Timer::ispisiVreme(){
-    m_interfejs->timer_label->setText(QString::number(m_sek >= 0 ? m_sek - 1 : 0));
-    if(m_sek > 0){
-        m_sek--;
+void Timer::showSec(){
+    m_interface->timer_label->setText(QString::number(m_sec >= 0 ? m_sec - 1 : 0));
+    if(m_sec > 0){
+        m_sec--;
     }
 }
 
 
-void Timer::resetujSek(){
-    m_sek = 11;
+void Timer::resetSec(){
+    m_sec = 11;
 }
 
 
-int Timer::saljiSekunde(int s){
+int Timer::getSec(int s){
     return s;
 }
 
-void Timer::prekiniBrojanje(){
-    m_sek = -1;
+void Timer::stopCount(){
+    m_sec = -1;
 }
 
-void Timer::dodajSekunde(int koliko){
-    if(m_sek + koliko >= 11){
-        m_sek = 11;
+void Timer::addSec(int extra){
+    if(m_sec + extra >= 11){
+        m_sec = 11;
     }else{
-        m_sek = m_sek + koliko;
+        m_sec = m_sec + extra;
     }
 }
 
