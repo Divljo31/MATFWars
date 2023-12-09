@@ -2,7 +2,6 @@
 #define CREATE_H
 
 #include <QDialog>
-
 #include "waitingroom.h"
 
 namespace Ui {

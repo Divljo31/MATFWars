@@ -6,9 +6,12 @@ Leaderboard::Leaderboard(QWidget *parent) :
     ui(new Ui::Leaderboard)
 {
     ui->setupUi(this);
+
 }
 
 Leaderboard::~Leaderboard()
 {
     delete ui;
+
 }
+
