@@ -55,12 +55,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         FunctionNode.h FunctionNode.cpp
         Canvas.h Canvas.cpp
         testwindow.h testwindow.cpp testwindow.ui
-
-
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
-
-
         resources.qrc
         Timer.h Timer.cpp
 

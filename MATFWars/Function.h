@@ -35,8 +35,6 @@ public:
     // Destructor (if needed, uncomment)
     // ~Function();
 
-    void scaleToCanvas(double width, double height, double gridWidth);
-
     QVector<QPointF> points();
 
     // Translates coordinates of function so that coordinate origin is in (currX, currY) point
@@ -46,6 +44,8 @@ public:
 
     // Compares two functions based on points
     bool equals(Function* otherFunction);
+
+    void scaleToCanvas(double width, double height, double gridWidth);
 
 };
 
