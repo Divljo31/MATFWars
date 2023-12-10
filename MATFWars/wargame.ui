@@ -6,85 +6,216 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>755</width>
-    <height>448</height>
+    <width>760</width>
+    <height>387</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>MATFWars</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>9</y>
-     <width>741</width>
-     <height>411</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QGraphicsView" name="function_graphicsView"/>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="y_label">
-            <property name="text">
-             <string>y=</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="y_lineEdit"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="fire_war_button">
-            <property name="text">
-             <string>FIRE</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QPushButton" name="back_war_button">
-            <property name="text">
-             <string>BACK</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="quit_war_button">
-            <property name="text">
-             <string>QUIT</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QTextBrowser" name="chat_textBrowser"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="chat_lineEdit"/>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/background/background2.jpg);</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QGraphicsView" name="function_graphicsView">
+           <property name="styleSheet">
+            <string notr="true">border:10px solid;
+border-color: rgb(238, 148, 148);
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="y_label">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(180, 72, 72);
+font: 600 20pt &quot;URW Bookman&quot;;
+</string>
+             </property>
+             <property name="text">
+              <string>y = </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="y_lineEdit">
+             <property name="styleSheet">
+              <string notr="true">border:5px solid;
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/whiteBackground.jpg);</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="fire_war_button">
+             <property name="styleSheet">
+              <string notr="true">color:rgb(180, 72, 72);
+font: 600 25pt &quot;URW Bookman&quot;;
+border-radius:10px;
+border:10px solid;
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
+             </property>
+             <property name="text">
+              <string>FIRE</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="back_war_button">
+             <property name="styleSheet">
+              <string notr="true">color:rgb(180, 72, 72);
+font: 600 25pt &quot;URW Bookman&quot;;
+background-image: url(:/background/backgroundBtns.jpg);
+border-radius:10px;
+border:10px solid;
+border-color: rgb(238, 148, 148);</string>
+             </property>
+             <property name="text">
+              <string>BACK</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="quit_war_button">
+             <property name="styleSheet">
+              <string notr="true">color:rgb(180, 72, 72);
+font: 600 25pt &quot;URW Bookman&quot;;
+border-radius:10px;
+border:10px solid;
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
+             </property>
+             <property name="text">
+              <string>QUIT</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QTextBrowser" name="chat_textBrowser">
+           <property name="styleSheet">
+            <string notr="true">background-image: url(:/background/whiteBackground.jpg);
+border:10px solid;
+border-color: rgb(255, 255, 255);</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="chat_lineEdit">
+           <property name="styleSheet">
+            <string notr="true">border:10px solid;
+border-color: rgb(255, 255, 255);
+background-image: url(:/background/whiteBackground.jpg);
+</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

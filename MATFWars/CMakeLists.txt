@@ -55,6 +55,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
 
+
+        resources.qrc
+        Timer.h Timer.cpp
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MATFWars APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

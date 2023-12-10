@@ -5,6 +5,9 @@
 //menjano
 #include <QLineEdit>
 #include <QPushButton>
+
+#include "check.h"
+
 namespace Ui {
 class WarGame;
 }
@@ -25,9 +28,11 @@ private slots:
 
 
 
+    void on_quit_war_button_clicked();
+
 private:
     Ui::WarGame *ui;
-
+    Check *ptrCheck;
 };
 
 #endif // WARGAME_H
