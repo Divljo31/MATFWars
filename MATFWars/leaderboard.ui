@@ -38,10 +38,8 @@
      <item>
       <widget class="QLabel" name="leaderboard_label">
        <property name="styleSheet">
-        <string notr="true">color: rgb(180, 72, 72);
-background-color: rgb(255, 255, 255);
-font: 600 20pt &quot;URW Bookman&quot;;
-</string>
+        <string notr="true">font: 600 20pt &quot;URW Bookman&quot;;
+color: rgb(246, 206, 206);</string>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Leaderboard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -72,7 +70,8 @@ font: 600 20pt &quot;URW Bookman&quot;;
        <property name="styleSheet">
         <string notr="true">background-color: rgb(79, 43, 43);
 border:10px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
       </widget>
      </item>

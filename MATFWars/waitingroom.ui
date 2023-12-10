@@ -40,8 +40,8 @@
        <item>
         <widget class="QLabel" name="team1_label">
          <property name="styleSheet">
-          <string notr="true">color: rgb(180, 72, 72);
-font: 600 20pt &quot;URW Bookman&quot;;
+          <string notr="true">font: 600 20pt &quot;URW Bookman&quot;;
+color: rgb(246, 206, 206);
 </string>
          </property>
          <property name="text">
@@ -71,9 +71,9 @@ font: 600 20pt &quot;URW Bookman&quot;;
        <item>
         <widget class="QTextBrowser" name="team1_textBrowser">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(79, 43, 43);
-border:10px solid;
-border-color: rgb(238, 148, 148);</string>
+          <string notr="true">border:10px solid;
+border-color: rgb(238, 148, 148);
+border-image: url(:/background/backgroundBtns.jpg);</string>
          </property>
         </widget>
        </item>
@@ -100,7 +100,7 @@ border-color: rgb(238, 148, 148);</string>
        <item>
         <widget class="QLabel" name="team2_label">
          <property name="styleSheet">
-          <string notr="true">color: rgb(180, 72, 72);
+          <string notr="true">color: rgb(246, 206, 206);
 font: 600 20pt &quot;URW Bookman&quot;;
 </string>
          </property>
@@ -131,9 +131,9 @@ font: 600 20pt &quot;URW Bookman&quot;;
        <item>
         <widget class="QTextBrowser" name="team2_textBrowser">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(79, 43, 43);
-border:10px solid;
-border-color: rgb(238, 148, 148);</string>
+          <string notr="true">border:10px solid;
+border-color: rgb(238, 148, 148);
+border-image: url(:/background/backgroundBtns.jpg);</string>
          </property>
         </widget>
        </item>
@@ -160,8 +160,7 @@ border-color: rgb(238, 148, 148);</string>
        <item>
         <widget class="QTextBrowser" name="chat_textBrowser">
          <property name="styleSheet">
-          <string notr="true">border:10px solid;
-border-color: rgb(238, 148, 148);
+          <string notr="true">background-image: url(:/background/whiteBackground.jpg);
 </string>
          </property>
         </widget>
@@ -185,8 +184,7 @@ border-color: rgb(238, 148, 148);
        <item>
         <widget class="QLineEdit" name="chat_lineEdit">
          <property name="styleSheet">
-          <string notr="true">border:10px solid;
-border-color: rgb(238, 148, 148);</string>
+          <string notr="true">background-image: url(:/background/whiteBackground.jpg);</string>
          </property>
         </widget>
        </item>
@@ -267,10 +265,10 @@ border-color: rgb(238, 148, 148);</string>
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-color: rgb(253, 216, 216);
 border-radius:10px;
 border:10px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+border-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
        <property name="text">
         <string>BACK</string>
@@ -316,10 +314,10 @@ border-color: rgb(238, 148, 148);</string>
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-color: rgb(253, 216, 216);
 border-radius:10px;
 border:10px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+border-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
        <property name="text">
         <string>PLAY</string>

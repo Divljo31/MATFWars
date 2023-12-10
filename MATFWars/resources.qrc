@@ -8,6 +8,8 @@
         <file>btn1.jpg</file>
         <file>winner.png</file>
         <file>clock.png</file>
+        <file>whiteBackground.jpg</file>
+        <file>backgroundBtns.jpg</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

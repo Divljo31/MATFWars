@@ -58,9 +58,15 @@ border-color: rgb(238, 148, 148);</string>
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,3,0">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
@@ -84,9 +90,9 @@ font: 600 20pt &quot;URW Bookman&quot;;
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">border:7px solid;
-border-color: rgb(238, 148, 148);
-background-color: rgb(255, 255, 255);</string>
+            <string notr="true">border:5px solid;
+background-image: url(:/background/whiteBackground.jpg);
+border-color: rgb(238, 148, 148);</string>
            </property>
           </widget>
          </item>
@@ -119,10 +125,10 @@ background-color: rgb(255, 255, 255);</string>
          <property name="styleSheet">
           <string notr="true">color:rgb(180, 72, 72);
 font: 600 17pt &quot;URW Bookman&quot;;
-background-color: rgb(253, 216, 216);
 border-radius:10px;
 border:7px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
          </property>
          <property name="text">
           <string>ENTER</string>
@@ -140,10 +146,10 @@ border-color: rgb(238, 148, 148);</string>
          <property name="styleSheet">
           <string notr="true">color:rgb(180, 72, 72);
 font: 600 17pt &quot;URW Bookman&quot;;
-background-color: rgb(253, 216, 216);
 border-radius:10px;
 border:7px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
          </property>
          <property name="text">
           <string>BACK</string>
@@ -171,7 +177,7 @@ border-color: rgb(238, 148, 148);</string>
      <item>
       <widget class="QLabel" name="timer_label">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>

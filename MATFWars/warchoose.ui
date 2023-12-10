@@ -74,10 +74,10 @@
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(180, 72, 72);
-background-color: rgb(238, 148, 148);
 font: 600 25pt &quot;URW Bookman&quot;;
 border:5px solid;
 border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);
 
 
 
@@ -124,7 +124,7 @@ border-color: rgb(238, 148, 148);
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);
 border:5px solid;
 border-color: rgb(238, 148, 148);</string>
        </property>
@@ -193,7 +193,8 @@ border-color: rgb(238, 148, 148);</string>
         <string notr="true">color: rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border:5px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
        <property name="text">
         <string>BACK</string>

@@ -72,7 +72,8 @@ color: rgb(180, 72, 72);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border:5px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
       </widget>
      </item>
@@ -150,7 +151,8 @@ color: rgb(180, 72, 72);
        </property>
        <property name="styleSheet">
         <string notr="true">border:5px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+background-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
       </widget>
      </item>
@@ -228,6 +230,7 @@ color: rgb(180, 72, 72);
        </property>
        <property name="styleSheet">
         <string notr="true">border:5px solid;
+background-image: url(:/background/backgroundBtns.jpg);
 border-color: rgb(238, 148, 148);</string>
        </property>
       </widget>
