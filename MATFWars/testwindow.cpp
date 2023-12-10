@@ -1,6 +1,6 @@
 #include "testwindow.h"
 #include "ui_testwindow.h"
-#include "Canvas.h"
+
 #include "Function.h"
 #include "FunctionNode.h"
 
@@ -36,7 +36,7 @@ void testWindow::setNewFunction()
     std::cout << functionString.toStdString() << std::endl;
 
     const auto newFunction = new Function(functionString.toStdString());
-    newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height());
+    newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
     newFunction->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 
     QRectF sceneRect = QRectF(m_canvas->sceneRect());

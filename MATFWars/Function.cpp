@@ -97,6 +97,19 @@ void Function::translatePointsObserverView(double coorX, double coorY) {
     }
 }
 
+// MOZDA za war game treba da bude drugaciji gridWidth, u smislu da se ne koristi ceo vec samo jedan deo njega
+void Function::scaleToCanvas(double width, double height, double gridWidth) {
+    for (QPointF &point : m_points) {
+        double currentX = point.x();
+        double currentY = point.y();
+
+        // ovo 30 je ustvari sirina canvasa
+        point.setX(currentX*width/gridWidth);
+
+        point.setY(-currentY*width/gridWidth);
+    }
+}
+
 bool Function::equals(Function* other) {
 
     if (this->points().size() != other->points().size()) {
@@ -115,18 +128,6 @@ bool Function::equals(Function* other) {
     return true;
 }
 
-// skalira i centrira u canvasu, mozda treba da se to odvoji
-void Function::scaleToCanvas(double width, double height) {
-    for (QPointF &point : m_points) {
-        double currentX = point.x();
-        double currentY = point.y();
-
-        // ovo 30 je ustvari sirina canvasa
-        point.setX(currentX*width/30);
-
-        point.setY(-currentY*width/30);
-    }
-}
 
 
 

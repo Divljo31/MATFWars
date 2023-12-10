@@ -32,15 +32,10 @@ public:
     // starting from x = 0, until x = endX, with numX linspaced coordinates
     Function(std::string function, double startX = -15, double endX = 15, int numX = 200, double coorX = 0, double coorY = 0);
 
-    // TODO: vidi da li je mozda bolje da imamo 3 konstruktora:
-    // ovaj jedan za sve
-    // za WarGame(function, coorX, coorY) default: startX = 0, endX =15, num = 100
-    // za GuessGame(startX, endX) default vrednosti: num = 100, coorX = 0, coorY = 0
-
     // Destructor (if needed, uncomment)
     // ~Function();
 
-    void scaleToCanvas(double width, double height);
+    void scaleToCanvas(double width, double height, double gridWidth);
 
     QVector<QPointF> points();
 

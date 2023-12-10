@@ -18,8 +18,7 @@ QRectF FunctionNode::boundingRect() const
 void FunctionNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    // std::cout << "paint Function" << std::endl;
-    //painter->fillRect(boundingRect(), QColor::fromRgb(118, 83, 219));
+
     painter->setPen(Qt::black);
     painter->drawPolyline(m_functionNode->points());
 

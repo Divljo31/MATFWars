@@ -10,14 +10,19 @@ class Canvas : public QGraphicsScene
 {
 public:
     explicit Canvas(QObject *parent = nullptr);
+    double gridWidth() const;
+
 
 public slots:
     void setFunction(FunctionNode *function);
+    void addCoordinateSystem();
 
 private:
-    void centerFunctionInCanvas();
-
     FunctionNode * m_functionNode;
+    const double m_gridWidth = 30;
+
+    QPointF translateCoordinates(int logicalX, int logicalY);
+    void addPoint(int logicalX, int logicalY);
 
 
 };
