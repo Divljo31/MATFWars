@@ -1,15 +1,9 @@
 #include "Function.h"
 
 Function::Function(std::string functionString,  double startX, double endX, int numX, double newCoorX, double newCoorY) {
-    try {
-        m_parser.DefineVar("x", &m_varX);
-        m_parser.SetExpr(functionString);
-        setPoints(startX, endX, numX);
-
-    } catch (mu::Parser::exception_type &e) {
-        std::cerr << e.GetMsg() << std::endl;
-        //TODO: show invalid function message
-    }
+    m_parser.DefineVar("x", &m_varX);
+    m_parser.SetExpr(functionString);
+    setPoints(startX, endX, numX);
 }
 
 double Function::eval(double val_x) {
@@ -17,7 +11,7 @@ double Function::eval(double val_x) {
         m_varX = val_x;
         return m_parser.Eval();
     } catch (mu::Parser::exception_type &e) {
-        std::cerr << e.GetMsg() << std::endl;
+        // std::cerr << e.GetMsg() << std::endl;
         return 0;
         //TODO: show invalid function message
     }

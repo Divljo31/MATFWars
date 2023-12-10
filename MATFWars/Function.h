@@ -30,7 +30,7 @@ private:
 public:
     // Constructs a function based on input string function, with coordinate origin in (coorX, coorY)
     // starting from x = 0, until x = endX, with numX linspaced coordinates
-    Function(std::string function, double startX = -15, double endX = 15, int numX = 200, double coorX = 0, double coorY = 0);
+    Function(std::string function, double startX = -15, double endX = 15, int numX = 500, double coorX = 0, double coorY = 0);
 
     // Destructor (if needed, uncomment)
     // ~Function();
