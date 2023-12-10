@@ -15,8 +15,18 @@ public:
     explicit Check(QWidget *parent = nullptr);
     ~Check();
 
+signals:
+    void noButtonClicked();
+
+
+private slots:
+    void on_no_check_button_clicked();
+
+    void on_yes_check_button_clicked();
+
 private:
     Ui::Check *ui;
+
 };
 
 #endif // CHECK_H

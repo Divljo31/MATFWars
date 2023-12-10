@@ -57,8 +57,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         testwindow.h testwindow.cpp testwindow.ui
 
 
+        settings.h settings.cpp settings.ui
+        leaderboard.h leaderboard.cpp leaderboard.ui
 
 
+        resources.qrc
+        Timer.h Timer.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
