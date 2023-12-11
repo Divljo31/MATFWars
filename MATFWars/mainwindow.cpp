@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ptrGuessGame=new GuessGame();
     ptrLeaderboard=new Leaderboard();
     ptrSettings=new Settings();
+
     // menjam
     connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
     connect(ptrGuessGame, &GuessGame::backGuessClicked, this, &MainWindow::show);

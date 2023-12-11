@@ -10,7 +10,7 @@ Timer::Timer(QObject *parent)
 
 void Timer::run(){
     m_clock = new QElapsedTimer();
-
+m_interface->timer_label->setText(QString::number(m_sec >= 0 ? m_sec - 1 : 0));
     m_clock->start();
     showSec();
 
@@ -31,13 +31,9 @@ void Timer::run(){
     }
 }
 
-
-
 void Timer::setInterface(Ui::GuessGame* ui){
     m_interface = ui;
 }
-
-
 
 void Timer::showSec(){
     m_interface->timer_label->setText(QString::number(m_sec >= 0 ? m_sec - 1 : 0));
@@ -45,7 +41,6 @@ void Timer::showSec(){
         m_sec--;
     }
 }
-
 
 void Timer::resetSec(){
     m_sec = 11;

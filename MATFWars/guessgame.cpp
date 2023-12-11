@@ -18,14 +18,14 @@ GuessGame::GuessGame(QWidget *parent) :
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &GuessGame::setNewFunction);
     connect(this, &GuessGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
-   // connect(m_timer, SIGNAL(timerExpired()), this, SLOT(on_back_guess_button_clicked()));
+    //connect(m_timer, SIGNAL(timerExpired()), this, SLOT(on_back_guess_button_clicked()));
 }
 
 void GuessGame::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
 
     m_canvas->setSceneRect(ui->gvCanvas->rect());
-    ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white)); // Replace 'Qt::blue' with your desired color
+    ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
     ui->gvCanvas->setScene(m_canvas);
 
     dynamic_cast<Canvas *>(m_canvas)->addCoordinateSystem();

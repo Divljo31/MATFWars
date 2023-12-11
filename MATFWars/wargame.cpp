@@ -25,9 +25,6 @@ void WarGame::on_back_war_button_clicked()
     this->hide();
 }
 
-
-
-
 void WarGame::on_quit_war_button_clicked()
 {
     ptrCheck->show();

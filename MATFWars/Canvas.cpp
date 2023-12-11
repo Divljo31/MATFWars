@@ -1,5 +1,4 @@
 #include "Canvas.h"
-#include "Function.h"
 #include "FunctionNode.h"
 
 Canvas::Canvas(QObject *parent)
@@ -20,7 +19,7 @@ QPointF Canvas::translateCoordinates(int logicalX, int logicalY) {
 
 // Function to add a point to the scene
 void Canvas::addPoint(int logicalX, int logicalY) {
-    double r = 1.3;
+    double r = 1.5;
     QPointF scenePoint = translateCoordinates(logicalX, logicalY);
     QRectF pointRect(scenePoint.x() - r, scenePoint.y() - r,
                      r * 2, r * 2);
@@ -35,12 +34,12 @@ void Canvas::addCoordinateSystem() {
 
     if (xAxisItem != nullptr) {
         this->removeItem(xAxisItem);
-        xAxisItem = nullptr;
+        delete xAxisItem;
     }
 
     if (yAxisItem != nullptr) {
         this->removeItem(yAxisItem);
-        yAxisItem = nullptr;
+        delete yAxisItem;
     }
 
     xAxisItem = new QGraphicsLineItem(xAxis);
@@ -53,6 +52,7 @@ void Canvas::addCoordinateSystem() {
         QGraphicsEllipseItem* point = axisPoints.back();
         axisPoints.pop_back();
         this->removeItem(point);
+        delete point;
     }
 
     for  (int start = -gridWidth(); start <= gridWidth(); start++) {
@@ -64,13 +64,6 @@ void Canvas::addCoordinateSystem() {
         this->addItem(point);
     }
 
-}
-
-void Canvas::redrawFunction() {
-    if (m_functionNode != nullptr) {
-        this->removeItem(m_functionNode);
-        this->addItem(m_functionNode);
-    }
 }
 
 void Canvas::setFunction(FunctionNode *node)

@@ -16,7 +16,6 @@ public:
 public slots:
     void setFunction(FunctionNode *function);
     void addCoordinateSystem();
-    void redrawFunction();
 
 private:
     FunctionNode * m_functionNode;
