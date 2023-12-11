@@ -74,7 +74,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QTextBrowser" name="chat_textBrowser"/>
+         <widget class="QListView" name="chat_listView"/>
         </item>
         <item>
          <widget class="QLineEdit" name="chat_lineEdit"/>

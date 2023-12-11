@@ -5,10 +5,13 @@
 #include <QVector>
 #include "PlayerWar.h"
 #include "Obstacle.h"
+#include "Client.h"
 
 //menjano
 #include <QLineEdit>
 #include <QPushButton>
+#include <QStandardItemModel>
+#include <QMessageBox>
 
 namespace Ui {
 class WarGame;
@@ -45,6 +48,13 @@ signals:
 private slots:
     void on_back_war_button_clicked();
 
+    //chat
+    //void attemptConnection();
+    //void connectedToServer();
+    void messageReceived(const QString &sender, const QString &text);
+    void sendMessage();
+    void disconnectedFromServer();
+    void userLeft(const QString &username);
 
 
 private:
@@ -52,6 +62,11 @@ private:
     PlayerWar m_player1;
     PlayerWar m_player2;
     QVector<Obstacle> m_obstacles;
+
+    //chat
+    Client *m_chatClient;
+    QStandardItemModel *m_chatModel;
+    QString m_lastUserName;
 
 
 };
