@@ -71,7 +71,7 @@ color: rgb(246, 206, 206);</string>
         <string notr="true">background-color: rgb(79, 43, 43);
 border:10px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
       </widget>
      </item>

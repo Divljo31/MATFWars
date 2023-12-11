@@ -126,9 +126,9 @@ border-color: rgb(238, 148, 148);</string>
           <string notr="true">color:rgb(180, 72, 72);
 font: 600 17pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:7px solid;
+border:5px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border-image: url(:/background/backgroundBtns.jpg);</string>
          </property>
          <property name="text">
           <string>ENTER</string>
@@ -147,9 +147,9 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
           <string notr="true">color:rgb(180, 72, 72);
 font: 600 17pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:7px solid;
+border:5px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border-image: url(:/background/backgroundBtns.jpg);</string>
          </property>
          <property name="text">
           <string>BACK</string>

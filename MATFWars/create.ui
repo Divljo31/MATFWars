@@ -217,8 +217,9 @@ border-color: rgb(238, 148, 148);</string>
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-color: rgb(253, 216, 216);
-border-radius:10px;</string>
+background-color: rgb(238, 148, 148);
+border-radius:10px;
+</string>
        </property>
        <property name="text">
         <string>BACK</string>
@@ -264,7 +265,7 @@ border-radius:10px;</string>
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-color: rgb(253, 216, 216);
+background-color: rgb(238, 148, 148);
 border-radius:10px;</string>
        </property>
        <property name="text">

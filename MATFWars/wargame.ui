@@ -79,7 +79,7 @@ font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
 border:10px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border-image: url(:/background/backgroundBtns.jpg);</string>
              </property>
              <property name="text">
               <string>FIRE</string>
@@ -127,7 +127,7 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
              <property name="styleSheet">
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-image: url(:/background/backgroundBtns.jpg);
+border-image: url(:/background/backgroundBtns.jpg);
 border-radius:10px;
 border:10px solid;
 border-color: rgb(238, 148, 148);</string>
@@ -161,7 +161,7 @@ font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
 border:10px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border-image: url(:/background/backgroundBtns.jpg);</string>
              </property>
              <property name="text">
               <string>QUIT</string>
