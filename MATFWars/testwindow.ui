@@ -46,6 +46,19 @@
     <string>PushButton</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>120</y>
+     <width>361</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>mileta obrisi ovo </string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
