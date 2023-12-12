@@ -6,28 +6,29 @@
 #include <QElapsedTimer>
 #include <QTimer>
 #include <QLabel>
-#include "ui_guessgame.h"
 
 class Timer : public QThread{
     Q_OBJECT
 
 public:
-    Timer(QObject *parent = nullptr);
-    int getSec(int s);
-    void setInterface(Ui::GuessGame*);
+    Timer(QObject *parent = nullptr, int startSec = 30);
+    int getSec();
     void showSec();
     void resetSec();
     void stopCount();
     void addSec(int);
 
+private:
+    int m_startSec;
+
 protected:
     void run() override;
     QElapsedTimer *m_clock;
-    Ui::GuessGame *m_interface;
-    int m_sec = 10;
+    int m_sec;
 
 signals:
     void timerExpired();
+    void secPassed();
 };
 
 

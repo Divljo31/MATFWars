@@ -32,6 +32,7 @@ signals:
 private slots:
     void on_back_guess_button_clicked();
     void setNewFunction();
+    void showTime();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

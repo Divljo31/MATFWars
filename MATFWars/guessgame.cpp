@@ -9,7 +9,6 @@ GuessGame::GuessGame(QWidget *parent) :
 {
     ui->setupUi(this);
     m_timer = new Timer();
-    m_timer->setInterface(ui);
 
     ui->gvCanvas->setRenderHints(QPainter::Antialiasing);
     ui->gvCanvas->setAlignment(Qt::AlignTop | Qt::AlignLeft);
@@ -17,7 +16,7 @@ GuessGame::GuessGame(QWidget *parent) :
     // signali i slotovi
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &GuessGame::setNewFunction);
     connect(this, &GuessGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
-
+    connect(m_timer, SIGNAL(secPassed()), this, SLOT(showTime()));
     //connect(m_timer, SIGNAL(timerExpired()), this, SLOT(on_back_guess_button_clicked()));
 }
 
@@ -52,6 +51,10 @@ void GuessGame::on_back_guess_button_clicked()
     this->hide();
 }
 
+void GuessGame::showTime()
+{
+    ui->timer_label->setText(QString::number((m_timer->getSec()) >= 0 ? (m_timer->getSec()) : 0));
+}
 
 void GuessGame::setNewFunction()
 {
