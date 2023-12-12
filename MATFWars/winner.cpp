@@ -6,6 +6,7 @@ Winner::Winner(QWidget *parent) :
     ui(new Ui::Winner)
 {
     ui->setupUi(this);
+
 }
 
 Winner::~Winner()
