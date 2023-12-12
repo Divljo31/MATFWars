@@ -78,6 +78,5 @@ void ServerWorker::sendJson(const QJsonObject &json)
     emit logMessage("Sending to " + userName() + " - " + QString::fromUtf8(jsonData));
 
     QDataStream socketStream(m_serverSocket);
-    socketStream.setVersion(QDataStream::Qt_5_7);
     socketStream << jsonData;
 }
