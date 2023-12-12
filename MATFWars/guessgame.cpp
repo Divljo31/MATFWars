@@ -1,6 +1,7 @@
 #include "guessgame.h"
 #include "ui_guessgame.h"
 #include <iostream>
+
 using namespace std;
 GuessGame::GuessGame(QWidget *parent) :
     QDialog(parent),
@@ -28,13 +29,15 @@ void GuessGame::resizeEvent(QResizeEvent *event) {
     ui->gvCanvas->setScene(m_canvas);
 
     dynamic_cast<Canvas *>(m_canvas)->addCoordinateSystem();
-    setNewFunction();
+    //setNewFunction();
 }
 
 void GuessGame::startGuessGame()
 {
     m_timer->start();
     m_timer->resetSec();
+    readFunctionsFromFile(":/functionSets/easyFunctionSet.txt");
+    setNewFunction();
 }
 
 GuessGame::~GuessGame()
@@ -58,9 +61,10 @@ void GuessGame::showTime()
 
 void GuessGame::setNewFunction()
 {
-    const auto functionString = ui->leFunctionInput->text();
+    int index = chooseFunctionIndex();
+    const auto functionString = m_functions[index];
 
-    const auto newFunction = new Function(functionString.toStdString());
+    const auto newFunction = new Function(functionString);
     newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
     newFunction->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 
@@ -71,3 +75,24 @@ void GuessGame::setNewFunction()
     emit newFunctionIsSet(node);
 }
 
+void GuessGame::readFunctionsFromFile(string fileName)
+{
+    QFile file(QString::fromStdString(fileName));
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream stream(&file);
+        while (!stream.atEnd()) {
+            QString qLine = stream.readLine();
+            std::string line = qLine.toStdString();
+            m_functions.push_back(line);
+        }
+        file.close();
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+}
+
+int GuessGame::chooseFunctionIndex()
+{
+    int size = m_functions.size();
+    return QRandomGenerator::global()->bounded(size);
+}
