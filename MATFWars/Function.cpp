@@ -1,6 +1,6 @@
 #include "Function.h"
 
-Function::Function(std::string functionString,  double startX, double endX, int numX, double newCoorX, double newCoorY) {
+Function::Function(std::string functionString,  double startX, double endX, int numX) {
     m_parser.DefineVar("x", &m_varX);
     m_parser.SetExpr(functionString);
     setPoints(startX, endX, numX);
@@ -113,6 +113,12 @@ bool Function::equals(Function* other) {
     double tolerance = 1e-5;
 
     for (int i = 0; i < this->points().size(); ++i) {
+
+        if (std::isnan(this->points().at(i).y()) && std::isnan(other->points().at(i).y())){
+           // std::cout << "yeet" << std::endl;
+            continue;
+        }
+
         if (std::abs(this->points().at(i).x() - other->points().at(i).x()) > tolerance ||
             std::abs(this->points().at(i).y() - other->points().at(i).y()) > tolerance) {
             return false;

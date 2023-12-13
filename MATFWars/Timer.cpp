@@ -2,16 +2,19 @@
 #include <iostream>
 
 
-Timer::Timer(QObject *parent, int startSec)
+Timer::Timer(int startSec, QObject *parent)
     : QThread(parent),
     m_startSec(startSec)
 {
 }
 
+Timer::~Timer() {
+    delete m_clock;
+}
+
 
 void Timer::run(){
     m_clock = new QElapsedTimer();
-//m_interface->timer_label->setText(QString::number(m_sec >= 0 ? m_sec - 1 : 0));
     m_clock->start();
     showSec();
 
@@ -33,8 +36,6 @@ void Timer::run(){
 
 
 void Timer::showSec(){
-    //m_interface->timer_label->setText(QString::number(m_sec >= 0 ? m_sec - 1 : 0));
-
     if(m_sec > 0){
         m_sec--;
     }

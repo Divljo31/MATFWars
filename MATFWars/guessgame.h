@@ -38,15 +38,17 @@ signals:
 
 private slots:
     void on_back_guess_button_clicked();
-    void setNewFunction();
+    void drawCurrentFunction();
+    void chooseFunctionIndex();
     void showTime();
+    void checkAnswerAndSetNewFunction();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
     void readFunctionsFromFile(std::string fileName);
-    int chooseFunctionIndex();
+
 
 private:
     Ui::GuessGame *ui;
@@ -54,6 +56,8 @@ private:
     QGraphicsScene *m_canvas;
     std::vector<std::string> m_functions;
     std::unordered_set<int> m_usedFunction;
+    int m_currentFunctionIndex = -1;
+    int m_score = 0;
 };
 
 #endif // GUESSGAME_H

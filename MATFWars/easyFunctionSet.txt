@@ -3,3 +3,5 @@ exp(x)
 x*sin(x)
 cos(x)+3
 sin(x)/cos(x)
+sqrt(x)
+1/x

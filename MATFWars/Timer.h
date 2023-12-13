@@ -11,7 +11,8 @@ class Timer : public QThread{
     Q_OBJECT
 
 public:
-    Timer(QObject *parent = nullptr, int startSec = 30);
+    Timer(int startSec = 30, QObject *parent = nullptr);
+    ~Timer();
     int getSec();
     void showSec();
     void resetSec();
