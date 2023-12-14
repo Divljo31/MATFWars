@@ -35,6 +35,9 @@ private:
     GuessGame *ptrGuessGame;
     Leaderboard *ptrLeaderboard;
     Settings *ptrSettings;
+    QString warStyle;
+    QString guessStyle;
+    QString leaderboardStyle;
 
 //menjam
 protected:

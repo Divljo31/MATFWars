@@ -2,6 +2,7 @@
 #define CREATE_H
 
 #include <QDialog>
+#include <QEnterEvent>
 #include "waitingroom.h"
 
 namespace Ui {
@@ -25,9 +26,14 @@ private slots:
 
     void on_create_pop1_button_clicked();
 
+
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
+    QString backStyle;
+    QString createStyle;
+
+
 
 //menjam
 protected:

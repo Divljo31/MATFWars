@@ -28,6 +28,8 @@ private slots:
 private:
     Ui::Join *ui;
     WaitingRoom *ptrWaitingRoom;
+    QString backStyle;
+    QString joinStyle;
 
  //menjam
  protected:

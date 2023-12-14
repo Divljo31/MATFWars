@@ -35,6 +35,9 @@ private slots:
 private:
     Ui::WarGame *ui;
     Check *ptrCheck;
+    QString backStyle;
+    QString fireStyle;
+    QString quitStyle;
 
 //menjam
 protected:

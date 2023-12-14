@@ -12,7 +12,8 @@ Join::Join(QWidget *parent) :
     ui->back_pop2_button->installEventFilter(this);
     ui->join_pop2_button->installEventFilter(this);
 
-
+    backStyle=ui->back_pop2_button->styleSheet();
+    joinStyle=ui->join_pop2_button->styleSheet();
 }
 
 Join::~Join()
@@ -37,9 +38,17 @@ void Join::on_join_pop2_button_clicked()
 bool Join::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->join_pop2_button && event->type()==QEvent::Enter){
         ui->join_pop2_button->setCursor(Qt::PointingHandCursor);
+        ui->join_pop2_button->setStyleSheet(joinStyle+"border:4px solid rgb(180, 72, 72);");
     }
     else if(obj==ui->back_pop2_button && event->type()==QEvent::Enter){
         ui->back_pop2_button->setCursor(Qt::PointingHandCursor);
+        ui->back_pop2_button->setStyleSheet(backStyle+"border:4px solid rgb(180, 72, 72);");
+    }
+    else if(obj==ui->join_pop2_button && event->type()==QEvent::Leave){
+        ui->join_pop2_button->setStyleSheet(joinStyle);
+    }
+    else if(obj==ui->back_pop2_button && event->type()==QEvent::Leave){
+        ui->back_pop2_button->setStyleSheet(backStyle);
     }
 
     return QDialog::eventFilter(obj,event);

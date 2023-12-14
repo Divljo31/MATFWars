@@ -23,6 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     // menjam
     connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
     connect(ptrGuessGame, &GuessGame::backGuessClicked, this, &MainWindow::show);
+
+    warStyle=ui->war_game_button->styleSheet();
+    guessStyle=ui->guess_game_button->styleSheet();
+    leaderboardStyle=ui->leaderboard_main_button->styleSheet();
 }
 
 
@@ -76,15 +80,27 @@ void MainWindow::on_tool_button_clicked()
 bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->war_game_button && event->type()==QEvent::Enter){
         ui->war_game_button->setCursor(Qt::PointingHandCursor);
+        ui->war_game_button->setStyleSheet(warStyle+"border: 5px solid;");
     }
     else if(obj==ui->guess_game_button && event->type()==QEvent::Enter){
         ui->guess_game_button->setCursor(Qt::PointingHandCursor);
+        ui->guess_game_button->setStyleSheet(guessStyle+"border: 5px solid;");
     }
     else if(obj==ui->leaderboard_main_button && event->type()==QEvent::Enter){
         ui->leaderboard_main_button->setCursor(Qt::PointingHandCursor);
+        ui->leaderboard_main_button->setStyleSheet(leaderboardStyle+"border: 8px solid rgb(59, 23, 23);");
     }
     else if(obj==ui->tool_button && event->type()==QEvent::Enter){
         ui->tool_button->setCursor(Qt::PointingHandCursor);
+    }
+    else if(obj==ui->war_game_button && event->type()==QEvent::Leave){
+        ui->war_game_button->setStyleSheet(warStyle);
+    }
+    else if(obj==ui->guess_game_button && event->type()==QEvent::Leave){
+        ui->guess_game_button->setStyleSheet(guessStyle);
+    }
+    else if(obj==ui->leaderboard_main_button && event->type()==QEvent::Leave){
+        ui->leaderboard_main_button->setStyleSheet(leaderboardStyle);
     }
 
     return QMainWindow::eventFilter(obj,event);
