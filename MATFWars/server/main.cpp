@@ -1,11 +1,12 @@
-#include "mainwindow.h"
-#include "wargame.h"
-#include <iostream>
 #include <QApplication>
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    //QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+
     MainWindow w;
     w.show();
 

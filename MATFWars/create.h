@@ -31,9 +31,6 @@ private slots:
 
     void on_create_pop1_button_clicked();
 
-    void attemptConnection();
-
-
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;

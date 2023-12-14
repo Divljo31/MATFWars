@@ -24,7 +24,7 @@ class WarGame : public QDialog
 public:
     explicit WarGame(QWidget *parent = nullptr);
     ~WarGame();
-    static bool bothConnected;
+
     static bool startGame();
     static bool addPlayer();
     static bool removePlayer();
@@ -48,26 +48,11 @@ signals:
 private slots:
     void on_back_war_button_clicked();
 
-    //chat
-    //void attemptConnection();
-    //void connectedToServer();
-    void messageReceived(const QString &sender, const QString &text);
-    void sendMessage();
-    void disconnectedFromServer();
-    void userLeft(const QString &username);
-
-
 private:
     Ui::WarGame *ui;
     PlayerWar m_player1;
     PlayerWar m_player2;
     QVector<Obstacle> m_obstacles;
-
-    //chat
-    Client *m_chatClient;
-    QStandardItemModel *m_chatModel;
-    QString m_lastUserName;
-
 
 };
 

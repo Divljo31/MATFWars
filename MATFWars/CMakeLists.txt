@@ -43,7 +43,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         lib/muparser/muParserTemplateMagic.h lib/muparser/muParserTest.cpp
         lib/muparser/muParserTest.h lib/muparser/muParserToken.h
         lib/muparser/muParserTokenReader.cpp lib/muparser/muParserTokenReader.h
-        Server.h Server.cpp
+
         guessgame.h guessgame.cpp guessgame.ui
         wargame.h wargame.cpp wargame.ui
         create.h create.cpp create.ui
@@ -54,7 +54,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         warchoose.h warchoose.cpp warchoose.ui
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
-        ServerWorker.h ServerWorker.cpp
+
         Client.h Client.cpp
 
 
