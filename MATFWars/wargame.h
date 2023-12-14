@@ -34,12 +34,7 @@ public:
     PlayerWar generatePlayer(int x, int y);
     QPointF randomPoint(int x, int y, float playerOrObstacle);
 
-
-    PlayerWar player1() const;
-
-    PlayerWar player2() const;
-
-    Obstacle getObstacle(size_t index) const;
+ //   Obstacle getObstacle(size_t index) const;
 
 
 signals:

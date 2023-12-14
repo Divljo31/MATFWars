@@ -19,20 +19,10 @@ WarGame::~WarGame()
 
 }
 
-PlayerWar WarGame::player1() const
-{
-    return m_player1;
-}
-
-PlayerWar WarGame::player2() const
-{
-    return m_player2;
-}
-
-Obstacle WarGame::getObstacle(size_t index) const
-{
-    return m_obstacles.at(index);
-}
+//Obstacle WarGame::getObstacle(size_t index) const
+//{
+//    return m_obstacles.at(index);
+//}
 
 QVector<Obstacle> WarGame::generateObstacles(int x, int y)
 {
