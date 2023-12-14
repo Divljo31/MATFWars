@@ -16,7 +16,10 @@ public:
     explicit Create(QWidget *parent = nullptr);
     ~Create();
 
-// menjam
+    // menjam
+    QString lastUserName() const;
+    void setLastUserName(const QString &newLastUserName);
+
 signals:
     void backCreatePop1Clicked();
 
@@ -28,6 +31,10 @@ private slots:
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
+    Client* m_client;
+    QString m_lastUserName;
+
+
 };
 
 #endif // CREATE_H

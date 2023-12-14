@@ -8,7 +8,9 @@
 class Player {
 public:
     Player(QString name = "player");
-    QString name() const;
+    virtual QString name() const;
+
+    virtual void setName(const QString &newName);
 
 private:
     QString m_name;

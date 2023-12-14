@@ -9,6 +9,7 @@ Create::Create(QWidget *parent) :
     ptrWaitingRoom=new WaitingRoom();
 
     connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
+
 }
 
 Create::~Create()
@@ -30,4 +31,7 @@ void Create::on_create_pop1_button_clicked()
     this->hide();
     ptrWaitingRoom->show();
 }
+
+
+
 
