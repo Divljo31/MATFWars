@@ -28,6 +28,13 @@ private slots:
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
+
+
 
 #endif // CREATE_H

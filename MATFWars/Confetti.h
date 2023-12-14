@@ -6,6 +6,7 @@ class Confetti
 {
 public:
     Confetti();
+
 };
 
 #endif // CONFETTI_H

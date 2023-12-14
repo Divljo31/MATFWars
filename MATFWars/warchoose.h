@@ -34,6 +34,9 @@ private:
     Create *ptrCreate;
     Join *ptrJoin;
 
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 };
 

@@ -30,9 +30,16 @@ private slots:
 
     void on_quit_war_button_clicked();
 
+
+
 private:
     Ui::WarGame *ui;
     Check *ptrCheck;
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
 
 #endif // WARGAME_H

@@ -28,6 +28,11 @@ private slots:
 private:
     Ui::Join *ui;
     WaitingRoom *ptrWaitingRoom;
+
+ //menjam
+ protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
 
 #endif // JOIN_H

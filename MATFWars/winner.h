@@ -20,6 +20,7 @@ public:
 
 private:
     Ui::Winner *ui;
+
 };
 
 #endif // WINNER_H

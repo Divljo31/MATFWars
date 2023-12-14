@@ -27,6 +27,11 @@ private slots:
 private:
     Ui::Check *ui;
 
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
 
 #endif // CHECK_H

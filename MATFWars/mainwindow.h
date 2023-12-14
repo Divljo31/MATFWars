@@ -6,6 +6,7 @@
 #include "guessgame.h"
 #include "leaderboard.h"
 #include "settings.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,6 +28,7 @@ private slots:
 
     void on_tool_button_clicked();
 
+
 private:
     Ui::MainWindow *ui;
     WarChoose *ptrWarChoose;
@@ -34,5 +36,9 @@ private:
     Leaderboard *ptrLeaderboard;
     Settings *ptrSettings;
 
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 };
+
 #endif // MAINWINDOW_H

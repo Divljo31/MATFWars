@@ -8,6 +8,10 @@ Create::Create(QWidget *parent) :
     ui->setupUi(this);
     ptrWaitingRoom=new WaitingRoom();
 
+    //menjam
+    ui->create_pop1_button->installEventFilter(this);
+    ui->back_pop1_button->installEventFilter(this);
+
     connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
 }
 
@@ -31,3 +35,14 @@ void Create::on_create_pop1_button_clicked()
     ptrWaitingRoom->show();
 }
 
+//menjam
+bool Create::eventFilter(QObject *obj, QEvent *event){
+    if(obj==ui->create_pop1_button && event->type()==QEvent::Enter){
+        ui->create_pop1_button->setCursor(Qt::PointingHandCursor);
+    }
+    else if(obj==ui->back_pop1_button && event->type()==QEvent::Enter){
+        ui->back_pop1_button->setCursor(Qt::PointingHandCursor);
+    }
+
+    return QDialog::eventFilter(obj,event);
+}
