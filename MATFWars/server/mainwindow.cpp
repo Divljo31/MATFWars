@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->textEdit_log->setReadOnly(true);
 
     server = new Server(this);
     connect(server, &Server::newMessage,
@@ -25,13 +26,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_startServer_clicked()
 {
-    if (!server->m_server->listen(QHostAddress::Any, 6547))
+
+    quint16 port = ui->lineEdit_port->text().toUShort();
+
+    if (!server->m_server->listen(QHostAddress::Any, port))
     {
         ui->textEdit_log->append(tr("<font color=\"red\"><b>Error!</b> The port is taken by some other service.</font>"));
         return;
     }
     connect(server->m_server, &QTcpServer::newConnection, server, &Server::newConnection);
-    ui->textEdit_log->append(tr("<font color=\"green\"><b>Server started</b>, port is openned.</font>"));
+    ui->textEdit_log->append(tr("<font color=\"green\"><b>Server started</b>,")+ QString::number(port) +tr(" port is openned.</font>"));
 }
 
 void MainWindow::on_pushButton_stopServer_clicked()

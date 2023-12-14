@@ -43,6 +43,13 @@
       </layout>
      </item>
      <item>
+      <widget class="QLineEdit" name="lineEdit_port">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QTextEdit" name="textEdit_log"/>
      </item>
      <item>

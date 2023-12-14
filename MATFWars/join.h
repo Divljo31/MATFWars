@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "waitingroom.h"
+#include "Client.h"
 
 namespace Ui {
 class Join;
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::Join *ui;
     WaitingRoom *ptrWaitingRoom;
+    Client* m_client;
 };
 
 #endif // JOIN_H

@@ -69,14 +69,16 @@ void Client::connect2host()
     m_socket->connectToHost(m_host, m_port);
     connect(m_socket, &QTcpSocket::connected, this, &Client::connected);
     connect(m_socket, &QTcpSocket::readyRead, this, &Client::readyRead);
+
 }
 
 void Client::setStatus(bool newStatus)
 {
     if (newStatus)
-    { emit statusChanged("CONNECTED"); }
+    { //emit statusChanged(true);
+    }
     else
-    { emit statusChanged("DISCONNECTED"); }
+    { emit statusChanged(false); }
 }
 
 void Client::receivedSomething(QString msg)
@@ -185,5 +187,35 @@ void Client::connectionTimeout()
         m_socket->abort();
         emit someError("timeout");
     }
+}
+
+QString Client::name() const
+{
+    return m_name;
+}
+
+void Client::setName(const QString &newName)
+{
+    m_name = newName;
+}
+
+QString Client::host() const
+{
+    return m_host;
+}
+
+void Client::setHost(const QString &newHost)
+{
+    m_host = newHost;
+}
+
+quint16 Client::port() const
+{
+    return m_port;
+}
+
+void Client::setPort(quint16 newPort)
+{
+    m_port = newPort;
 }
 

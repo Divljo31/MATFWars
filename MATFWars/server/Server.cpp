@@ -29,6 +29,7 @@ void Server::newConnection()
     m_clients << clientSocket;
 
     sendToClient(clientSocket, "Reply: connection established");
+
 }
 
 
@@ -52,7 +53,7 @@ void Server::readClient()
         QString str;
         in >> str;
 
-        emit gotNewMessage(str);
+        emit newMessage(str);
 
         m_nNextBlockSize = 0;
 
@@ -92,7 +93,7 @@ QString Server::connectClicked()
 
     if (!this->m_server->listen(QHostAddress::Any, 6547)) // set this to written port in ui
     {
-        return "Error! The port is taken by some other service";
+        return "Error! The port is taken by some other service" ;
     }
     else
     {

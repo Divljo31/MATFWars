@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "waitingroom.h"
+#include "Client.h"
+
 
 namespace Ui {
 class Create;
@@ -25,8 +27,10 @@ signals:
 
 private slots:
     void on_back_pop1_button_clicked();
-
     void on_create_pop1_button_clicked();
+
+    void gotError(QAbstractSocket::SocketError err);
+
 
 private:
     Ui::Create *ui;

@@ -20,6 +20,14 @@ public:
 
     QTcpSocket *m_socket;
 
+    QString host() const;
+    void setHost(const QString &newHost);
+    quint16 port() const;
+    void setPort(quint16 newPort);
+
+    QString name() const;
+    void setName(const QString &newName);
+
 public slots:
     void closeConnection();
     void connect2host();
@@ -44,10 +52,12 @@ signals:
 
     void hasReadSome(QString msg);
 
+
 private:
 
+    QString m_name;
     QString m_host;
-    int m_port;
+    quint16 m_port;
     bool m_status;
     quint16 m_NextBlockSize;
     QTimer *m_timeoutTimer;

@@ -15,6 +15,7 @@ public:
     QList<QTcpSocket *> getClients();
 
     QTcpServer *m_server;
+
 signals:
 
     void smbConnected();

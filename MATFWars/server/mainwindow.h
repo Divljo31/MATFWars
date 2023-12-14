@@ -25,6 +25,7 @@ private slots:
     void smbDisconnectedFromServer();
     void gotNewMesssage(QString msg);
 
+
 private:
     Ui::MainWindow *ui;
     Server *server;

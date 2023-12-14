@@ -10,7 +10,13 @@ Create::Create(QWidget *parent) :
 
     connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
 
+    m_client = new Client(nullptr, "localhost", 6547);
+
+    //connect(m_client->m_socket, &QTcpSocket::errorOccurred, this, &Client::gotError);
 }
+
+
+
 
 Create::~Create()
 {
@@ -28,10 +34,41 @@ void Create::on_back_pop1_button_clicked()
 
 void Create::on_create_pop1_button_clicked()
 {
+
+    m_client->setName(ui->name_lineEdit->text());
+    m_client->setPort(ui->port_lineEdit->text().toUShort());
+
+    m_client->connect2host();
+
     this->hide();
     ptrWaitingRoom->show();
 }
 
 
+
+void Create::gotError(QAbstractSocket::SocketError err)
+{
+    //qDebug() << "got error";
+    QString strError = "unknown";
+    switch (err)
+    {
+    case 0:
+        strError = "Connection was refused";
+        break;
+    case 1:
+        strError = "Remote host closed the connection";
+        break;
+    case 2:
+        strError = "Host address was not found";
+        break;
+    case 5:
+        strError = "Connection timed out";
+        break;
+    default:
+        strError = "Unknown error";
+    }
+
+   // ui->textEdit_log->append(strError);
+}
 
 
