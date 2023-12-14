@@ -25,23 +25,27 @@ private:
     // Sets x,y coordinates of points of our function
     void setPoints(double start, double end, int num);
 
-    // Translates coordinates of function so that coordinate origin is in (currX, currY) point
-    void translatePoints(double coorX, double coorY);
+
 
 public:
     // Constructs a function based on input string function, with coordinate origin in (coorX, coorY)
     // starting from x = 0, until x = endX, with numX linspaced coordinates
-    Function(std::string function, double startX = 0, double endX = 20, int numX = 100, double coorX = 0, double coorY = 0);
-
-    // TODO: vidi da li je mozda bolje da imamo 3 konstruktora:
-    // ovaj jedan za sve
-    // za WarGame(function, coorX, coorY) default: startX = 0, endX =15, num = 100
-    // za GuessGame(startX, endX) default vrednosti: num = 100, coorX = 0, coorY = 0
+    Function(std::string function, double startX = -15, double endX = 15, int numX = 200, double coorX = 0, double coorY = 0);
 
     // Destructor (if needed, uncomment)
     // ~Function();
 
     QVector<QPointF> points();
+
+    // Translates coordinates of function so that coordinate origin is in (currX, currY) point
+    void translatePointsPlayerView(double coorX, double coorY);
+
+    void translatePointsObserverView(double coorX, double coorY);
+
+    // Compares two functions based on points
+    bool equals(Function* otherFunction);
+
+    void scaleToCanvas(double width, double height, double gridWidth);
 
 };
 

@@ -52,8 +52,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         winner.h winner.cpp winner.ui
         check.h check.cpp check.ui
         warchoose.h warchoose.cpp warchoose.ui
+        FunctionNode.h FunctionNode.cpp
+        Canvas.h Canvas.cpp
+        testwindow.h testwindow.cpp testwindow.ui
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
+        resources.qrc
+        Timer.h Timer.cpp
 
         Client.h Client.cpp
 

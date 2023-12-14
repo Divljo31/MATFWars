@@ -10,8 +10,8 @@
 //menjano
 #include <QLineEdit>
 #include <QPushButton>
-#include <QStandardItemModel>
-#include <QMessageBox>
+
+#include "check.h"
 
 namespace Ui {
 class WarGame;
@@ -48,12 +48,13 @@ signals:
 private slots:
     void on_back_war_button_clicked();
 
+
+
+    void on_quit_war_button_clicked();
+
 private:
     Ui::WarGame *ui;
-    PlayerWar m_player1;
-    PlayerWar m_player2;
-    QVector<Obstacle> m_obstacles;
-
+    Check *ptrCheck;
 };
 
 #endif // WARGAME_H
