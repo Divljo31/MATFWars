@@ -67,7 +67,7 @@ border-color: rgb(238, 148, 148);</string>
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,3,0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,0,0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SetFixedSize</enum>
      </property>
@@ -206,6 +206,25 @@ font: 600 21pt &quot;URW Bookman&quot;;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="score_label">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>28</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
        </property>
       </widget>
      </item>

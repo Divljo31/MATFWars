@@ -14,6 +14,7 @@
 #include <QTextStream>
 #include <QString>
 #include <QRandomGenerator>
+#include "Difficulty.h"
 
 class QGraphicsScene;
 class Function;
@@ -55,9 +56,12 @@ private:
     Timer *m_timer;
     QGraphicsScene *m_canvas;
     std::vector<std::string> m_functions;
-    std::unordered_set<int> m_usedFunction;
+    std::unordered_set<int> m_usedFunctions;
     int m_currentFunctionIndex = -1;
     int m_score = 0;
+    difficulty m_diff = easy;
+
+
 };
 
 #endif // GUESSGAME_H

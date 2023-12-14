@@ -2,7 +2,6 @@
 #include "ui_guessgame.h"
 #include <iostream>
 
-using namespace std;
 GuessGame::GuessGame(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GuessGame),
@@ -41,14 +40,24 @@ void GuessGame::startGuessGame()
 {
     m_timer->start();
     m_timer->resetSec();
-    readFunctionsFromFile(":/functionSets/easyFunctionSet.txt");
+
+    // TODO: ovde uzeti difficulty iz prethodnog prozora i postaviti ga, vrv da se prosledi signalom, tj startGuessGame da prima (Difficulty d)
+    // za sad je po defaultu m_diff = easy
+    switch (m_diff) {
+    case easy:
+        readFunctionsFromFile(":/functionSets/easyFunctionSet.txt");
+        break;
+    case hard:
+        readFunctionsFromFile(":/functionSets/hardFunctionSet.txt");
+        break;
+    }
     chooseFunctionIndex();
 }
 
 GuessGame::~GuessGame()
 {
     delete ui;
-    delete m_timer;
+    m_timer->deleteLater();
 }
 
 void GuessGame::on_back_guess_button_clicked()
@@ -78,12 +87,14 @@ void GuessGame::checkAnswerAndSetNewFunction()
     if (currentFunction->equals(answerFunction)) {
 
         m_score++;
-        // ako treba dodati vreme na tajmer
+
+        int extraTime = 2;
+        m_timer->addSec(extraTime);
+
+        ui->score_label->setText(QString::number(m_score));
         ui->gvCanvas->setBackgroundBrush(QBrush(Qt::green));
-        cout << m_score << endl;
     }
     else {
-        cout << "nope" << endl;
         ui->gvCanvas->setBackgroundBrush(QBrush(Qt::red));
     }
 
@@ -96,7 +107,13 @@ void GuessGame::checkAnswerAndSetNewFunction()
 void GuessGame::chooseFunctionIndex()
 {
     int size = m_functions.size();
-    m_currentFunctionIndex =  QRandomGenerator::global()->bounded(size);
+
+    if (m_usedFunctions.size() == size) m_usedFunctions.clear();
+
+    while(m_usedFunctions.count(m_currentFunctionIndex) > 0  || m_currentFunctionIndex == -1)
+        m_currentFunctionIndex =  QRandomGenerator::global()->bounded(size);
+
+    m_usedFunctions.insert(m_currentFunctionIndex);
 
     drawCurrentFunction();
 }
@@ -116,7 +133,7 @@ void GuessGame::drawCurrentFunction()
     emit newFunctionIsSet(node);
 }
 
-void GuessGame::readFunctionsFromFile(string fileName)
+void GuessGame::readFunctionsFromFile(std::string fileName)
 {
     QFile file(QString::fromStdString(fileName));
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {

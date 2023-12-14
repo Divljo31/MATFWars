@@ -1,7 +1,16 @@
 log(x)
-exp(x)
+exp(x)-1
 x*sin(x)
 cos(x)+3
 sin(x)/cos(x)
 sqrt(x)
 1/x
+sin(x)/2
+2
+x^3
+x^4
+-x^2
+x
+-x
+x/2
+2*x
