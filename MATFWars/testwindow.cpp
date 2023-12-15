@@ -3,6 +3,8 @@
 
 #include "Function.h"
 #include "FunctionNode.h"
+#include "Player.h"
+#include "PlayerNode.h"
 
 testWindow::testWindow(QWidget *parent) :
     QWidget(parent),
@@ -42,6 +44,11 @@ void testWindow::setNewFunction()
     QRectF sceneRect = QRectF(m_canvas->sceneRect());
 
     const auto node = new FunctionNode(newFunction, sceneRect.width(), sceneRect.height());
+
+    Player *p = new Player("2, 10");
+    p->setCoordinates(QPointF(5, 3));
+    PlayerNode* pw = new PlayerNode(p, m_canvas->width(), m_canvas->height());
+    dynamic_cast<Canvas *>(m_canvas)->addItem(pw);
 
     emit newFunctionIsSet(node);
 }

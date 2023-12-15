@@ -41,10 +41,10 @@ QVector<Obstacle> WarGame::generateObstacles(int x, int y)
     return obstacleArray;
 }
 
-PlayerWar WarGame::generatePlayer(int x, int y)
+Player* WarGame::generatePlayer(int x, int y)
 {
-    PlayerWar player;
-    player.setCoordinates(randomPoint(x, y, 1.0));
+    Player *player = new Player("name");
+    player->setCoordinates(randomPoint(x, y, 1.0));
     return player;
 }
 
@@ -67,9 +67,6 @@ void WarGame::on_back_war_button_clicked()
     emit backWarClicked();
     this->hide();
 }
-
-
-
 
 void WarGame::on_quit_war_button_clicked()
 {

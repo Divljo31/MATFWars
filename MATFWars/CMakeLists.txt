@@ -27,9 +27,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         Player.h Player.cpp
         Function.h Function.cpp
-        PlayerWar.h PlayerWar.cpp
-        PlayerGuess.h PlayerGuess.cpp
-        GuessGame.h GuessGame.cpp
+
+
+
 
         Obstacle.h Obstacle.cpp
         lib/muparser/muParser.cpp lib/muparser/muParser.h
@@ -61,6 +61,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Timer.h Timer.cpp
 
         Client.h Client.cpp
+        PlayerNode.h PlayerNode.cpp
 
 
 

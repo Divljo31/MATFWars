@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QVector>
-#include "PlayerWar.h"
+#include "Player.h"
 #include "Obstacle.h"
 #include "Client.h"
 
@@ -31,7 +31,7 @@ public:
     static bool endGame();
 
     QVector<Obstacle> generateObstacles(int x, int y);
-    PlayerWar generatePlayer(int x, int y);
+    Player* generatePlayer(int x, int y);
     QPointF randomPoint(int x, int y, float playerOrObstacle);
 
  //   Obstacle getObstacle(size_t index) const;
