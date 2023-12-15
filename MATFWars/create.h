@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QEnterEvent>
 #include "waitingroom.h"
+#include "Client.h"
 
 namespace Ui {
 class Create;

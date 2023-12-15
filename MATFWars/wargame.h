@@ -5,7 +5,6 @@
 #include <QVector>
 #include "Player.h"
 #include "Obstacle.h"
-#include "Client.h"
 
 //menjano
 #include <QLineEdit>
@@ -42,12 +41,7 @@ signals:
 
 private slots:
     void on_back_war_button_clicked();
-
-
-
     void on_quit_war_button_clicked();
-
-
 
 private:
     Ui::WarGame *ui;

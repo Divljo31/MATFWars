@@ -8,25 +8,17 @@ class Player;
 class PlayerNode : public QGraphicsItem
 {
 public:
-    PlayerNode(Player *player, double canvasWidth, double canvasLength);
+    PlayerNode(Player *player);
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     inline const Player *getPlayer() {
-        return m_player;
+        return m_playerNode;
     }
 
 private:
-    void setCanvasCoords();
-
-private:
-    Player * m_player;
-    double m_diameter = 25;
-    double xCanvas;
-    double yCanvas;
-
-
+    Player * m_playerNode;
 };
 
 #endif // PLAYERNODE_H

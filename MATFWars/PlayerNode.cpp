@@ -1,15 +1,19 @@
 #include "PlayerNode.h"
+#include "Player.h"
 #include <QPainter>
+#include "utils.h"
+#include <iostream>
 
 PlayerNode::PlayerNode(Player * player)
     :QGraphicsItem(),
-    m_player(player)
+    m_playerNode(player)
 {
 }
 
 QRectF PlayerNode::boundingRect() const
 {
-    return QRectF(0, 0, m_diameter, m_diameter);
+    double canvasDiameter = Utils::getCanvasDiameter(m_playerNode->diameter());
+    return QRectF(0, 0, canvasDiameter , canvasDiameter);
 }
 
 void PlayerNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -18,15 +22,14 @@ void PlayerNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     Q_UNUSED(widget);
 
     painter->setBrush(Qt::darkYellow);
-
     // Set the pen for the circle outline
     painter->setPen(Qt::black);
 
-    // Draw the circle
-    painter->drawEllipse(100, 100, m_diameter, m_diameter);
+    QPointF canvasPoint = Utils::setCanvasCoordiante(m_playerNode->coordinate());
+    double canvasDiameter = Utils::getCanvasDiameter(m_playerNode->diameter());
+
+    double topLeftX = canvasPoint.x() - canvasDiameter/2;
+    double topLeftY = canvasPoint.y() - canvasDiameter/2;
+    painter->drawEllipse(topLeftX, topLeftY, canvasDiameter, canvasDiameter);
 }
 
-void PlayerNode::setCanvasCoords()
-{
-
-}

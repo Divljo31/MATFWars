@@ -67,6 +67,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         Client.h Client.cpp
 
+        utils.h utils.cpp
+        ObstacleNode.h ObstacleNode.cpp
+
+
+
 
 
     )

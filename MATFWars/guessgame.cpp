@@ -34,6 +34,7 @@ void GuessGame::resizeEvent(QResizeEvent *event)
 
     dynamic_cast<Canvas *>(m_canvas)->addCoordinateSystem();
     if (m_currentFunctionIndex != -1) drawCurrentFunction();
+
 }
 
 void GuessGame::startGuessGame()

@@ -12,13 +12,17 @@ public:
 
     virtual void setName(const QString &newName);
 
-    QPointF coordinates() const;
+    QPointF coordinate() const;
 
     void setCoordinates(QPointF newCoordinates);
 
+
+    double diameter() const;
+
 private:
     QString m_name;
-    QPointF m_coordinates;
+    QPointF m_coordinate;
+    double m_diameter = 1.0;
 };
 
 #endif // PLAYER_H

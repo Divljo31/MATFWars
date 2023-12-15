@@ -1,5 +1,9 @@
 #include "Canvas.h"
 #include "FunctionNode.h"
+#include "Obstacle.h"
+#include "ObstacleNode.h"
+#include "Player.h"
+#include "PlayerNode.h"
 
 Canvas::Canvas(QObject *parent)
     :QGraphicsScene(parent),
@@ -7,21 +11,20 @@ Canvas::Canvas(QObject *parent)
 {
 }
 
-void Canvas::translateCoordinates(QPointF * point) {
-    double sceneX = point->x()*this->width()/gridWidth();
+QPointF Canvas::getCanvasCoords(double logicalX, double logicalY) {
+    double sceneX = logicalX*this->width()/gridWidth();
     sceneX += this->width()/2;
-    point->setX(sceneX);
 
-    double sceneY = -point->y()*this->width()/gridWidth();
+    double sceneY = -logicalY*this->width()/gridWidth();
     sceneY += this->height()/2;
-    point->setY(sceneY);
+
+    return QPointF(sceneX, sceneY);
 }
 
 // Function to add a point to the scene
 void Canvas::addPoint(int logicalX, int logicalY) {
     double r = 1.5;
-    QPointF scenePoint(logicalX, logicalY);
-    translateCoordinates(&scenePoint);
+    QPointF scenePoint = getCanvasCoords(logicalX, logicalY);
 
     QRectF pointRect(scenePoint.x() - r, scenePoint.y() - r,
                      r * 2, r * 2);
@@ -76,9 +79,7 @@ void Canvas::setFunction(FunctionNode *node)
     }
 
     m_functionNode = node;
-
     this->addItem(m_functionNode);
-
 }
 
 double Canvas::gridWidth() const

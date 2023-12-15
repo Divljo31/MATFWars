@@ -16,12 +16,18 @@ void Player::setName(const QString &newName)
     m_name = newName;
 }
 
-QPointF Player::coordinates() const
+QPointF Player::coordinate() const
 {
-    return m_coordinates;
+    return m_coordinate;
 }
 
 void Player::setCoordinates(QPointF newCoordinates)
 {
-    m_coordinates = newCoordinates;
+    m_coordinate = newCoordinates;
 }
+
+double Player::diameter() const
+{
+    return m_diameter;
+}
+
