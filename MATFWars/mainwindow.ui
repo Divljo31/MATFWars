@@ -197,7 +197,8 @@ border-radius:20px</string>
          <string notr="true">border-image: url(:/background/btn1.jpg);
 font: 600 35pt &quot;URW Bookman&quot;;
 border-radius:10px;
-color: rgb(180, 72, 72);</string>
+color: rgb(180, 72, 72);
+</string>
         </property>
         <property name="text">
          <string>War game</string>
@@ -225,6 +226,9 @@ color: rgb(180, 72, 72);</string>
       </item>
       <item>
        <widget class="QPushButton" name="guess_game_button">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>3</horstretch>
@@ -307,8 +311,7 @@ font: 600 35pt &quot;URW Bookman&quot;;
 border-radius:15px;
 font: 600 35pt &quot;URW Bookman&quot;;
 color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));
-border:8px solid;
-border-color: rgb(79, 43, 43);</string>
+border:8px solid rgb(79, 43, 43);</string>
         </property>
         <property name="text">
          <string>Leaderboard</string>

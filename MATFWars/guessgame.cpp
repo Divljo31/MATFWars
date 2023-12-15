@@ -32,3 +32,6 @@ void GuessGame::on_back_guess_button_clicked()
     this->hide();
 }
 
+
+
+

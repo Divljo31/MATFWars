@@ -33,7 +33,13 @@ private:
     Ui::WarChoose *ui;
     Create *ptrCreate;
     Join *ptrJoin;
+    QString createStyle;
+    QString joinStyle;
+    QString backStyle;
 
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 };
 
