@@ -15,6 +15,7 @@
 #include <QString>
 #include <QRandomGenerator>
 #include "Difficulty.h"
+#include "result.h"
 
 class QGraphicsScene;
 class Function;
@@ -45,9 +46,11 @@ private slots:
     void chooseFunctionIndex();
     void showTime();
     void checkAnswerAndSetNewFunction();
+    void resultWindow();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
     void readFunctionsFromFile(std::string fileName);
@@ -62,6 +65,9 @@ private:
     int m_currentFunctionIndex = -1;
     int m_score = 0;
     difficulty m_diff = easy;
+    QString backStyle;
+    QString enterStyle;
+    Result *ptrResult;
 
 
 

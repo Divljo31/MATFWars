@@ -65,6 +65,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         Client.h Client.cpp
         choosedifficulty.h choosedifficulty.cpp choosedifficulty.ui
+        result.h result.cpp result.ui
 
 
 

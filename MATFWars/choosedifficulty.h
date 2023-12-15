@@ -2,7 +2,6 @@
 #define CHOOSEDIFFICULTY_H
 
 #include <QDialog>
-
 #include "guessgame.h"
 
 namespace Ui {
@@ -18,13 +17,17 @@ public:
     ~ChooseDifficulty();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_go_difficulty_button_clicked();
 
 
 
 private:
     Ui::ChooseDifficulty *ui;
     GuessGame *ptrGuessGame;
+    QString goStyle;
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // CHOOSEDIFFICULTY_H
