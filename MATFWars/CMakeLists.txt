@@ -30,7 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         PlayerWar.h PlayerWar.cpp
         PlayerGuess.h PlayerGuess.cpp
         GuessGame.h GuessGame.cpp
-        WarGame.h WarGame.cpp
+
         Obstacle.h Obstacle.cpp
         lib/muparser/muParser.cpp lib/muparser/muParser.h
         lib/muparser/muParserBase.cpp lib/muparser/muParserBase.h
@@ -43,7 +43,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         lib/muparser/muParserTemplateMagic.h lib/muparser/muParserTest.cpp
         lib/muparser/muParserTest.h lib/muparser/muParserToken.h
         lib/muparser/muParserTokenReader.cpp lib/muparser/muParserTokenReader.h
-        Server.h Server.cpp
+
         guessgame.h guessgame.cpp guessgame.ui
         wargame.h wargame.cpp wargame.ui
         create.h create.cpp create.ui
@@ -60,6 +60,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resources.qrc
         Timer.h Timer.cpp
         Confetti.h Confetti.cpp
+
+
+        Client.h Client.cpp
+
+
 
 
     )

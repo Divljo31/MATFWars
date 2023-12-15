@@ -17,7 +17,10 @@ public:
     explicit Create(QWidget *parent = nullptr);
     ~Create();
 
-// menjam
+    // menjam
+    QString lastUserName() const;
+    void setLastUserName(const QString &newLastUserName);
+
 signals:
     void backCreatePop1Clicked();
 
@@ -38,6 +41,9 @@ private:
 //menjam
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
+
+    Client* m_client;
+    QString m_lastUserName;
 
 };
 

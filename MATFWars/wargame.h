@@ -2,6 +2,11 @@
 #define WARGAME_H
 
 #include <QDialog>
+#include <QVector>
+#include "PlayerWar.h"
+#include "Obstacle.h"
+#include "Client.h"
+
 //menjano
 #include <QLineEdit>
 #include <QPushButton>
@@ -19,6 +24,18 @@ class WarGame : public QDialog
 public:
     explicit WarGame(QWidget *parent = nullptr);
     ~WarGame();
+
+    static bool startGame();
+    static bool addPlayer();
+    static bool removePlayer();
+    static bool endGame();
+
+    QVector<Obstacle> generateObstacles(int x, int y);
+    PlayerWar generatePlayer(int x, int y);
+    QPointF randomPoint(int x, int y, float playerOrObstacle);
+
+ //   Obstacle getObstacle(size_t index) const;
+
 
 signals:
     void backWarClicked();
