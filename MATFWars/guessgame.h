@@ -34,7 +34,9 @@ public:
     ~GuessGame();
 
 signals:
-    void backGuessClicked();
+
+    //void backGuessClicked();
+
     void newFunctionIsSet(FunctionNode*);
 
 private slots:
@@ -60,6 +62,9 @@ private:
     int m_currentFunctionIndex = -1;
     int m_score = 0;
     difficulty m_diff = easy;
+
+
+
 
 
 };

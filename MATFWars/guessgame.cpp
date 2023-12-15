@@ -58,6 +58,8 @@ GuessGame::~GuessGame()
 {
     delete ui;
     m_timer->deleteLater();
+
+
 }
 
 void GuessGame::on_back_guess_button_clicked()
@@ -66,7 +68,9 @@ void GuessGame::on_back_guess_button_clicked()
     ui->timer_label->setText(" ");
     this->hide();
 
-    emit backGuessClicked();
+
+
+    //emit backGuessClicked();
 }
 
 void GuessGame::showTime()

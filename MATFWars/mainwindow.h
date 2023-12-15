@@ -3,9 +3,11 @@
 
 #include <QMainWindow>
 #include "warchoose.h"
-#include "guessgame.h"
 #include "leaderboard.h"
 #include "settings.h"
+#include "choosedifficulty.h"
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,24 +24,28 @@ public:
 private slots:
     void on_war_game_button_clicked();
 
-    void on_guess_game_button_clicked();
+    //void on_guess_game_button_clicked();
 
     void on_leaderboard_main_button_clicked();
 
     void on_tool_button_clicked();
 
 
+    void on_guess_game_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     WarChoose *ptrWarChoose;
-    GuessGame *ptrGuessGame;
+    ChooseDifficulty *ptrChooseDifficulty;
     Leaderboard *ptrLeaderboard;
     Settings *ptrSettings;
     QString warStyle;
     QString guessStyle;
     QString leaderboardStyle;
 
-//menjam
+
+
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 };
