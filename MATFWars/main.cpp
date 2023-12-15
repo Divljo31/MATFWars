@@ -2,12 +2,14 @@
 #include "wargame.h"
 #include <iostream>
 #include <QApplication>
+#include "testwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
+    testWindow t;
+    t.show();
 
     return a.exec();
 }

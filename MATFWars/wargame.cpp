@@ -49,10 +49,10 @@ QVector<Obstacle> WarGame::generateObstacles(int x, int y)
     return obstacleArray;
 }
 
-PlayerWar WarGame::generatePlayer(int x, int y)
+Player* WarGame::generatePlayer(int x, int y)
 {
-    PlayerWar player;
-    player.setCoordinates(randomPoint(x, y, 1.0));
+    Player *player = new Player("name");
+    player->setCoordinates(randomPoint(x, y, 1.0));
     return player;
 }
 
