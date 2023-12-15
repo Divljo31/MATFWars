@@ -19,7 +19,7 @@ void FunctionNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-    painter->setPen(Qt::black);
+    painter->setPen(Qt::darkBlue);
     painter->drawPolyline(m_functionNode->points());
 
 }

@@ -12,4 +12,7 @@
         <file>backgroundBtns.jpg</file>
     </qresource>
     <qresource prefix="/"/>
+    <qresource prefix="/functionSets">
+        <file>easyFunctionSet.txt</file>
+    </qresource>
 </RCC>

@@ -2,15 +2,19 @@
 #include <iostream>
 
 
-Timer::Timer(QObject *parent)
-    : QThread(parent)
+Timer::Timer(int startSec, QObject *parent)
+    : QThread(parent),
+    m_startSec(startSec)
 {
+}
+
+Timer::~Timer() {
+    delete m_clock;
 }
 
 
 void Timer::run(){
     m_clock = new QElapsedTimer();
-
     m_clock->start();
     showSec();
 
@@ -21,10 +25,9 @@ void Timer::run(){
         }
 
         if(m_sec == 0){
-            m_interface->timer_label->setText(" ");
             emit timerExpired();
 
-            while(m_sec < 10){
+            while(m_sec < m_startSec){
                 m_clock->start();
             }
         }
@@ -32,28 +35,20 @@ void Timer::run(){
 }
 
 
-
-void Timer::setInterface(Ui::GuessGame* ui){
-    m_interface = ui;
-}
-
-
-
 void Timer::showSec(){
-    m_interface->timer_label->setText(QString::number(m_sec >= 0 ? m_sec - 1 : 0));
     if(m_sec > 0){
         m_sec--;
     }
+    emit secPassed();
 }
-
 
 void Timer::resetSec(){
-    m_sec = 11;
+    m_sec = m_startSec + 1;
 }
 
 
-int Timer::getSec(int s){
-    return s;
+int Timer::getSec(){
+    return m_sec;
 }
 
 void Timer::stopCount(){
@@ -61,8 +56,8 @@ void Timer::stopCount(){
 }
 
 void Timer::addSec(int extra){
-    if(m_sec + extra >= 11){
-        m_sec = 11;
+    if(m_sec + extra > m_startSec){
+        m_sec = m_startSec + 1;
     }else{
         m_sec = m_sec + extra;
     }

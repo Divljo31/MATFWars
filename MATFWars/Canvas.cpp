@@ -1,5 +1,4 @@
 #include "Canvas.h"
-#include "Function.h"
 #include "FunctionNode.h"
 
 Canvas::Canvas(QObject *parent)
@@ -9,32 +8,62 @@ Canvas::Canvas(QObject *parent)
 }
 
 QPointF Canvas::translateCoordinates(int logicalX, int logicalY) {
-    double sceneX = (this->width() / 2) + (logicalX * gridWidth());
-    double sceneY = (this->height() / 2) - (logicalY * gridWidth());
+    double sceneX = logicalX*this->width()/gridWidth();
+    sceneX += this->width()/2;
+
+    double sceneY = -logicalY*this->width()/gridWidth();
+    sceneY += this->height()/2;
+
     return QPointF(sceneX, sceneY);
 }
 
 // Function to add a point to the scene
 void Canvas::addPoint(int logicalX, int logicalY) {
-    double r = 1.2;
+    double r = 1.5;
     QPointF scenePoint = translateCoordinates(logicalX, logicalY);
     QRectF pointRect(scenePoint.x() - r, scenePoint.y() - r,
                      r * 2, r * 2);
     QGraphicsEllipseItem* point = new QGraphicsEllipseItem(pointRect);
 
-    this->addItem(point);
+    axisPoints.push_back(point);
 }
 
 void Canvas::addCoordinateSystem() {
     QLineF xAxis(0, this->height()/2, this->width(), this->height()/2);
     QLineF yAxis(this->width() / 2, 0, this->width() / 2, this->height());
-    this->addItem(new QGraphicsLineItem(xAxis));
-    this->addItem(new QGraphicsLineItem(yAxis));
 
-    for  (int start = -gridWidth(); start <= m_gridWidth; start++) {
+    if (xAxisItem != nullptr) {
+        this->removeItem(xAxisItem);
+        delete xAxisItem;
+    }
+
+    if (yAxisItem != nullptr) {
+        this->removeItem(yAxisItem);
+        delete yAxisItem;
+    }
+
+    xAxisItem = new QGraphicsLineItem(xAxis);
+    yAxisItem = new QGraphicsLineItem(yAxis);
+
+    this->addItem(xAxisItem);
+    this->addItem(yAxisItem);
+
+    while (!axisPoints.empty()) {
+        QGraphicsEllipseItem* point = axisPoints.back();
+        axisPoints.pop_back();
+        this->removeItem(point);
+        delete point;
+    }
+
+    for  (int start = -gridWidth(); start <= gridWidth(); start++) {
         addPoint(start, 0);
         addPoint(0, start);
     }
+
+    for (QGraphicsEllipseItem* point : axisPoints) {
+        this->addItem(point);
+    }
+
 }
 
 void Canvas::setFunction(FunctionNode *node)

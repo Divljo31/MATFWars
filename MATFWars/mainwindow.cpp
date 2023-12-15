@@ -12,13 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     ptrLeaderboard=new Leaderboard();
     ptrSettings=new Settings();
 
-
     //menjam
     ui->war_game_button->installEventFilter(this);
     ui->guess_game_button->installEventFilter(this);
     ui->leaderboard_main_button->installEventFilter(this);
     ui->tool_button->installEventFilter(this);
-
 
     // menjam
     connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
