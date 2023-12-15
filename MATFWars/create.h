@@ -2,6 +2,7 @@
 #define CREATE_H
 
 #include <QDialog>
+#include <QEnterEvent>
 #include "waitingroom.h"
 
 namespace Ui {
@@ -16,7 +17,10 @@ public:
     explicit Create(QWidget *parent = nullptr);
     ~Create();
 
-// menjam
+    // menjam
+    QString lastUserName() const;
+    void setLastUserName(const QString &newLastUserName);
+
 signals:
     void backCreatePop1Clicked();
 
@@ -25,9 +29,24 @@ private slots:
 
     void on_create_pop1_button_clicked();
 
+
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
+    QString backStyle;
+    QString createStyle;
+
+
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+    Client* m_client;
+    QString m_lastUserName;
+
 };
+
+
 
 #endif // CREATE_H

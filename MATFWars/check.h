@@ -26,6 +26,13 @@ private slots:
 
 private:
     Ui::Check *ui;
+    QString yesStyle;
+    QString noStyle;
+
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 };
 

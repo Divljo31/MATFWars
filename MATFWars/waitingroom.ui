@@ -266,8 +266,6 @@ border-image: url(:/background/backgroundBtns.jpg);</string>
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:10px solid;
-border-color: rgb(238, 148, 148);
 border-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
        <property name="text">
@@ -315,8 +313,6 @@ border-image: url(:/background/backgroundBtns.jpg);</string>
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:10px solid;
-border-color: rgb(238, 148, 148);
 border-image: url(:/background/backgroundBtns.jpg);</string>
        </property>
        <property name="text">

@@ -27,6 +27,13 @@ private slots:
 private:
     Ui::WaitingRoom *ui;
     WarGame *ptrWarGame;
+    QString playStyle;
+    QString backStyle;
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
 
 #endif // WAITINGROOM_H
