@@ -7,20 +7,22 @@ Canvas::Canvas(QObject *parent)
 {
 }
 
-QPointF Canvas::translateCoordinates(int logicalX, int logicalY) {
-    double sceneX = logicalX*this->width()/gridWidth();
+void Canvas::translateCoordinates(QPointF * point) {
+    double sceneX = point->x()*this->width()/gridWidth();
     sceneX += this->width()/2;
+    point->setX(sceneX);
 
-    double sceneY = -logicalY*this->width()/gridWidth();
+    double sceneY = -point->y()*this->width()/gridWidth();
     sceneY += this->height()/2;
-
-    return QPointF(sceneX, sceneY);
+    point->setY(sceneY);
 }
 
 // Function to add a point to the scene
 void Canvas::addPoint(int logicalX, int logicalY) {
     double r = 1.5;
-    QPointF scenePoint = translateCoordinates(logicalX, logicalY);
+    QPointF scenePoint(logicalX, logicalY);
+    translateCoordinates(&scenePoint);
+
     QRectF pointRect(scenePoint.x() - r, scenePoint.y() - r,
                      r * 2, r * 2);
     QGraphicsEllipseItem* point = new QGraphicsEllipseItem(pointRect);

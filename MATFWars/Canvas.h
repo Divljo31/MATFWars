@@ -24,7 +24,7 @@ private:
     QVector<QGraphicsEllipseItem*> axisPoints;
     const double m_gridWidth = 30;
 
-    QPointF translateCoordinates(int logicalX, int logicalY);
+    void translateCoordinates(QPointF* point);
     void addPoint(int logicalX, int logicalY);
 
 
