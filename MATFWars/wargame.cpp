@@ -3,6 +3,7 @@
 #include "ObstacleNode.h"
 #include "PlayerNode.h"
 #include "ui_wargame.h"
+#include <cmath>
 
 WarGame::WarGame(QWidget *parent) :
     QDialog(parent),
@@ -43,18 +44,21 @@ WarGame::~WarGame()
 void WarGame::startWarGame()
 {
     m_canvas->setSceneRect(ui->gvCanvas->rect());
+
     ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
     ui->gvCanvas->setScene(m_canvas);
 
-    player0 = generatePlayer(30, 20);
-    player1 = generatePlayer(30, 20);
+    player0 = generatePlayer(30, 18);
 
-    generateObstacles(30, 20);
+    player1 = generatePlayer(30, 18);
+    player1->flipX();
+
+    generateObstacles(30, 18);
 
     PlayerNode *pn0 = new PlayerNode(player0);
     emit newPlayerIsSet(pn0);
 
-    PlayerNode *pn1 = new PlayerNode(player0);
+    PlayerNode *pn1 = new PlayerNode(player1);
     emit newPlayerIsSet(pn1);
 
     for(Obstacle* o : obstacles) {
@@ -72,38 +76,53 @@ void WarGame::startWarGame()
 
 void WarGame::generateObstacles(int width, int height)
 {
-    int numOfObstacles = QRandomGenerator::global()->bounded(8);
-
-    for(int i = 0; i < numOfObstacles; i++){
+    int numOfObstacles = QRandomGenerator::global()->bounded(10);
+    int generatedObstacles = 0;
+    while(generatedObstacles < numOfObstacles) {
         Obstacle* obstacle = new Obstacle();
 
         obstacle->setCenter(randomPoint(width, height, 1.0));
-        obstacle->setCenter(QPointF(i, i));
-        double newDiameter = obstacle->generateDiameter(numOfObstacles);
-        obstacle->setDiameter(2.0);
+        double newDiameter = obstacle->generateDiameter();
+        obstacle->setDiameter(newDiameter);
 
-        obstacles.push_back(obstacle);
+        if (allowedObstacle(obstacle)) {
+            obstacles.push_back(obstacle);
+            generatedObstacles++;
+        } else {
+            delete obstacle;
+        }
     }
+}
+
+bool WarGame::allowedObstacle(Obstacle *o)
+{
+    double distFrom0 = std::hypot(o->center().x() - player0->coordinate().x(), o->center().y() - player0->coordinate().y());
+    double distFrom1 = std::hypot(o->center().x() - player1->coordinate().x(), o->center().y() - player1->coordinate().y());
+
+    return distFrom0 > (o->diameter() + player0->diameter()) / 2
+           && distFrom1 >  (o->diameter() + player1->diameter()) / 2;
 }
 
 Player* WarGame::generatePlayer(int width, int height)
 {
     Player *player = new Player("name");
 
-    QPointF playerPos = randomPoint(width, height, 0.3);
+    // generise playera tkd se ne sece sa borderima
+    QPointF playerPos = randomPoint(width - player->diameter(), height - player->diameter(), 0.2);
     player->setCoordinates(playerPos);
+
     return player;
 }
 
 // x-> width, y -> height, playerOrObstacle -> procenat ekrana gde moze da se generise
-QPointF WarGame::randomPoint(int width, int height, float areaPercent)
+QPointF WarGame::randomPoint(int width, int height, double areaPercent)
 {
     //if generatePlayer is the caller function, then playerOrObstacle = 1.0, else  playerOrObstacle = 2.0
     float xCoord = QRandomGenerator::global()->generateDouble();
-    xCoord = (-width/2 + 1) + xCoord * areaPercent * (width/2);
+    xCoord = -width / 2 + xCoord * areaPercent * width;
 
     float yCoord = QRandomGenerator::global()->generateDouble();
-    yCoord = (-height/2 + 1) + yCoord * (height/2) * 0.9;
+    yCoord = -height / 2 + yCoord * height;
 
     QPointF pointF(xCoord, yCoord);
 

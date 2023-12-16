@@ -31,3 +31,8 @@ double Player::diameter() const
     return m_diameter;
 }
 
+void Player::flipX()
+{
+    m_coordinate.setX(-m_coordinate.x());
+}
+

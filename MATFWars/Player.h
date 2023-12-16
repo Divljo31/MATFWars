@@ -18,6 +18,8 @@ public:
 
     double diameter() const;
 
+    void flipX();
+
 private:
     QString m_name;
     QPointF m_coordinate;

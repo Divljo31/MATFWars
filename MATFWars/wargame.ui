@@ -26,9 +26,11 @@
          <item>
           <widget class="QGraphicsView" name="gvCanvas">
            <property name="styleSheet">
-            <string notr="true">border:10px solid;
-border-color: rgb(238, 148, 148);
-</string>
+            <string notr="true">border:7px solid;
+border-color: rgb(238, 148, 148);</string>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
            </property>
           </widget>
          </item>

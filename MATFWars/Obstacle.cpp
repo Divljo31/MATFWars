@@ -20,16 +20,18 @@ float Obstacle::diameter() const
     return m_diameter;
 }
 
-void Obstacle::setDiameter(float newDiameter)
+void Obstacle::setDiameter(double newDiameter)
 {
     m_diameter = newDiameter;
 }
 
-float Obstacle::generateDiameter(int numOfObstacles)
+double Obstacle::generateDiameter()
 {
 
-    float diameter = QRandomGenerator::global()->generateDouble();
-    diameter = 0.1 + diameter * (10 - numOfObstacles)/2;
+    double diameter = QRandomGenerator::global()->generateDouble();
+    int scale = 1 + QRandomGenerator::global()->bounded(10);
+    // 1.5 je minSize
+    diameter = m_minSize + diameter * scale;
 
     return diameter;
 }

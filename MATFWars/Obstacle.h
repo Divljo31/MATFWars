@@ -15,13 +15,14 @@ public:
     void setCenter(QPointF newCoordinates);
 
     float diameter() const;
-    void setDiameter(float newDiameter);
+    void setDiameter(double newDiameter);
 
-    float generateDiameter(int numOfObstacles);
+    double generateDiameter();
 
 
 private:
-    float m_diameter;
+    double m_diameter;
+    double m_minSize = 2.0;
     QPointF m_center;
 
 
