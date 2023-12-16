@@ -21,7 +21,14 @@ GuessGame::GuessGame(QWidget *parent) :
     connect(this, &GuessGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
     connect(m_timer, SIGNAL(secPassed()), this, SLOT(showTime()));
-    connect(m_timer, SIGNAL(timerExpired()), this, SLOT(on_back_guess_button_clicked()));
+    connect(m_timer, SIGNAL(timerExpired()), this, SLOT(resultWindow()));
+
+    ui->enter_guess_button->installEventFilter(this);
+    ui->back_guess_button->installEventFilter(this);
+    enterStyle=ui->enter_guess_button->styleSheet();
+    backStyle=ui->back_guess_button->styleSheet();
+
+    ptrResult=new Result();
 }
 
 void GuessGame::resizeEvent(QResizeEvent *event)
@@ -58,6 +65,8 @@ GuessGame::~GuessGame()
 {
     delete ui;
     m_timer->deleteLater();
+
+
 }
 
 void GuessGame::on_back_guess_button_clicked()
@@ -66,7 +75,9 @@ void GuessGame::on_back_guess_button_clicked()
     ui->timer_label->setText(" ");
     this->hide();
 
-    emit backGuessClicked();
+
+
+    //emit backGuessClicked();
 }
 
 void GuessGame::showTime()
@@ -103,6 +114,7 @@ void GuessGame::checkAnswerAndSetNewFunction()
 
     chooseFunctionIndex();
 }
+
 
 void GuessGame::chooseFunctionIndex()
 {
@@ -148,6 +160,32 @@ void GuessGame::readFunctionsFromFile(std::string fileName)
         std::cerr << "Unable to open file" << std::endl;
     }
 }
+
+bool GuessGame::eventFilter(QObject *obj, QEvent *event){
+    if(obj==ui->enter_guess_button && event->type()==QEvent::Enter){
+        ui->enter_guess_button->setCursor(Qt::PointingHandCursor);
+        ui->enter_guess_button->setStyleSheet(enterStyle+"border:7px solid rgb(180, 72, 72);");
+    }
+    else if(obj==ui->back_guess_button && event->type()==QEvent::Enter){
+        ui->back_guess_button->setCursor(Qt::PointingHandCursor);
+        ui->back_guess_button->setStyleSheet(backStyle+"border:7px solid rgb(180, 72, 72);");
+    }
+    else if(obj==ui->enter_guess_button && event->type()==QEvent::Leave){
+        ui->enter_guess_button->setStyleSheet(enterStyle);
+    }
+    else if(obj==ui->back_guess_button && event->type()==QEvent::Leave){
+        ui->back_guess_button->setStyleSheet(backStyle);
+    }
+
+    return QDialog::eventFilter(obj,event);
+}
+
+void GuessGame::resultWindow()
+{
+    ptrResult->show();
+    this->hide();
+}
+
 
 
 
