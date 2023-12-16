@@ -1,14 +1,15 @@
 #include "Canvas.h"
-#include "FunctionNode.h"
-#include "Obstacle.h"
-#include "ObstacleNode.h"
 #include "Player.h"
-#include "PlayerNode.h"
+
 
 Canvas::Canvas(QObject *parent)
     :QGraphicsScene(parent),
     m_functionNode(nullptr)
 {
+}
+
+double Canvas::scaleToCanvas(double len) {
+    return len*this->width()/gridWidth();
 }
 
 QPointF Canvas::getCanvasCoords(double logicalX, double logicalY) {
@@ -80,6 +81,43 @@ void Canvas::setFunction(FunctionNode *node)
 
     m_functionNode = node;
     this->addItem(m_functionNode);
+}
+
+void Canvas::addObstacle(ObstacleNode *obstacleNode)
+{
+    m_obstacleNodes.push_back(obstacleNode);
+
+    QPointF center = obstacleNode->getObstacle()->center();
+
+    QPointF canvasPoint = getCanvasCoords(center.x(), center.y());
+
+    double canvasDiameter = scaleToCanvas(obstacleNode->getObstacle()->diameter());
+
+    double topLeftX = canvasPoint.x() - canvasDiameter/2;
+    double topLeftY = canvasPoint.y() - canvasDiameter/2;
+
+    obstacleNode->setCanvasDiameter(canvasDiameter);
+    obstacleNode->setPos(QPointF(topLeftX, topLeftY));
+
+    this->addItem(obstacleNode);
+}
+
+void Canvas::addPlayer(PlayerNode *playerNode)
+{
+    m_playerNodes.push_back(playerNode);
+
+    QPointF center = playerNode->getPlayer()->coordinate();
+
+    QPointF canvasPoint = getCanvasCoords(center.x(), center.y());
+    double canvasDiameter = scaleToCanvas(playerNode->getPlayer()->diameter());
+
+    double topLeftX = canvasPoint.x() - canvasDiameter/2;
+    double topLeftY = canvasPoint.y() - canvasDiameter/2;
+
+    playerNode->setCanvasDiameter(canvasDiameter);
+    playerNode->setPos(QPointF(topLeftX, topLeftY));
+
+    this->addItem(playerNode);
 }
 
 double Canvas::gridWidth() const

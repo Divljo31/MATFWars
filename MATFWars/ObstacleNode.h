@@ -14,12 +14,17 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    inline const Obstacle *getPlayer() {
+    inline const Obstacle *getObstacle() {
         return m_obstacleNode;
     }
 
+
+
+    void setCanvasDiameter(double newCanvasDiameter);
+
 private:
     Obstacle * m_obstacleNode;
+    double m_canvasDiameter;
 };
 
 #endif // OBSTACLENODE_H

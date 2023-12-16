@@ -29,6 +29,7 @@ void WaitingRoom::on_play_wait_button_clicked()
 {
     this->hide();
     ptrWarGame->show();
+    ptrWarGame->startWarGame();
 }
 
 

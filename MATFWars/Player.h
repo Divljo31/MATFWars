@@ -16,7 +16,6 @@ public:
 
     void setCoordinates(QPointF newCoordinates);
 
-
     double diameter() const;
 
 private:

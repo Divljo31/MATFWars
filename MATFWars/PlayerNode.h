@@ -17,8 +17,11 @@ public:
         return m_playerNode;
     }
 
+    void setCanvasDiameter(double newCanvasDiameter);
+
 private:
     Player * m_playerNode;
+    double m_canvasDiameter = 100;
 };
 
 #endif // PLAYERNODE_H

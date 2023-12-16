@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QVector>
+#include "ObstacleNode.h"
 #include "Player.h"
 #include "Obstacle.h"
 
@@ -10,7 +11,9 @@
 #include <QLineEdit>
 #include <QPushButton>
 
+#include "PlayerNode.h"
 #include "check.h"
+#include <QGraphicsScene>
 
 namespace Ui {
 class WarGame;
@@ -23,21 +26,26 @@ class WarGame : public QDialog
 public:
     explicit WarGame(QWidget *parent = nullptr);
     ~WarGame();
-
-    static bool startGame();
-    static bool addPlayer();
-    static bool removePlayer();
-    static bool endGame();
-
-    QVector<Obstacle> generateObstacles(int x, int y);
-    Player* generatePlayer(int x, int y);
-    QPointF randomPoint(int x, int y, float playerOrObstacle);
-
  //   Obstacle getObstacle(size_t index) const;
 
+    void startWarGame();
+
+private:
+    Player* generatePlayer(int width, int height);
+    void generateObstacles(int width, int height);
+    QPointF randomPoint(int width, int height, float playerOrObstacle);
+
+    Player* player0;
+    Player* player1;
+    int currentPlayer = 0;
+
+    QVector<Obstacle*> obstacles;
+    QGraphicsScene *m_canvas;
 
 signals:
     void backWarClicked();
+    void newPlayerIsSet(PlayerNode* playerNode);
+    void newObstacleIsSet(ObstacleNode* obstacleNode);
 
 private slots:
     void on_back_war_button_clicked();

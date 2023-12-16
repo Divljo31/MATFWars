@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>387</height>
+    <width>916</width>
+    <height>541</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QGraphicsView" name="function_graphicsView">
+          <widget class="QGraphicsView" name="gvCanvas">
            <property name="styleSheet">
             <string notr="true">border:10px solid;
 border-color: rgb(238, 148, 148);
@@ -192,6 +192,12 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QTextBrowser" name="chat_textBrowser">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="styleSheet">
             <string notr="true">background-image: url(:/background/whiteBackground.jpg);
 border:10px solid;
@@ -201,6 +207,12 @@ border-color: rgb(255, 255, 255);</string>
          </item>
          <item>
           <widget class="QLineEdit" name="chat_lineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="styleSheet">
             <string notr="true">border:10px solid;
 border-color: rgb(255, 255, 255);
