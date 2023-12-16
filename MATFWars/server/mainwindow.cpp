@@ -35,7 +35,7 @@ void MainWindow::on_pushButton_startServer_clicked()
         return;
     }
     connect(server->m_server, &QTcpServer::newConnection, server, &Server::newConnection);
-    ui->textEdit_log->append(tr("<font color=\"green\"><b>Server started</b>,")+ QString::number(port) +tr(" port is openned.</font>"));
+    ui->textEdit_log->append(tr("<font color=\"green\"><b>Server started</b>, ")+ QString::number(port) +tr(" port is openned.</font>"));
 }
 
 void MainWindow::on_pushButton_stopServer_clicked()
@@ -52,7 +52,7 @@ void MainWindow::on_pushButton_stopServer_clicked()
         }
 
         server->m_server->close();
-        ui->textEdit_log->append(tr("<b>Server stopped</b>, post is closed"));
+        ui->textEdit_log->append(tr("<b>Server stopped</b>, port is closed"));
     }
     else
     {

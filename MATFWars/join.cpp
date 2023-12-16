@@ -6,10 +6,8 @@ Join::Join(QWidget *parent) :
     ui(new Ui::Join)
 {
 
-    m_client = new Client(nullptr, "localhost", 6547);
 
     ui->setupUi(this);
-    ptrWaitingRoom=new WaitingRoom();
 }
 
 Join::~Join()
@@ -28,10 +26,11 @@ void Join::on_back_pop2_button_clicked()
 void Join::on_join_pop2_button_clicked()
 {
 
+    m_client = new Client(nullptr, "localhost", ui->port_lineEdit->text().toUShort());
     m_client->setName(ui->name_lineEdit->text());
-    m_client->setPort(ui->port_lineEdit->text().toUShort());
-
     m_client->connect2host();
+
+    ptrWaitingRoom=new WaitingRoom(m_client);
     ptrWaitingRoom->show();
 }
 

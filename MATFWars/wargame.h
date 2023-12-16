@@ -22,17 +22,17 @@ class WarGame : public QDialog
     Q_OBJECT
 
 public:
-    explicit WarGame(QWidget *parent = nullptr);
+    explicit WarGame(Client* client, QWidget *parent = nullptr);
     ~WarGame();
 
-    static bool startGame();
-    static bool addPlayer();
-    static bool removePlayer();
-    static bool endGame();
 
     QVector<Obstacle> generateObstacles(int x, int y);
     PlayerWar generatePlayer(int x, int y);
     QPointF randomPoint(int x, int y, float playerOrObstacle);
+
+    void sendMessage();
+
+    void setClient(Client *newClient);
 
 signals:
     void backWarClicked();
@@ -40,13 +40,16 @@ signals:
 private slots:
     void on_back_war_button_clicked();
 
-
-
     void on_quit_war_button_clicked();
+
+    void clientReceivedMessage(QString msg);
+
+
 
 private:
     Ui::WarGame *ui;
     Check *ptrCheck;
+    Client *m_client;
 };
 
 #endif // WARGAME_H

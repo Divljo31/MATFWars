@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>888</width>
-    <height>515</height>
+    <width>732</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,9 +26,16 @@
    <string>MATFWars</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/background/background1.png);</string>
+   <string notr="true">#MainWindow{
+	background-image: url(:/background/background1.png);
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralWidget{
+	background: transparent
+}</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -340,7 +347,7 @@ border-color: rgb(79, 43, 43);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>888</width>
+     <width>732</width>
      <height>22</height>
     </rect>
    </property>

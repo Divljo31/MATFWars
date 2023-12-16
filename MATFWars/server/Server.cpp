@@ -6,7 +6,7 @@ Server::Server(QObject *parent) : m_nNextBlockSize(0)
 
     m_server = new QTcpServer();
 
-    connect(this, &Server::newMessage, this, &Server::gotNewMessage);
+    //connect(this, &Server::newMessage, this, &Server::gotNewMessage);
     connect(this, &QTcpServer::newConnection, this, &Server::smbConnectedToServer);
     connect(this, &Server::smbDisconnected, this, &Server::smbDisconnectedFromServer);
 }
@@ -116,8 +116,7 @@ void Server::smbDisconnectedFromServer()
 
 void Server::gotNewMessage(QString msg)
 {
-    emit newMessage(msg);
-
+    //sendToClient(clientSocket, msg);
 }
 
 

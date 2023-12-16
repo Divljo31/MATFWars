@@ -1,7 +1,7 @@
 #include "Client.h"
 
 
-Client::Client(QObject *parent, const QString hostAddress, int portNumber) : m_NextBlockSize(0){
+Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) : m_NextBlockSize(0){
 
     m_status = false;
     m_socket = new QTcpSocket();
@@ -74,11 +74,14 @@ void Client::connect2host()
 
 void Client::setStatus(bool newStatus)
 {
-    if (newStatus)
-    { //emit statusChanged(true);
-    }
-    else
-    { emit statusChanged(false); }
+//    if (newStatus)
+//    {
+//        emit statusChanged(true);
+//    }
+//    else
+//    {
+//        emit statusChanged(false);
+//    }
 }
 
 void Client::receivedSomething(QString msg)

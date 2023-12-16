@@ -14,7 +14,7 @@ class Client : public QObject
 
 
 public:
-    explicit Client(QObject *parent, const QString hostAddress, int portNumber);
+    explicit Client(QObject *parent, const QString hostAddress, quint16 portNumber);
     bool getStatus();
 
 

@@ -1,15 +1,19 @@
 #include "wargame.h"
 #include "ui_wargame.h"
 
-WarGame::WarGame(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::WarGame)
+WarGame::WarGame(Client *client, QWidget *parent) :
+    QDialog(parent)
+    , ui(new Ui::WarGame)
+    , m_client(client)
 {
     ui->setupUi(this);
-    ptrCheck=new Check();
+    ptrCheck = new Check();
+    //m_client = new Client(this, "localhost");
 
     connect(ptrCheck,&Check::noButtonClicked,this,&WarGame::show);
-
+    connect(m_client, &Client::someMessage, this, &WarGame::clientReceivedMessage);
+    connect(ui->chat_send_button, &QPushButton::clicked, this, &WarGame::sendMessage);
+    connect(ui->chat_lineEdit, &QLineEdit::returnPressed, this, &WarGame::sendMessage);
 }
 
 WarGame::~WarGame()
@@ -64,7 +68,29 @@ void WarGame::on_back_war_button_clicked()
     this->hide();
 }
 
+void WarGame::clientReceivedMessage(QString msg)
+{
+    ui->chat_textEdit->append(m_client->name() + tr(": ") + msg);
+}
 
+void WarGame::setClient(Client *newClient)
+{
+    m_client = newClient;
+}
+
+void WarGame::sendMessage()
+{
+    if (m_client->getStatus()) {
+        // The socket is connected, proceed with sending the message
+        QString message = ui->chat_lineEdit->text();
+        m_client->sendClicked(message);
+        ui->chat_lineEdit->clear();
+
+    } else {
+        // Handle the case when the socket is not connected
+        qDebug() << "Socket is not connected!";
+    }
+}
 
 
 void WarGame::on_quit_war_button_clicked()

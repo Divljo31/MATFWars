@@ -6,15 +6,12 @@ Create::Create(QWidget *parent) :
     ui(new Ui::Create)
 {
     ui->setupUi(this);
-    ptrWaitingRoom=new WaitingRoom();
 
-    connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
+    //connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
 
-    m_client = new Client(nullptr, "localhost", 6547);
 
     //connect(m_client->m_socket, &QTcpSocket::errorOccurred, this, &Client::gotError);
 }
-
 
 
 
@@ -34,13 +31,16 @@ void Create::on_back_pop1_button_clicked()
 
 void Create::on_create_pop1_button_clicked()
 {
-
+    m_client = new Client(nullptr, "localhost", ui->port_lineEdit->text().toUShort());
     m_client->setName(ui->name_lineEdit->text());
-    m_client->setPort(ui->port_lineEdit->text().toUShort());
+
+    //emit(clientCreated(m_client));
 
     m_client->connect2host();
 
     this->hide();
+
+    ptrWaitingRoom=new WaitingRoom(m_client);
     ptrWaitingRoom->show();
 }
 

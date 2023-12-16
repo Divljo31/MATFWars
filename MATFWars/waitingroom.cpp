@@ -1,12 +1,13 @@
 #include "waitingroom.h"
 #include "ui_waitingroom.h"
 
-WaitingRoom::WaitingRoom(QWidget *parent) :
+WaitingRoom::WaitingRoom(Client *client, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::WaitingRoom)
+    ui(new Ui::WaitingRoom),
+    m_client(client)
 {
     ui->setupUi(this);
-    ptrWarGame=new WarGame();
+    ptrWarGame = new WarGame(m_client);
 
     //menjano!!!
     connect(ptrWarGame,&WarGame::backWarClicked, this, &WaitingRoom::show);
@@ -29,5 +30,10 @@ void WaitingRoom::on_back_wait_button_clicked()
 {
     emit backWaitingRoomClicked();
     this->hide();
+}
+
+void WaitingRoom::setClient(Client *newClient)
+{
+    m_client = newClient;
 }
 
