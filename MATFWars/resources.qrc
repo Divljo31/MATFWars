@@ -14,5 +14,9 @@
     <qresource prefix="/"/>
     <qresource prefix="/functionSets">
         <file>easyFunctionSet.txt</file>
+        <file>hardFunctionSet.txt</file>
+    </qresource>
+    <qresource prefix="/txt">
+        <file>leaderboard.txt</file>
     </qresource>
 </RCC>

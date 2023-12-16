@@ -12,3 +12,10 @@ Result::~Result()
 {
     delete ui;
 }
+
+void Result::on_menu_result_button_clicked()
+{
+    this->hide();
+    emit menuResultClicked();
+}
+

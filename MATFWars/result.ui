@@ -84,7 +84,7 @@ border-color: rgb(238, 148, 148);</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="enter_result_button">
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 17pt &quot;URW Bookman&quot;;

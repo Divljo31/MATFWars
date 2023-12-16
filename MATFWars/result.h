@@ -15,6 +15,12 @@ public:
     explicit Result(QWidget *parent = nullptr);
     ~Result();
 
+signals:
+    void menuResultClicked();
+
+private slots:
+    void on_menu_result_button_clicked();
+
 private:
     Ui::Result *ui;
 };
