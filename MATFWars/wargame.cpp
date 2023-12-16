@@ -21,6 +21,8 @@ WarGame::WarGame(QWidget *parent) :
     connect(ptrCheck,&Check::noButtonClicked,this,&WarGame::show);
     connect(this, &WarGame::newPlayerIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::addPlayer);
     connect(this, &WarGame::newObstacleIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::addObstacle);
+    connect(this, &WarGame::setCoordinateSystem, dynamic_cast<Canvas *>(m_canvas), &Canvas::addCoordinateSystem);
+    connect(this, &WarGame::cleanUpCanvas, dynamic_cast<Canvas *>(m_canvas), &Canvas::cleanUp);
 
     backStyle=ui->back_war_button->styleSheet();
     quitStyle=ui->quit_war_button->styleSheet();
@@ -38,7 +40,7 @@ WarGame::~WarGame()
 {
     delete ui;
     delete ptrCheck;
-
+    cleanUp();
 }
 
 void WarGame::startWarGame()
@@ -47,6 +49,8 @@ void WarGame::startWarGame()
 
     ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
     ui->gvCanvas->setScene(m_canvas);
+
+    emit setCoordinateSystem();
 
     player0 = generatePlayer(30, 18);
 
@@ -65,8 +69,6 @@ void WarGame::startWarGame()
         ObstacleNode *on = new ObstacleNode(o);
         emit newObstacleIsSet(on);
     }
-
-    dynamic_cast<Canvas *>(m_canvas)->addCoordinateSystem();
 }
 
 //Obstacle WarGame::getObstacle(size_t index) const
@@ -130,8 +132,21 @@ QPointF WarGame::randomPoint(int width, int height, double areaPercent)
 
 }
 
+void WarGame::cleanUp()
+{
+    emit cleanUpCanvas();
+    for (Obstacle* o : obstacles) {
+        delete o;
+    }
+    obstacles.clear();
+
+    delete player0;
+    delete player1;
+}
+
 void WarGame::on_back_war_button_clicked()
 {
+    cleanUp();
     emit backWarClicked();
     this->hide();
 }

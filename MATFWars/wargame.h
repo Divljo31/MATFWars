@@ -36,18 +36,22 @@ private:
     QPointF randomPoint(int width, int height, double playerOrObstacle);
     bool allowedObstacle(Obstacle* o);
     bool allowedPlayer(Player* p);
+    void cleanUp();
 
+private:
     Player* player0;
     Player* player1;
     int currentPlayer = 0;
-
     QVector<Obstacle*> obstacles;
+
     QGraphicsScene *m_canvas;
 
 signals:
     void backWarClicked();
     void newPlayerIsSet(PlayerNode* playerNode);
     void newObstacleIsSet(ObstacleNode* obstacleNode);
+    void setCoordinateSystem();
+    void cleanUpCanvas();
 
 private slots:
     void on_back_war_button_clicked();

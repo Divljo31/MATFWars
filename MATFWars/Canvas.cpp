@@ -72,6 +72,21 @@ void Canvas::addCoordinateSystem() {
 
 }
 
+void Canvas::cleanUp()
+{
+    for (ObstacleNode* o : m_obstacleNodes) {
+        this->removeItem(o);
+        delete o;
+    }
+    m_obstacleNodes.clear();
+
+    for (PlayerNode* p : m_playerNodes) {
+        this->removeItem(p);
+        delete p;
+    }
+    m_playerNodes.clear();
+}
+
 void Canvas::setFunction(FunctionNode *node)
 {
     if (m_functionNode != nullptr) {

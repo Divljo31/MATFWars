@@ -24,6 +24,7 @@ public slots:
     void addObstacle(ObstacleNode* obstacleNode);
     void addPlayer(PlayerNode* playerNode);
     void addCoordinateSystem();
+    void cleanUp();
 
 private:
     FunctionNode * m_functionNode;
