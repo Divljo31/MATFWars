@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>691</width>
+    <width>700</width>
     <height>343</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>300</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
-    <height>16777215</height>
+    <width>1000</width>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -23,7 +29,9 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/background/background2.jpg);</string>
+   <string notr="true">#WarChoose{
+background-image: url(:/background/background2.jpg);
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -76,10 +84,9 @@
         <string notr="true">color: rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border:5px solid;
+border-radius:10px;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);
-
-
+background-color: rgb(238, 148, 148);
 </string>
        </property>
        <property name="text">
@@ -124,8 +131,9 @@ background-image: url(:/background/backgroundBtns.jpg);
         <string notr="true">color: rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border:5px solid;
+border-radius:10px;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);
+background-color:  rgb(238, 148, 148);
 </string>
        </property>
        <property name="text">
@@ -193,8 +201,9 @@ background-image: url(:/background/backgroundBtns.jpg);
         <string notr="true">color: rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border:5px solid;
+border-radius:10px;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+background-color:  rgb(238, 148, 148);</string>
        </property>
        <property name="text">
         <string>BACK</string>

@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>888</width>
-    <height>515</height>
+    <width>900</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>400</width>
-    <height>300</height>
+    <width>900</width>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -48,8 +48,8 @@
       <item>
        <widget class="QLabel" name="choose_label">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>3</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
@@ -61,8 +61,8 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
-          <height>16777215</height>
+          <width>1000</width>
+          <height>400</height>
          </size>
         </property>
         <property name="font">
@@ -183,14 +183,14 @@ border-radius:20px</string>
         </property>
         <property name="minimumSize">
          <size>
-          <width>30</width>
-          <height>50</height>
+          <width>50</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>590</width>
-          <height>200</height>
+          <width>500</width>
+          <height>300</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -237,14 +237,14 @@ color: rgb(180, 72, 72);
         </property>
         <property name="minimumSize">
          <size>
-          <width>30</width>
-          <height>50</height>
+          <width>50</width>
+          <height>30</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>590</width>
-          <height>200</height>
+          <width>500</width>
+          <height>300</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -300,10 +300,22 @@ font: 600 35pt &quot;URW Bookman&quot;;
       </item>
       <item>
        <widget class="QPushButton" name="leaderboard_main_button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>3</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
-          <width>100</width>
-          <height>50</height>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>1200</width>
+          <height>130</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -343,7 +355,7 @@ border:8px solid rgb(79, 43, 43);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>888</width>
+     <width>900</width>
      <height>22</height>
     </rect>
    </property>

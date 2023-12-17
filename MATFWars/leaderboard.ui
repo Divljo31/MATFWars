@@ -6,19 +6,45 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>434</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>700</width>
+    <height>700</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MATFWars</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/background/background2.jpg);</string>
+   <string notr="true">#Leaderboard{
+background-image: url(:/background/background2.jpg);
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>20</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>20</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
      <item>
       <spacer name="verticalSpacer_2">
        <property name="orientation">
@@ -38,7 +64,7 @@
      <item>
       <widget class="QLabel" name="leaderboard_label">
        <property name="styleSheet">
-        <string notr="true">font: 600 20pt &quot;URW Bookman&quot;;
+        <string notr="true">font: 600 30pt &quot;URW Bookman&quot;;
 color: rgb(246, 206, 206);</string>
        </property>
        <property name="text">
@@ -69,9 +95,9 @@ color: rgb(246, 206, 206);</string>
       <widget class="QTextBrowser" name="leaderboard_textBrowser">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(79, 43, 43);
-border:10px solid;
+border:7px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+</string>
        </property>
       </widget>
      </item>

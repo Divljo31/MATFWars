@@ -67,6 +67,7 @@ void MainWindow::on_leaderboard_main_button_clicked()
 {
     ptrLeaderboard->show();
 
+
 }
 
 
