@@ -85,9 +85,7 @@ void WarGame::fireFunction()
     emit newFunctionIsSet(node);
 
     QTimer::singleShot(2000, [this]() {
-        flipCanvas();
-        drawCanvas();
-        currentPlayer = 1 - currentPlayer;
+        switchPlayer();
     });
 }
 
@@ -189,6 +187,13 @@ void WarGame::drawCanvas() {
         ObstacleNode *on = new ObstacleNode(o);
         emit newObstacleIsSet(on);
     }
+}
+
+void WarGame::switchPlayer()
+{
+    flipCanvas();
+    drawCanvas();
+    currentPlayer = 1 - currentPlayer;
 }
 
 void WarGame::on_back_war_button_clicked()

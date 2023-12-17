@@ -71,6 +71,8 @@ private:
     QString quitStyle;
 
 //menjam
+    void switchPlayer();
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
