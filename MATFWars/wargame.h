@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QVector>
+#include "FunctionNode.h"
 #include "ObstacleNode.h"
 #include "Player.h"
 #include "Obstacle.h"
@@ -37,6 +38,9 @@ private:
     bool allowedObstacle(Obstacle* o);
     bool allowedPlayer(Player* p);
     void cleanUp();
+    void flipCanvas();
+    void drawCanvas();
+    QPointF getFirePosition();
 
 private:
     Player* player0;
@@ -50,12 +54,14 @@ signals:
     void backWarClicked();
     void newPlayerIsSet(PlayerNode* playerNode);
     void newObstacleIsSet(ObstacleNode* obstacleNode);
+    void newFunctionIsSet(FunctionNode* functionNode);
     void setCoordinateSystem();
     void cleanUpCanvas();
 
 private slots:
     void on_back_war_button_clicked();
     void on_quit_war_button_clicked();
+    void fireFunction();
 
 private:
     Ui::WarGame *ui;

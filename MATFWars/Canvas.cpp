@@ -85,6 +85,12 @@ void Canvas::cleanUp()
         delete p;
     }
     m_playerNodes.clear();
+
+    if (m_functionNode != nullptr) {
+        this->removeItem(m_functionNode);
+        delete m_functionNode;
+        m_functionNode = nullptr;
+    }
 }
 
 void Canvas::setFunction(FunctionNode *node)
@@ -92,6 +98,7 @@ void Canvas::setFunction(FunctionNode *node)
     if (m_functionNode != nullptr) {
         this->removeItem(m_functionNode);
         delete m_functionNode;
+        m_functionNode = nullptr;
     }
 
     m_functionNode = node;

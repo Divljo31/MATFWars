@@ -13,12 +13,10 @@ public:
     virtual void setName(const QString &newName);
 
     QPointF coordinate() const;
-
     void setCoordinates(QPointF newCoordinates);
-
     double diameter() const;
-
     void flipX();
+
 
 private:
     QString m_name;

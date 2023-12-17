@@ -1,7 +1,9 @@
 #include "wargame.h"
 #include "Canvas.h"
+#include "Function.h"
 #include "ObstacleNode.h"
 #include "PlayerNode.h"
+#include "qtimer.h"
 #include "ui_wargame.h"
 #include <cmath>
 
@@ -23,6 +25,9 @@ WarGame::WarGame(QWidget *parent) :
     connect(this, &WarGame::newObstacleIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::addObstacle);
     connect(this, &WarGame::setCoordinateSystem, dynamic_cast<Canvas *>(m_canvas), &Canvas::addCoordinateSystem);
     connect(this, &WarGame::cleanUpCanvas, dynamic_cast<Canvas *>(m_canvas), &Canvas::cleanUp);
+
+    connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::fireFunction);
+    connect(this, &WarGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
     backStyle=ui->back_war_button->styleSheet();
     quitStyle=ui->quit_war_button->styleSheet();
@@ -59,22 +64,39 @@ void WarGame::startWarGame()
 
     generateObstacles(30, 18);
 
-    PlayerNode *pn0 = new PlayerNode(player0);
-    emit newPlayerIsSet(pn0);
-
-    PlayerNode *pn1 = new PlayerNode(player1);
-    emit newPlayerIsSet(pn1);
-
-    for(Obstacle* o : obstacles) {
-        ObstacleNode *on = new ObstacleNode(o);
-        emit newObstacleIsSet(on);
-    }
+    drawCanvas();
 }
 
-//Obstacle WarGame::getObstacle(size_t index) const
-//{
-//    return m_obstacles.at(index);
-//}
+void WarGame::fireFunction()
+{
+    std::string fString = ui->leFunctionInput->text().toStdString();
+
+    QPointF firePosition = getFirePosition();
+    Function* function = new Function(fString, firePosition.x());
+
+    function->translatePointsPlayerView(0, firePosition.y());
+
+    function->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
+    function->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
+
+    QRectF sceneRect = QRectF(m_canvas->sceneRect());
+    FunctionNode* node = new FunctionNode(function, sceneRect.width(), sceneRect.height());
+
+    emit newFunctionIsSet(node);
+
+    QTimer::singleShot(2000, [this]() {
+        flipCanvas();
+        drawCanvas();
+        currentPlayer = 1 - currentPlayer;
+    });
+}
+
+QPointF WarGame::getFirePosition() {
+    if (currentPlayer == 0)
+        return QPointF(player0->coordinate().x() + player0->diameter()/2, player0->coordinate().y());
+    else
+        return QPointF(player1->coordinate().x() + player1->diameter()/2, player1->coordinate().y());
+}
 
 void WarGame::generateObstacles(int width, int height)
 {
@@ -110,7 +132,7 @@ Player* WarGame::generatePlayer(int width, int height)
     Player *player = new Player("name");
 
     // generise playera tkd se ne sece sa borderima
-    QPointF playerPos = randomPoint(width - player->diameter(), height - player->diameter(), 0.2);
+    QPointF playerPos = randomPoint(width - player->diameter(), height - 2*player->diameter(), 0.2);
     player->setCoordinates(playerPos);
 
     return player;
@@ -135,6 +157,7 @@ QPointF WarGame::randomPoint(int width, int height, double areaPercent)
 void WarGame::cleanUp()
 {
     emit cleanUpCanvas();
+
     for (Obstacle* o : obstacles) {
         delete o;
     }
@@ -142,6 +165,30 @@ void WarGame::cleanUp()
 
     delete player0;
     delete player1;
+}
+
+void WarGame::flipCanvas() {
+    player0->flipX();
+    player1->flipX();
+
+    for(Obstacle* o : obstacles) {
+        o->flipX();
+    }
+
+    emit cleanUpCanvas();
+}
+
+void WarGame::drawCanvas() {
+    PlayerNode *pn0 = new PlayerNode(player0);
+    emit newPlayerIsSet(pn0);
+
+    PlayerNode *pn1 = new PlayerNode(player1);
+    emit newPlayerIsSet(pn1);
+
+    for(Obstacle* o : obstacles) {
+        ObstacleNode *on = new ObstacleNode(o);
+        emit newObstacleIsSet(on);
+    }
 }
 
 void WarGame::on_back_war_button_clicked()

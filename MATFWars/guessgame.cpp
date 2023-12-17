@@ -123,13 +123,13 @@ void GuessGame::drawCurrentFunction()
 {
     const auto functionString = m_functions[m_currentFunctionIndex];
 
-    const auto newFunction = new Function(functionString);
+    Function* newFunction = new Function(functionString);
     newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
     newFunction->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 
     QRectF sceneRect = QRectF(m_canvas->sceneRect());
 
-    const auto node = new FunctionNode(newFunction, sceneRect.width(), sceneRect.height());
+    FunctionNode* node = new FunctionNode(newFunction, sceneRect.width(), sceneRect.height());
 
     emit newFunctionIsSet(node);
 }

@@ -18,6 +18,7 @@ public:
     void setDiameter(double newDiameter);
 
     double generateDiameter();
+    void flipX();
 
 
 private:

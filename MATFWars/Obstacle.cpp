@@ -25,6 +25,10 @@ void Obstacle::setDiameter(double newDiameter)
     m_diameter = newDiameter;
 }
 
+void Obstacle::flipX(){
+    m_center.setX(-m_center.x());
+}
+
 double Obstacle::generateDiameter()
 {
 
