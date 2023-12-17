@@ -26,9 +26,16 @@
    <string>MATFWars</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/background/background1.png);</string>
+   <string notr="true">#MainWindow{
+background-image: url(:/background/background1.png);
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget{
+background-image: url(:/background/background1.png);
+}</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">

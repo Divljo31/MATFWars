@@ -27,7 +27,6 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#GuessGame{
-	
 	background-image: url(:/background/background2.jpg);
 }</string>
   </property>
@@ -331,7 +330,7 @@ background-color: rgb(238, 148, 148);</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>30</width>
+         <width>40</width>
          <height>0</height>
         </size>
        </property>
