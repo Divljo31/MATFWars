@@ -8,5 +8,5 @@
 <li> &nbsp; 13 &nbsp; Gottfried Leibniz <li>
 <li> &nbsp; 10 &nbsp; Pythagoras <li>
 <li> &nbsp; 07 &nbsp; Srinivasa Ramanujan <li>
-<li> &nbsp; 03 &nbsp; player <li>
+<li> &nbsp; 00 &nbsp; player <li>
 </ol>

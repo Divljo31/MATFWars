@@ -200,6 +200,7 @@ void GuessGame::resultWindow()
     m_timer->stopCount();
     //m_functions.clear();
     ui->timer_label->setText(" ");
+    ptrResult->evaluateForLeaderboard(m_score);
     ptrResult->show();
     this->hide();
 }
