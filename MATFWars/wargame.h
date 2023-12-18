@@ -48,10 +48,10 @@ private:
     Player* player0;
     Player* player1;
     int currentPlayer = 0;
-    QVector<Obstacle*> obstacles;
+    QSet<Obstacle*> obstacles;
     QGraphicsScene *m_canvas;
-    double gridWidth = 18;
-    double gridHeight = 30;
+    int gridWidth = 30;
+    int gridHeight = 18;
 
 signals:
     void backWarClicked();

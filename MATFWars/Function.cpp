@@ -130,7 +130,6 @@ bool Function::equals(Function* other) {
 
 void Function::removePointsAfterCutoff(int cutoff) {
     if (cutoff < m_points.size() - 1) {
-        // Remove all elements from index i+1 to the end
         m_points.remove(cutoff + 1, m_points.size() - cutoff - 1);
     }
 }

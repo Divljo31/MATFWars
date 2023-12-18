@@ -18,8 +18,6 @@ public:
         return m_obstacleNode;
     }
 
-
-
     void setCanvasDiameter(double newCanvasDiameter);
 
 private:

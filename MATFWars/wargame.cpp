@@ -76,7 +76,6 @@ void WarGame::fireFunction()
 
     function->translatePointsPlayerView(0, firePosition.y());
 
-    // TODO: ovde za proveru sudara
     collisionDetection(function);
 
     function->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
@@ -88,8 +87,9 @@ void WarGame::fireFunction()
     emit newFunctionIsSet(node);
 
     // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
-    QTimer::singleShot(2000, [this]() {
+    QTimer::singleShot(2000, [this, function]() {
         switchPlayer();
+        delete function;
     });
 }
 
@@ -100,34 +100,44 @@ QPointF WarGame::getFirePosition() {
         return QPointF(player1->coordinate().x() + player1->diameter()/2, player1->coordinate().y());
 }
 
-void WarGame::collisionDetection(Function *f) {
+// TODO: ako se pogodi -> kraj partije
+// ako se pogodi prepreka -> gotHit, smanjuje se health
+void WarGame::collisionDetection(Function* function) {
     int cutoff = 0;
 
-    for (QPointF p : f->points()) {
+    for (QPointF p : function->points()) {
         if (isPointInCircle(p, player0->coordinate(), player0->diameter() / 2)) {
-            f->removePointsAfterCutoff(cutoff);
+            function->removePointsAfterCutoff(cutoff);
             return;
         }
 
         if (isPointInCircle(p, player1->coordinate(), player1->diameter() / 2)) {
-            f->removePointsAfterCutoff(cutoff);
+            function->removePointsAfterCutoff(cutoff);
             return;
         }
 
         for (Obstacle* obstacle : obstacles) {
-            if(isPointInCircle(p, obstacle->center(), obstacle->diameter()/2)){
-                f->removePointsAfterCutoff(cutoff);
+            if(isPointInCircle(p, obstacle->center(), obstacle->diameter()/2)) {
+
+                function->removePointsAfterCutoff(cutoff);
+                obstacle->gotHit();
+               // qDebug() << obstacle->health();
+
+                if (!obstacle->isAlive()) {
+                    obstacles.remove(obstacle);
+                    delete obstacle;
+                }
                 return;
             }
         }
 
         if (p.y() < -gridHeight/2) {
-            f->removePointsAfterCutoff(cutoff);
+            function->removePointsAfterCutoff(cutoff);
             return;
         }
 
         if (p.y() > gridHeight/2) {
-            f->removePointsAfterCutoff(cutoff);
+            function->removePointsAfterCutoff(cutoff);
             return;
         }
 
@@ -153,7 +163,7 @@ void WarGame::generateObstacles(int width, int height)
         obstacle->setDiameter(newDiameter);
 
         if (allowedObstacle(obstacle)) {
-            obstacles.push_back(obstacle);
+            obstacles.insert(obstacle);
             generatedObstacles++;
         } else {
             delete obstacle;

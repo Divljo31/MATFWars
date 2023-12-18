@@ -2,7 +2,8 @@
 
 Obstacle::Obstacle()
 {
-
+    m_maxHealth = 1 + QRandomGenerator::global()->bounded(5);
+    m_health = m_maxHealth;
 }
 
 QPointF Obstacle::center() const
@@ -27,6 +28,26 @@ void Obstacle::setDiameter(double newDiameter)
 
 void Obstacle::flipX(){
     m_center.setX(-m_center.x());
+}
+
+void Obstacle::gotHit()
+{
+    m_health--;
+}
+
+bool Obstacle::isAlive()
+{
+    return m_health > 0;
+}
+
+double Obstacle::health() const
+{
+    return m_health;
+}
+
+double Obstacle::maxHealth() const
+{
+    return m_maxHealth;
 }
 
 double Obstacle::generateDiameter()

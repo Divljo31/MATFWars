@@ -17,8 +17,11 @@ void ObstacleNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-    painter->setBrush(Qt::darkCyan);
-    painter->setPen(Qt::black);
+    QColor brushColor = QColor(Qt::darkCyan);
+    brushColor.setAlpha(255 * m_obstacleNode->health() / m_obstacleNode->maxHealth());
+
+    painter->setBrush(brushColor);
+    painter->setPen(Qt::NoPen);
 
     painter->drawEllipse(0,0, m_canvasDiameter, m_canvasDiameter);
 }
