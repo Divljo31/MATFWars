@@ -57,12 +57,12 @@ void WarGame::startWarGame()
 
     emit setCoordinateSystem();
 
-    player0 = generatePlayer(30, 18);
+    player0 = generatePlayer(gridWidth, gridHeight);
 
-    player1 = generatePlayer(30, 18);
+    player1 = generatePlayer(gridWidth, gridHeight);
     player1->flipX();
 
-    generateObstacles(30, 18);
+    generateObstacles(gridWidth, gridHeight);
 
     drawCanvas();
 }
@@ -76,6 +76,9 @@ void WarGame::fireFunction()
 
     function->translatePointsPlayerView(0, firePosition.y());
 
+    // TODO: ovde za proveru sudara
+    collisionDetection(function);
+
     function->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
     function->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 
@@ -84,6 +87,7 @@ void WarGame::fireFunction()
 
     emit newFunctionIsSet(node);
 
+    // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
     QTimer::singleShot(2000, [this]() {
         switchPlayer();
     });
@@ -95,6 +99,47 @@ QPointF WarGame::getFirePosition() {
     else
         return QPointF(player1->coordinate().x() + player1->diameter()/2, player1->coordinate().y());
 }
+
+void WarGame::collisionDetection(Function *f) {
+    int cutoff = 0;
+
+    for (QPointF p : f->points()) {
+        if (isPointInCircle(p, player0->coordinate(), player0->diameter() / 2)) {
+            f->removePointsAfterCutoff(cutoff);
+            return;
+        }
+
+        if (isPointInCircle(p, player1->coordinate(), player1->diameter() / 2)) {
+            f->removePointsAfterCutoff(cutoff);
+            return;
+        }
+
+        for (Obstacle* obstacle : obstacles) {
+            if(isPointInCircle(p, obstacle->center(), obstacle->diameter()/2)){
+                f->removePointsAfterCutoff(cutoff);
+                return;
+            }
+        }
+
+        if (p.y() < -gridHeight/2) {
+            f->removePointsAfterCutoff(cutoff);
+            return;
+        }
+
+        if (p.y() > gridHeight/2) {
+            f->removePointsAfterCutoff(cutoff);
+            return;
+        }
+
+        cutoff++;
+    }
+}
+
+bool WarGame::isPointInCircle(QPointF p, QPointF center, double radius) {
+    double distance = std::sqrt(std::pow(p.x() - center.x(), 2) + std::pow(p.y() - center.y(), 2));
+    return distance < radius;
+}
+
 
 void WarGame::generateObstacles(int width, int height)
 {

@@ -40,6 +40,8 @@ private:
     void cleanUp();
     void flipCanvas();
     void drawCanvas();
+    void collisionDetection(Function* f);
+    bool isPointInCircle(QPointF p, QPointF center, double radius);
     QPointF getFirePosition();
 
 private:
@@ -47,8 +49,9 @@ private:
     Player* player1;
     int currentPlayer = 0;
     QVector<Obstacle*> obstacles;
-
     QGraphicsScene *m_canvas;
+    double gridWidth = 18;
+    double gridHeight = 30;
 
 signals:
     void backWarClicked();

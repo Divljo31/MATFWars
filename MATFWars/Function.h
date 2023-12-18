@@ -45,6 +45,8 @@ public:
     // Compares two functions based on points
     bool equals(Function* otherFunction);
 
+    void removePointsAfterCutoff(int cutoff);
+
 };
 
 #endif // FUNCTION_H
