@@ -26,6 +26,8 @@ private slots:
 
     void on_back_wait_button_clicked();
 
+    void clientConnected(QString str);
+
 private:
     Ui::WaitingRoom *ui;
     WarGame *ptrWarGame;

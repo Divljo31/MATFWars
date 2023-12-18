@@ -86,7 +86,6 @@ void Client::setStatus(bool newStatus)
 
 void Client::receivedSomething(QString msg)
 {
-
     emit someMessage(msg);
 
 }

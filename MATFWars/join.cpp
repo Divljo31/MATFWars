@@ -30,6 +30,7 @@ void Join::on_join_pop2_button_clicked()
     m_client->setName(ui->name_lineEdit->text());
     m_client->connect2host();
 
+    this->hide();
     ptrWaitingRoom=new WaitingRoom(m_client);
     ptrWaitingRoom->show();
 }

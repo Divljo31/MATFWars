@@ -58,7 +58,8 @@
        <item>
         <widget class="QTextEdit" name="waitingRoom_textEdit">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
+          <string notr="true">background-color: white;
+color: black;</string>
          </property>
         </widget>
        </item>

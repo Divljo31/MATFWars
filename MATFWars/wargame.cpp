@@ -8,8 +8,8 @@ WarGame::WarGame(Client *client, QWidget *parent) :
 {
     ui->setupUi(this);
     ptrCheck = new Check();
-    //m_client = new Client(this, "localhost");
 
+    ui->chat_textEdit->setReadOnly(true);
     connect(ptrCheck,&Check::noButtonClicked,this,&WarGame::show);
     connect(m_client, &Client::someMessage, this, &WarGame::clientReceivedMessage);
     connect(ui->chat_send_button, &QPushButton::clicked, this, &WarGame::sendMessage);
@@ -70,7 +70,12 @@ void WarGame::on_back_war_button_clicked()
 
 void WarGame::clientReceivedMessage(QString msg)
 {
-    ui->chat_textEdit->append(m_client->name() + tr(": ") + msg);
+    int colonIndex = msg.indexOf(':');
+    if(colonIndex != -1){
+        QString name = msg.left(colonIndex);
+        QString msgText = msg.right(colonIndex);
+        ui->chat_textEdit->append(tr("<font><b>") + name + tr(": </b>")+ msgText + tr("</font>"));
+    }
 }
 
 void WarGame::setClient(Client *newClient)
@@ -83,7 +88,7 @@ void WarGame::sendMessage()
     if (m_client->getStatus()) {
         // The socket is connected, proceed with sending the message
         QString message = ui->chat_lineEdit->text();
-        m_client->sendClicked(message);
+        m_client->sendClicked(m_client->name() + ": " + message);
         ui->chat_lineEdit->clear();
 
     } else {
