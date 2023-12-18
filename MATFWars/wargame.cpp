@@ -73,7 +73,7 @@ void WarGame::clientReceivedMessage(QString msg)
     int colonIndex = msg.indexOf(':');
     if(colonIndex != -1){
         QString name = msg.left(colonIndex);
-        QString msgText = msg.right(colonIndex);
+        QString msgText = msg.right(msg.length() - colonIndex - 1);
         ui->chat_textEdit->append(tr("<font><b>") + name + tr(": </b>")+ msgText + tr("</font>"));
     }
 }
