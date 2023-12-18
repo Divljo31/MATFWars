@@ -101,7 +101,6 @@ QPointF WarGame::getFirePosition() {
 }
 
 // TODO: ako se pogodi -> kraj partije
-// ako se pogodi prepreka -> gotHit, smanjuje se health
 void WarGame::collisionDetection(Function* function) {
     int cutoff = 0;
 
