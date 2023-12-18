@@ -32,7 +32,7 @@ public:
     void startWarGame();
 
 private:
-    Player* generatePlayer(int width, int height);
+    Player* generatePlayer(QString name, int width, int height);
     void generateObstacles(int width, int height);
     QPointF randomPoint(int width, int height, double playerOrObstacle);
     bool allowedObstacle(Obstacle* o);

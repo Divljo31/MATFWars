@@ -57,9 +57,9 @@ void WarGame::startWarGame()
 
     emit setCoordinateSystem();
 
-    player0 = generatePlayer(gridWidth, gridHeight);
+    player0 = generatePlayer("Djura", gridWidth, gridHeight);
 
-    player1 = generatePlayer(gridWidth, gridHeight);
+    player1 = generatePlayer("Pera", gridWidth, gridHeight);
     player1->flipX();
 
     generateObstacles(gridWidth, gridHeight);
@@ -70,6 +70,9 @@ void WarGame::startWarGame()
 void WarGame::fireFunction()
 {
     std::string fString = ui->leFunctionInput->text().toStdString();
+
+    ui->leFunctionInput->setText("");
+    ui->leFunctionInput->setDisabled(true);
 
     QPointF firePosition = getFirePosition();
     Function* function = new Function(fString, firePosition.x());
@@ -89,6 +92,7 @@ void WarGame::fireFunction()
     // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
     QTimer::singleShot(2000, [this, function]() {
         switchPlayer();
+        ui->leFunctionInput->setDisabled(false);
         delete function;
     });
 }
@@ -107,11 +111,13 @@ void WarGame::collisionDetection(Function* function) {
     for (QPointF p : function->points()) {
         if (isPointInCircle(p, player0->coordinate(), player0->diameter() / 2)) {
             function->removePointsAfterCutoff(cutoff);
+            qDebug() << player1->name();
             return;
         }
 
         if (isPointInCircle(p, player1->coordinate(), player1->diameter() / 2)) {
             function->removePointsAfterCutoff(cutoff);
+            qDebug() << player0->name();
             return;
         }
 
@@ -179,9 +185,9 @@ bool WarGame::allowedObstacle(Obstacle *o)
            && distFrom1 >  (o->diameter() + player1->diameter()) / 2;
 }
 
-Player* WarGame::generatePlayer(int width, int height)
+Player* WarGame::generatePlayer(QString name, int width, int height)
 {
-    Player *player = new Player("name");
+    Player *player = new Player(name);
 
     // generise playera tkd se ne sece sa borderima
     QPointF playerPos = randomPoint(width - player->diameter(), height - 2*player->diameter(), 0.2);
@@ -219,6 +225,13 @@ void WarGame::cleanUp()
     delete player1;
 }
 
+void WarGame::switchPlayer()
+{
+    flipCanvas();
+    drawCanvas();
+    currentPlayer = 1 - currentPlayer;
+}
+
 void WarGame::flipCanvas() {
     player0->flipX();
     player1->flipX();
@@ -241,13 +254,6 @@ void WarGame::drawCanvas() {
         ObstacleNode *on = new ObstacleNode(o);
         emit newObstacleIsSet(on);
     }
-}
-
-void WarGame::switchPlayer()
-{
-    flipCanvas();
-    drawCanvas();
-    currentPlayer = 1 - currentPlayer;
 }
 
 void WarGame::on_back_war_button_clicked()
