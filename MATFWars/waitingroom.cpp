@@ -38,8 +38,8 @@ void WaitingRoom::on_play_wait_button_clicked()
 
 void WaitingRoom::on_back_wait_button_clicked()
 {
-    emit backWaitingRoomClicked();
-    this->hide();
+    //emit backWaitingRoomClicked();
+    //this->hide();
 }
 
 void WaitingRoom::clientConnected(QString str)

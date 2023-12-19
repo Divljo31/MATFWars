@@ -7,12 +7,13 @@ Create::Create(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //ptrWaitingRoom = new WaitingRoom(nullptr);
     //menjam
     ui->create_pop1_button->installEventFilter(this);
     ui->back_pop1_button->installEventFilter(this);
     createStyle=ui->create_pop1_button->styleSheet();
     backStyle=ui->back_pop1_button->styleSheet();
-    connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
+    //connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
 
 }
 
@@ -43,7 +44,8 @@ void Create::on_create_pop1_button_clicked()
 
     this->hide();
 
-    ptrWaitingRoom=new WaitingRoom(m_client);
+    ptrWaitingRoom= new WaitingRoom(m_client);
+    //ptrWaitingRoom->setClient(m_client);
     ptrWaitingRoom->show();
 }
 
@@ -64,6 +66,9 @@ bool Create::eventFilter(QObject *obj, QEvent *event){
     else if(obj==ui->back_pop1_button && event->type()==QEvent::Leave){
         ui->back_pop1_button->setStyleSheet(backStyle);
     }
+
+    return QDialog::eventFilter(obj, event);
+}
 
 void Create::gotError(QAbstractSocket::SocketError err)
 {

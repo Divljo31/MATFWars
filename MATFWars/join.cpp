@@ -9,7 +9,6 @@ Join::Join(QWidget *parent) :
 
     ui->setupUi(this);
     ui->ip_lineEdit->setText("localhost");
-    ptrWaitingRoom=new WaitingRoom();
 
     //menjam
     ui->back_pop2_button->installEventFilter(this);

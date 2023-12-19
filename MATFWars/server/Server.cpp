@@ -81,7 +81,7 @@ void Server::gotDisconnection()
     m_clients.removeAt(m_clients.indexOf((QTcpSocket*)sender()));
     for (QTcpSocket *client : m_clients)
     {
-        if (sendToClient(client, "Somebody disconnected!!") == -1)
+        if (sendToClient(client, "Somebody has disconnected!") == -1)
         {
             qDebug() << "Some error occured";
         }

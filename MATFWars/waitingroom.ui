@@ -63,36 +63,6 @@ color: black;</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="back_wait_button">
-         <property name="styleSheet">
-          <string notr="true">color:rgb(180, 72, 72);
-font: 600 25pt &quot;URW Bookman&quot;;
-background-image: url(:/background/backgroundBtns.jpg);
-border-radius:10px;
-border:10px solid;
-border-color: rgb(238, 148, 148);</string>
-         </property>
-         <property name="text">
-          <string>Back</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="play_wait_button">
-         <property name="styleSheet">
-          <string notr="true">color:rgb(180, 72, 72);
-font: 600 25pt &quot;URW Bookman&quot;;
-background-image: url(:/background/backgroundBtns.jpg);
-border-radius:10px;
-border:10px solid;
-border-color: rgb(238, 148, 148);</string>
-         </property>
-         <property name="text">
-          <string>Play</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
      <item>
