@@ -30,6 +30,14 @@ private:
     Ui::Join *ui;
     WaitingRoom *ptrWaitingRoom;
     Client* m_client;
+    
+    QString backStyle;
+    QString joinStyle;
+
+ //menjam
+ protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
 
 #endif // JOIN_H

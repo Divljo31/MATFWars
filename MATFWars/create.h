@@ -2,6 +2,7 @@
 #define CREATE_H
 
 #include <QDialog>
+#include <QEnterEvent>
 #include "waitingroom.h"
 #include "Client.h"
 
@@ -37,10 +38,20 @@ private slots:
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
+    QString backStyle;
+    QString createStyle;
+
+
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
     Client* m_client;
     QString m_lastUserName;
 
-
 };
+
+
 
 #endif // CREATE_H

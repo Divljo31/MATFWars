@@ -83,7 +83,7 @@ background-image: url(:/background/whiteBackground.jpg);</string>
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:10px solid;
+border:7px solid;
 border-color: rgb(238, 148, 148);
 background-image: url(:/background/backgroundBtns.jpg);</string>
              </property>
@@ -135,7 +135,7 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
 font: 600 25pt &quot;URW Bookman&quot;;
 background-image: url(:/background/backgroundBtns.jpg);
 border-radius:10px;
-border:10px solid;
+border:7px solid;
 border-color: rgb(238, 148, 148);</string>
              </property>
              <property name="text">
@@ -165,7 +165,7 @@ border-color: rgb(238, 148, 148);</string>
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:10px solid;
+border:7px solid;
 border-color: rgb(238, 148, 148);
 background-image: url(:/background/backgroundBtns.jpg);</string>
              </property>

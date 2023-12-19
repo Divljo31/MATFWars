@@ -28,8 +28,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Player.h Player.cpp
         Function.h Function.cpp
         PlayerWar.h PlayerWar.cpp
-        PlayerGuess.h PlayerGuess.cpp
-        GuessGame.h GuessGame.cpp
 
         Obstacle.h Obstacle.cpp
         lib/muparser/muParser.cpp lib/muparser/muParser.h
@@ -54,14 +52,20 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         warchoose.h warchoose.cpp warchoose.ui
         FunctionNode.h FunctionNode.cpp
         Canvas.h Canvas.cpp
-        testwindow.h testwindow.cpp testwindow.ui
+
         settings.h settings.cpp settings.ui
         leaderboard.h leaderboard.cpp leaderboard.ui
         resources.qrc
         Timer.h Timer.cpp
 
-        Client.h Client.cpp
+        Difficulty.h
 
+        Confetti.h Confetti.cpp
+
+
+        Client.h Client.cpp
+        choosedifficulty.h choosedifficulty.cpp choosedifficulty.ui
+        result.h result.cpp result.ui
 
 
 

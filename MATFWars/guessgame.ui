@@ -28,7 +28,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QGraphicsView" name="function_graphicsView">
+      <widget class="QGraphicsView" name="gvCanvas">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -38,6 +38,15 @@
        <property name="styleSheet">
         <string notr="true">border:7px solid;
 border-color: rgb(238, 148, 148);</string>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustIgnored</enum>
        </property>
       </widget>
      </item>
@@ -60,7 +69,7 @@ border-color: rgb(238, 148, 148);</string>
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,3,0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,0,0">
      <property name="sizeConstraint">
       <enum>QLayout::SetFixedSize</enum>
      </property>
@@ -84,7 +93,7 @@ font: 600 20pt &quot;URW Bookman&quot;;
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="y_lineEdit">
+          <widget class="QLineEdit" name="leFunctionInput">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -97,6 +106,50 @@ background-image: url(:/background/whiteBackground.jpg);
 border-color: rgb(238, 148, 148);</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>30</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="score_label">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(180, 72, 72);
+font: 600 20pt &quot;URW Bookman&quot;;
+</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>30</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>

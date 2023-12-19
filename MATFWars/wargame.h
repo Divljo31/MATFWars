@@ -34,6 +34,10 @@ public:
 
     void setClient(Client *newClient);
 
+
+ //   Obstacle getObstacle(size_t index) const;
+
+
 signals:
     void backWarClicked();
 
@@ -49,7 +53,18 @@ private slots:
 private:
     Ui::WarGame *ui;
     Check *ptrCheck;
+    
     Client *m_client;
+    
+    QString backStyle;
+    QString fireStyle;
+    QString quitStyle;
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+
 };
 
 #endif // WARGAME_H

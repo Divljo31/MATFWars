@@ -32,6 +32,14 @@ private:
     Ui::WaitingRoom *ui;
     WarGame *ptrWarGame;
     Client *m_client;
+    
+    QString playStyle;
+    QString backStyle;
+
+//menjam
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 };
 
 #endif // WAITINGROOM_H
