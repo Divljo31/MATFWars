@@ -65,8 +65,8 @@ void MainWindow::on_war_game_button_clicked()
 
 void MainWindow::on_leaderboard_main_button_clicked()
 {
+    ptrLeaderboard->showLeaderboard();
     ptrLeaderboard->show();
-
 }
 
 

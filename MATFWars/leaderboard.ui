@@ -78,7 +78,7 @@ color: rgb(246, 206, 206);</string>
       </spacer>
      </item>
      <item>
-      <widget class="QTextBrowser" name="leaderboard_textBrowser">
+      <widget class="QTextEdit" name="leaderboard_textEdit">
        <property name="tabletTracking">
         <bool>false</bool>
        </property>
@@ -101,13 +101,11 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
        <property name="lineWrapMode">
         <enum>QTextEdit::WidgetWidth</enum>
        </property>
+       <property name="markdown">
+        <string/>
+       </property>
        <property name="textInteractionFlags">
         <set>Qt::TextBrowserInteraction</set>
-       </property>
-       <property name="source">
-        <url>
-         <string>qrc:/txt/leaderboard.txt</string>
-        </url>
        </property>
       </widget>
      </item>

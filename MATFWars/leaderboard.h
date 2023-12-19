@@ -2,6 +2,9 @@
 #define LEADERBOARD_H
 
 #include <QDialog>
+#include <QFile>
+#include <QTextStream>
+
 namespace Ui {
 class Leaderboard;
 }
@@ -14,6 +17,8 @@ public:
     explicit Leaderboard(QWidget *parent = nullptr);
     ~Leaderboard();
 
+public:
+    void showLeaderboard();
 
 private:
     Ui::Leaderboard *ui;

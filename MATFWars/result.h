@@ -2,10 +2,11 @@
 #define RESULT_H
 
 #include <QDialog>
-#include <QFile>
-#include <QTextStream>
 #include <QString>
+#include <QDebug>
+#include <QCoreApplication>
 #include <iostream>
+#include <fstream>
 #include <regex>
 #include <string>
 #include <fstream>
@@ -30,6 +31,8 @@ signals:
 
 private slots:
     void on_menu_result_button_clicked();
+
+    void on_enter_result_button_clicked();
 
 private:
     void loadLeaderboardMembers();
