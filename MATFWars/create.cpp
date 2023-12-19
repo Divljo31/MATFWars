@@ -10,7 +10,6 @@ Create::Create(QWidget *parent) :
     //connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
 
 
-    //connect(m_client->m_socket, &QTcpSocket::errorOccurred, this, &Client::gotError);
 }
 
 

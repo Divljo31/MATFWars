@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
             this, &MainWindow::gotNewMesssage);
     connect(server->m_server, &QTcpServer::newConnection,
             this, &MainWindow::smbConnectedToServer);
-    connect(server, &Server::smbDisconnected,
-            this, &MainWindow::smbDisconnectedFromServer);
+    connect(server, &Server::smbDisconnected, this, &MainWindow::disconnection);
+
 }
 
 MainWindow::~MainWindow()
@@ -85,12 +85,12 @@ void MainWindow::smbConnectedToServer()
     ui->textEdit_log->append(tr("Somebody has connected"));
 }
 
-void MainWindow::smbDisconnectedFromServer()
-{
-    ui->textEdit_log->append(tr("Somebody has disconnected"));
-}
-
 void MainWindow::gotNewMesssage(QString msg)
 {
     ui->textEdit_log->append(QString("New message: %1").arg(msg));
+}
+
+void MainWindow::disconnection()
+{
+    ui->textEdit_log->append(QString("Somebody has disconnected"));
 }

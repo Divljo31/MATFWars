@@ -19,8 +19,8 @@ public:
 signals:
 
     void smbConnected();
-    void smbDisconnected();
     void newMessage(QString msg);
+    void smbDisconnected();
 
 
 public slots:
@@ -32,8 +32,6 @@ public slots:
 
     QString connectClicked();
     void smbConnectedToServer();
-    void smbDisconnectedFromServer();
-    void gotNewMessage(QString msg);
 
 private:
 

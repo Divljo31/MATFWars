@@ -76,6 +76,9 @@ void WarGame::clientReceivedMessage(QString msg)
         QString msgText = msg.right(msg.length() - colonIndex - 1);
         ui->chat_textEdit->append(tr("<font><b>") + name + tr(": </b>")+ msgText + tr("</font>"));
     }
+    else{
+        ui->chat_textEdit->append(msg);
+    }
 }
 
 void WarGame::setClient(Client *newClient)

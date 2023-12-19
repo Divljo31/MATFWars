@@ -8,6 +8,7 @@ Join::Join(QWidget *parent) :
 
 
     ui->setupUi(this);
+    ui->ip_lineEdit->setText("localhost");
 }
 
 Join::~Join()
@@ -25,6 +26,7 @@ void Join::on_back_pop2_button_clicked()
 
 void Join::on_join_pop2_button_clicked()
 {
+
 
     m_client = new Client(nullptr, ui->ip_lineEdit->text(), ui->port_lineEdit->text().toUShort());
     m_client->setName(ui->name_lineEdit->text());

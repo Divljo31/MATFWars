@@ -6,9 +6,7 @@ Server::Server(QObject *parent) : m_nNextBlockSize(0)
 
     m_server = new QTcpServer();
 
-    //connect(this, &Server::newMessage, this, &Server::gotNewMessage);
     connect(this, &QTcpServer::newConnection, this, &Server::smbConnectedToServer);
-    connect(this, &Server::smbDisconnected, this, &Server::smbDisconnectedFromServer);
 }
 
 QList<QTcpSocket *> Server::getClients()
@@ -81,7 +79,16 @@ void Server::gotDisconnection()
 {
 
     m_clients.removeAt(m_clients.indexOf((QTcpSocket*)sender()));
+    for (QTcpSocket *client : m_clients)
+    {
+        if (sendToClient(client, "Somebody disconnected!!") == -1)
+        {
+            qDebug() << "Some error occured";
+        }
+    }
+
     emit smbDisconnected();
+
 }
 
 qint64 Server::sendToClient(QTcpSocket *socket, const QString &str)
@@ -120,16 +127,8 @@ void Server::smbConnectedToServer()
     emit smbConnected();
 }
 
-void Server::smbDisconnectedFromServer()
-{
-    emit smbDisconnected();
 
-}
 
-void Server::gotNewMessage(QString msg)
-{
-    //sendToClient(clientSocket, msg);
-}
 
 
 

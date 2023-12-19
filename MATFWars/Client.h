@@ -10,7 +10,7 @@
 class Client : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool currentStatus READ getStatus NOTIFY statusChanged)
+    Q_PROPERTY(bool currentStatus READ getStatus)
 
 
 public:
@@ -32,7 +32,6 @@ public slots:
     void closeConnection();
     void connect2host();
 
-    void setStatus(bool newStatus);
     void receivedSomething(QString msg);
     void gotError(QAbstractSocket::SocketError err);
     void sendClicked(QString msg);
@@ -46,7 +45,6 @@ private slots:
 
 signals:
 
-    void statusChanged(bool status);
     void someError(QString err);
     void someMessage(QString msg);
 

@@ -13,7 +13,6 @@ Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) :
     m_timeoutTimer->setSingleShot(true);
 
     connect(this, &Client::hasReadSome, this, &Client::receivedSomething);
-    connect(this, &Client::statusChanged, this, &Client::setStatus);
 
     connect(m_socket, &QTcpSocket::errorOccurred, this, &Client::gotError);
 
@@ -57,7 +56,7 @@ void Client::closeConnection()
     if (shouldEmit)
     {
         m_status = false;
-        emit statusChanged(m_status);
+
     }
 }
 
@@ -72,17 +71,6 @@ void Client::connect2host()
 
 }
 
-void Client::setStatus(bool newStatus)
-{
-//    if (newStatus)
-//    {
-//        emit statusChanged(true);
-//    }
-//    else
-//    {
-//        emit statusChanged(false);
-//    }
-}
 
 void Client::receivedSomething(QString msg)
 {
@@ -177,7 +165,6 @@ void Client::connected()
 {
 
     m_status = true;
-    emit statusChanged(m_status);
 }
 
 void Client::connectionTimeout()
