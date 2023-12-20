@@ -128,6 +128,12 @@ bool Function::equals(Function* other) {
     return true;
 }
 
+void Function::removePointsAfterCutoff(int cutoff) {
+    if (cutoff < m_points.size() - 1) {
+        m_points.remove(cutoff + 1, m_points.size() - cutoff - 1);
+    }
+}
+
 
 
 

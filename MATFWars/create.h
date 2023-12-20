@@ -6,7 +6,6 @@
 #include "waitingroom.h"
 #include "Client.h"
 
-
 namespace Ui {
 class Create;
 }
@@ -25,7 +24,6 @@ public:
 
 signals:
     void backCreatePop1Clicked();
-
     void clientCreated(Client *client);
 
 private slots:
@@ -34,14 +32,11 @@ private slots:
 
     void gotError(QAbstractSocket::SocketError err);
 
-
 private:
     Ui::Create *ui;
     WaitingRoom *ptrWaitingRoom;
     QString backStyle;
     QString createStyle;
-
-
 
 //menjam
 protected:
@@ -49,7 +44,6 @@ protected:
 
     Client* m_client;
     QString m_lastUserName;
-
 };
 
 

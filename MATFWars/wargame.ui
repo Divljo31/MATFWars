@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>721</width>
-    <height>418</height>
+    <width>1098</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,11 +30,24 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QGraphicsView" name="function_graphicsView">
+          <widget class="QGraphicsView" name="gvCanvas">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border:10px solid;
-border-color: rgb(238, 148, 148);
-</string>
+            <string notr="true"/>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
            </property>
           </widget>
          </item>
@@ -53,7 +66,7 @@ font: 600 20pt &quot;URW Bookman&quot;;
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="y_lineEdit">
+            <widget class="QLineEdit" name="leFunctionInput">
              <property name="styleSheet">
               <string notr="true">border:5px solid;
 border-color: rgb(238, 148, 148);
@@ -198,6 +211,12 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QTextEdit" name="chat_textEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="autoFillBackground">
             <bool>false</bool>
            </property>
@@ -211,6 +230,12 @@ color: black;</string>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
             <widget class="QLineEdit" name="chat_lineEdit">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="styleSheet">
               <string notr="true">border:10px solid;
 border-color: white;

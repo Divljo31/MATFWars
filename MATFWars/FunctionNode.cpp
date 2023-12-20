@@ -21,5 +21,4 @@ void FunctionNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 
     painter->setPen(Qt::darkBlue);
     painter->drawPolyline(m_functionNode->points());
-
 }
