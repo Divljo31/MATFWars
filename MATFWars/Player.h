@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QPointF>
+#include <QJsonObject>
 // TODO: Nakon implementacije klase Funkcija.cpp potrebno je dodati klasi Player polje: Function lastUsedFunction.
 
 class Player {
@@ -16,6 +17,7 @@ public:
     void setCoordinates(QPointF newCoordinates);
     double diameter() const;
     void flipX();
+    QJsonObject createJson();
 
 
 private:

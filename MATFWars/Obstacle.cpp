@@ -45,9 +45,35 @@ double Obstacle::health() const
     return m_health;
 }
 
+QJsonObject Obstacle::createJson()
+{
+    // Add obstacles to the array
+    QJsonObject obstacleObject;
+    obstacleObject["m_diameter"] = m_diameter;
+    obstacleObject["m_center"] = QJsonObject{
+        {"x", m_center.x()},
+        {"y", m_center.y()}
+    };
+    obstacleObject["m_health"] = m_health;
+    obstacleObject["m_maxHealth"] = m_maxHealth;
+
+    return obstacleObject;
+
+}
+
 double Obstacle::maxHealth() const
 {
     return m_maxHealth;
+}
+
+void Obstacle::setHealth(double newHealth)
+{
+    m_health = newHealth;
+}
+
+void Obstacle::setMaxHealth(double newMaxHealth)
+{
+    m_maxHealth = newMaxHealth;
 }
 
 double Obstacle::generateDiameter()

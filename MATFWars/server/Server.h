@@ -32,6 +32,7 @@ public slots:
 
     QString connectClicked();
     void smbConnectedToServer();
+   // void forwardSetUpData(QString setUpDataString);
 
 private:
 

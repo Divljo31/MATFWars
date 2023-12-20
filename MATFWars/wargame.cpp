@@ -37,6 +37,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
 
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::fireFunction);
     connect(this, &WarGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
+ //   connect(this, &WarGame::setUpGame, this, &WarGame::sendSetUpData);
 
     backStyle=ui->back_war_button->styleSheet();
     quitStyle=ui->quit_war_button->styleSheet();
@@ -58,6 +59,14 @@ WarGame::~WarGame()
     cleanUp();
 }
 
+void WarGame::createObstacleJsonArray(QJsonArray *obstaclesJson)
+{
+    for (Obstacle *o : obstacles){
+        QJsonObject obstacleObject = o->createJson();
+        obstaclesJson->append(obstacleObject);
+    }
+}
+
 void WarGame::startWarGame()
 {
     m_canvas->setSceneRect(ui->gvCanvas->rect());
@@ -67,15 +76,40 @@ void WarGame::startWarGame()
 
     emit setCoordinateSystem();
 
-    player0 = generatePlayer("Djura", gridWidth, gridHeight);
+    player0 = generatePlayer(m_client->name(), gridWidth, gridHeight);
 
     player1 = generatePlayer("Pera", gridWidth, gridHeight);
     player1->flipX();
 
     generateObstacles(gridWidth, gridHeight);
 
-    drawCanvas();
+    QJsonObject player0Json = player0->createJson();
+    QJsonObject player1Json = player1->createJson();
+
+    QJsonArray obstaclesArray;
+
+    createObstacleJsonArray(&obstaclesArray);
+
+    QJsonObject setUpData;
+    setUpData["type"] = "setUpData";
+    setUpData["player0"] = player0Json;
+    setUpData["player1"] = player1Json;
+    setUpData["obstacles"] = obstaclesArray;
+
+    QJsonDocument jsonDocument(setUpData);
+    QString setUpDataString = jsonDocument.toJson();
+    qDebug() << setUpDataString.toStdString();
+
+
+    m_client->sendData(setUpDataString);
+
+//    drawCanvas();
 }
+
+//void WarGame::sendSetUpData(QString setUpDataString){
+
+//    m_client->sendMsg(setUpDataString);
+//}
 
 void WarGame::fireFunction()
 {
@@ -275,15 +309,67 @@ void WarGame::on_back_war_button_clicked()
 
 void WarGame::clientReceivedMessage(QString msg)
 {
-    int colonIndex = msg.indexOf(':');
-    if(colonIndex != -1){
-        QString name = msg.left(colonIndex);
-        QString msgText = msg.right(msg.length() - colonIndex - 1);
-        ui->chat_textEdit->append(tr("<font><b>") + name + tr(": </b>")+ msgText + tr("</font>"));
+    QByteArray jsonData = msg.toUtf8();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+    QJsonObject jsonObj = doc.object();
+
+    emit cleanUpCanvas();
+
+    if(jsonObj["type"] == "setUpData"){
+        QJsonObject player0Json = jsonObj.value("player0").toObject();
+        player0->setName(player0Json.value("name").toString());
+        QJsonObject coordinates0 = player0Json.value("m_coordinate").toObject();
+        double x0 = coordinates0.value("x").toDouble();
+        double y0 = coordinates0.value("y").toDouble();
+        player0->setCoordinates(QPoint(x0, y0));
+
+        QJsonObject player1Json = jsonObj.value("player1").toObject();
+        player1->setName(player1Json.value("name").toString());
+        QJsonObject coordinates1 = player1Json.value("m_coordinate").toObject();
+        double x1 = coordinates1.value("x").toDouble();
+        double y1 = coordinates1.value("y").toDouble();
+        player1->setCoordinates(QPoint(x1, y1));
+
+        QJsonArray obstaclesArray = jsonObj.value("obstacles").toArray();
+
+        for(Obstacle *o : obstacles){
+            delete o;
+        }
+
+        obstacles.clear();
+
+        // Iterating through each obstacle
+        for (const QJsonValue &value : obstaclesArray) {
+            QJsonObject obstacle = value.toObject();
+
+            // Extracting obstacle data
+            Obstacle *tmp = new Obstacle();
+            QJsonObject center = obstacle.value("m_center").toObject();
+            double centerX = center.value("x").toDouble();
+            double centerY = center.value("y").toDouble();
+            double diameter = obstacle.value("m_diameter").toDouble();
+            int health = obstacle.value("m_health").toInt();
+            int maxHealth = obstacle.value("m_maxHealth").toInt();
+            tmp->setCenter(QPointF(centerX, centerY));
+            tmp->setDiameter(diameter);
+            tmp->setHealth(health);
+            tmp->setMaxHealth(maxHealth);
+
+            obstacles.insert(tmp);
+        }
+
+
+        drawCanvas();
     }
-    else{
-        ui->chat_textEdit->append(msg);
-    }
+
+//    else if(colonIndex != -1){
+//        QString name = msg.left(colonIndex);
+//        QString msgText = msg.right(msg.length() - colonIndex - 1);
+//        ui->chat_textEdit->append(tr("<font><b>") + name + tr(": </b>")+ msgText + tr("</font>"));
+//    }
+//    else{
+//        ui->chat_textEdit->append(msg);
+//    }
 }
 
 void WarGame::setClient(Client *newClient)
@@ -296,7 +382,13 @@ void WarGame::sendMessage()
     if (m_client->getStatus()) {
         // The socket is connected, proceed with sending the message
         QString message = ui->chat_lineEdit->text();
-        m_client->sendClicked(m_client->name() + ": " + message);
+        QJsonObject msgData;
+        msgData["type"] = "msg";
+        msgData["message"] = message;
+        msgData["name"] = m_client->name();
+        QJsonDocument jsonDocument(msgData);
+        QString msgString = jsonDocument.toJson();
+        m_client->sendData(msgString);
         ui->chat_lineEdit->clear();
 
     } else {

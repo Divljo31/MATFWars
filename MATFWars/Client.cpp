@@ -19,6 +19,8 @@ Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) :
     connect(m_timeoutTimer, &QTimer::timeout, this, &Client::connectionTimeout);
 
     connect(m_socket, &QTcpSocket::disconnected, this, &Client::closeConnection);
+
+
 }
 
 
@@ -104,7 +106,7 @@ void Client::gotError(QAbstractSocket::SocketError err)
     emit someError(strError);
 }
 
-void Client::sendClicked(QString msg)
+void Client::sendData(QString msg)
 {
 
     QByteArray arrBlock;
@@ -117,6 +119,7 @@ void Client::sendClicked(QString msg)
 
     this->m_socket->write(arrBlock);
 }
+
 
 void Client::connectClicked()
 {

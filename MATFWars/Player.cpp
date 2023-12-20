@@ -36,3 +36,15 @@ void Player::flipX()
     m_coordinate.setX(-m_coordinate.x());
 }
 
+QJsonObject Player::createJson()
+{
+    QJsonObject playerObject;
+    playerObject["m_name"] = m_name;
+    playerObject["m_coordinate"] = QJsonObject{
+        {"x", m_coordinate.x()},
+        {"y", m_coordinate.y()}
+    };
+
+    return playerObject;
+}
+

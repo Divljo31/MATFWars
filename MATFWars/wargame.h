@@ -17,6 +17,10 @@
 #include "check.h"
 #include <QGraphicsScene>
 
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+
 namespace Ui {
 class WarGame;
 }
@@ -33,6 +37,11 @@ public:
 
 
     void startWarGame();
+
+    void createObstacleJsonArray(QJsonArray *obstaclesJson);
+
+
+    void extractPlayerJson(QJsonObject jsonObj);
 
 private:
     Player* generatePlayer(QString name, int width, int height);
@@ -63,6 +72,7 @@ signals:
     void newFunctionIsSet(FunctionNode* functionNode);
     void setCoordinateSystem();
     void cleanUpCanvas();
+    void setUpGame(QString setUpDataString);
 
 private slots:
     void on_back_war_button_clicked();
