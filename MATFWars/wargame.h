@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QVector>
+#include "Client.h"
 #include "FunctionNode.h"
 #include "ObstacleNode.h"
 #include "Player.h"
@@ -25,9 +26,11 @@ class WarGame : public QDialog
     Q_OBJECT
 
 public:
-    explicit WarGame(QWidget *parent = nullptr);
+    explicit WarGame(Client* client, QWidget *parent = nullptr);
     ~WarGame();
- //   Obstacle getObstacle(size_t index) const;
+    void sendMessage();
+    void setClient(Client *newClient);
+
 
     void startWarGame();
 
@@ -65,10 +68,15 @@ private slots:
     void on_back_war_button_clicked();
     void on_quit_war_button_clicked();
     void fireFunction();
+    void clientReceivedMessage(QString msg);
+
 
 private:
     Ui::WarGame *ui;
     Check *ptrCheck;
+    
+    Client *m_client;
+    
     QString backStyle;
     QString fireStyle;
     QString quitStyle;
@@ -78,6 +86,7 @@ private:
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
+
 
 };
 

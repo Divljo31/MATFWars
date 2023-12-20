@@ -24,12 +24,13 @@ public:
 
 signals:
     void backCreatePop1Clicked();
+    void clientCreated(Client *client);
 
 private slots:
     void on_back_pop1_button_clicked();
-
     void on_create_pop1_button_clicked();
 
+    void gotError(QAbstractSocket::SocketError err);
 
 private:
     Ui::Create *ui;
@@ -37,15 +38,12 @@ private:
     QString backStyle;
     QString createStyle;
 
-
-
 //menjam
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
     Client* m_client;
     QString m_lastUserName;
-
 };
 
 

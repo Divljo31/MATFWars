@@ -22,8 +22,9 @@ private slots:
     void on_pushButton_startServer_clicked();
     void on_pushButton_testConn_clicked();
     void smbConnectedToServer();
-    void smbDisconnectedFromServer();
     void gotNewMesssage(QString msg);
+    void disconnection();
+
 
 private:
     Ui::MainWindow *ui;

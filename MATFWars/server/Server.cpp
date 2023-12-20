@@ -6,9 +6,7 @@ Server::Server(QObject *parent) : m_nNextBlockSize(0)
 
     m_server = new QTcpServer();
 
-    connect(this, &Server::newMessage, this, &Server::gotNewMessage);
     connect(this, &QTcpServer::newConnection, this, &Server::smbConnectedToServer);
-    connect(this, &Server::smbDisconnected, this, &Server::smbDisconnectedFromServer);
 }
 
 QList<QTcpSocket *> Server::getClients()
@@ -28,7 +26,17 @@ void Server::newConnection()
 
     m_clients << clientSocket;
 
-    sendToClient(clientSocket, "Reply: connection established");
+    for (QTcpSocket *client : m_clients)
+    {
+        if(m_clients.size() == 1){
+            sendToClient(client, "Player 1 has connected!");
+            sendToClient(client, "Waiting for the other player...");
+        }
+        else{
+            sendToClient(client, "Player 2 has connected!");
+        }
+    }
+
 }
 
 
@@ -38,7 +46,6 @@ void Server::readClient()
     QTcpSocket *clientSocket = (QTcpSocket*)sender();
     QDataStream in(clientSocket);
 
-    //in.setVersion(QDataStream::Qt_6_6);
 
     for (;;)
     {
@@ -52,13 +59,17 @@ void Server::readClient()
         QString str;
         in >> str;
 
-        emit gotNewMessage(str);
+        emit newMessage(str);
 
         m_nNextBlockSize = 0;
 
-        if (sendToClient(clientSocket, QString("Reply: received [%1]").arg(str)) == -1)
+
+        for (QTcpSocket *client : m_clients)
         {
-            qDebug() << "Some error occured";
+            if (sendToClient(client, str) == -1)
+            {
+                qDebug() << "Some error occured";
+            }
         }
     }
 }
@@ -68,7 +79,16 @@ void Server::gotDisconnection()
 {
 
     m_clients.removeAt(m_clients.indexOf((QTcpSocket*)sender()));
+    for (QTcpSocket *client : m_clients)
+    {
+        if (sendToClient(client, "Somebody has disconnected!") == -1)
+        {
+            qDebug() << "Some error occured";
+        }
+    }
+
     emit smbDisconnected();
+
 }
 
 qint64 Server::sendToClient(QTcpSocket *socket, const QString &str)
@@ -92,7 +112,7 @@ QString Server::connectClicked()
 
     if (!this->m_server->listen(QHostAddress::Any, 6547)) // set this to written port in ui
     {
-        return "Error! The port is taken by some other service";
+        return "Error! The port is taken by some other service" ;
     }
     else
     {
@@ -107,17 +127,9 @@ void Server::smbConnectedToServer()
     emit smbConnected();
 }
 
-void Server::smbDisconnectedFromServer()
-{
-    emit smbDisconnected();
 
-}
 
-void Server::gotNewMessage(QString msg)
-{
-    emit newMessage(msg);
 
-}
 
 
 
