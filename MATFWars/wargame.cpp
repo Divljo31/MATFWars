@@ -315,8 +315,6 @@ void WarGame::clientReceivedMessage(QString msg)
     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
     QJsonObject jsonObj = doc.object();
 
-    emit cleanUpCanvas();
-
     if (msg == "Player 2 has connected!" and m_fromCreate){
         startWarGame();
     }
