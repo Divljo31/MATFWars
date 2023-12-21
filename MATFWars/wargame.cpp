@@ -35,7 +35,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     connect(this, &WarGame::setCoordinateSystem, dynamic_cast<Canvas *>(m_canvas), &Canvas::addCoordinateSystem);
     connect(this, &WarGame::cleanUpCanvas, dynamic_cast<Canvas *>(m_canvas), &Canvas::cleanUp);
 
-    connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::fireFunction);
+    connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::inputTaken);
     connect(this, &WarGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
     backStyle=ui->back_war_button->styleSheet();
@@ -80,9 +80,9 @@ void WarGame::startWarGame()
 {
     setCanvas();
 
-    player0 = generatePlayer(m_client->name(), gridWidth, gridHeight);
+    player0 = generatePlayer("Player 1", gridWidth, gridHeight);
 
-    player1 = generatePlayer("Pera", gridWidth, gridHeight);
+    player1 = generatePlayer("Player 2", gridWidth, gridHeight);
     player1->flipX();
 
     generateObstacles(gridWidth, gridHeight);
@@ -104,7 +104,6 @@ void WarGame::startWarGame()
     QString setUpDataString = jsonDocument.toJson();
     //qDebug() << setUpDataString.toStdString();
 
-    qDebug() << "StartWarGame";
     m_client->sendData(setUpDataString);
 
 //    drawCanvas();
@@ -115,9 +114,8 @@ void WarGame::startWarGame()
 //    m_client->sendMsg(setUpDataString);
 //}
 
-void WarGame::fireFunction()
+void WarGame::fireFunction(std::string fString)
 {
-    std::string fString = ui->leFunctionInput->text().toStdString();
 
     ui->leFunctionInput->setText("");
     ui->leFunctionInput->setDisabled(true);
@@ -372,6 +370,9 @@ void WarGame::clientReceivedMessage(QString msg)
 
         drawCanvas();
     }
+    else if(jsonObj["type"] == "func"){
+        fireFunction(jsonObj["data"].toString().toStdString());
+    }
 
 //    else if(colonIndex != -1){
 //        QString name = msg.left(colonIndex);
@@ -412,6 +413,17 @@ void WarGame::sendMessage()
 void WarGame::on_quit_war_button_clicked()
 {
     ptrCheck->show();
+}
+
+void WarGame::inputTaken()
+{
+    QJsonObject msgData;
+    msgData["type"] = "func";
+    msgData["data"] = ui->leFunctionInput->text();
+    QJsonDocument jsonDocument(msgData);
+    QString msgString = jsonDocument.toJson();
+    m_client->sendData(msgString);
+
 }
 
 void WarGame::setFromCreate(bool newFromCreate)

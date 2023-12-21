@@ -79,7 +79,8 @@ signals:
 private slots:
     void on_back_war_button_clicked();
     void on_quit_war_button_clicked();
-    void fireFunction();
+    void inputTaken();
+    void fireFunction(std::string fString);
     void clientReceivedMessage(QString msg);
 
 
