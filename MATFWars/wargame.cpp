@@ -80,7 +80,7 @@ void WarGame::startWarGame()
 {
     setCanvas();
 
-    player0 = generatePlayer("Player 1", gridWidth, gridHeight);
+    player0 = generatePlayer(m_client->name(), gridWidth, gridHeight);
 
     player1 = generatePlayer("Player 2", gridWidth, gridHeight);
     player1->flipX();
@@ -324,14 +324,14 @@ void WarGame::clientReceivedMessage(QString msg)
         setCanvas();
         qDebug() << jsonObj;
         QJsonObject player0Json = jsonObj.value("player0").toObject();
-        player0 = new Player(player0Json.value("name").toString());
+        player0 = new Player(player0Json["m_name"].toString());
         QJsonObject coordinates0 = player0Json.value("m_coordinate").toObject();
         double x0 = coordinates0.value("x").toDouble();
         double y0 = coordinates0.value("y").toDouble();
         player0->setCoordinates(QPoint(x0, y0));
 
         QJsonObject player1Json = jsonObj.value("player1").toObject();
-        player1 = new Player(player1Json.value("name").toString());
+        player1 = new Player(m_client->name());
         QJsonObject coordinates1 = player1Json.value("m_coordinate").toObject();
         double x1 = coordinates1.value("x").toDouble();
         double y1 = coordinates1.value("y").toDouble();
@@ -365,7 +365,17 @@ void WarGame::clientReceivedMessage(QString msg)
             obstacles.insert(tmp);
         }
 
+        QJsonObject msgData;
+        msgData["type"] = "name";
+        msgData["data"] = m_client->name();
+        QJsonDocument jsonDocument(msgData);
+        QString msgString = jsonDocument.toJson();
+        m_client->sendData(msgString);
 
+        drawCanvas();
+    }
+    else if(jsonObj["type"] == "name"){
+        player1->setName(jsonObj["data"].toString());
         drawCanvas();
     }
     else if(jsonObj["type"] == "func"){
