@@ -21,7 +21,7 @@ signals:
     void smbConnected();
     void newMessage(QString msg);
     void smbDisconnected();
-
+    void allPlayersConnected();
 
 public slots:
 

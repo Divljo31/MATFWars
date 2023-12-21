@@ -28,11 +28,12 @@ private slots:
 
 private:
     Ui::Join *ui;
-    WaitingRoom *ptrWaitingRoom;
+    WarGame *ptrWarGame;
     Client* m_client;
     
     QString backStyle;
     QString joinStyle;
+
 
  //menjam
  protected:

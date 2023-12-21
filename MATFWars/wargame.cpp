@@ -37,7 +37,6 @@ WarGame::WarGame(Client *client, QWidget *parent) :
 
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::fireFunction);
     connect(this, &WarGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
- //   connect(this, &WarGame::setUpGame, this, &WarGame::sendSetUpData);
 
     backStyle=ui->back_war_button->styleSheet();
     quitStyle=ui->quit_war_button->styleSheet();
@@ -98,7 +97,7 @@ void WarGame::startWarGame()
 
     QJsonDocument jsonDocument(setUpData);
     QString setUpDataString = jsonDocument.toJson();
-    qDebug() << setUpDataString.toStdString();
+    //qDebug() << setUpDataString.toStdString();
 
 
     m_client->sendData(setUpDataString);
@@ -315,7 +314,11 @@ void WarGame::clientReceivedMessage(QString msg)
 
     emit cleanUpCanvas();
 
-    if(jsonObj["type"] == "setUpData"){
+    if(msg == "Player 2 has connected!") {
+        startWarGame();
+    }
+
+    if (jsonObj["type"] == "setUpData") {
         QJsonObject player0Json = jsonObj.value("player0").toObject();
         player0->setName(player0Json.value("name").toString());
         QJsonObject coordinates0 = player0Json.value("m_coordinate").toObject();

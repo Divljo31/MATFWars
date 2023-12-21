@@ -1,6 +1,5 @@
 #include "Server.h"
 
-
 Server::Server(QObject *parent) : m_nNextBlockSize(0)
 {
 
@@ -36,7 +35,6 @@ void Server::newConnection()
             sendToClient(client, "Player 2 has connected!");
         }
     }
-
 }
 
 
