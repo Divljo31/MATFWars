@@ -66,7 +66,7 @@ void WarGame::createObstacleJsonArray(QJsonArray *obstaclesJson)
     }
 }
 
-void WarGame::startWarGame()
+void WarGame::setCanvas()
 {
     m_canvas->setSceneRect(ui->gvCanvas->rect());
 
@@ -74,6 +74,11 @@ void WarGame::startWarGame()
     ui->gvCanvas->setScene(m_canvas);
 
     emit setCoordinateSystem();
+}
+
+void WarGame::startWarGame()
+{
+    setCanvas();
 
     player0 = generatePlayer(m_client->name(), gridWidth, gridHeight);
 
@@ -99,7 +104,7 @@ void WarGame::startWarGame()
     QString setUpDataString = jsonDocument.toJson();
     //qDebug() << setUpDataString.toStdString();
 
-
+    qDebug() << "StartWarGame";
     m_client->sendData(setUpDataString);
 
 //    drawCanvas();
@@ -318,16 +323,19 @@ void WarGame::clientReceivedMessage(QString msg)
         startWarGame();
     }
 
-    if (jsonObj["type"] == "setUpData") {
+    else if (jsonObj["type"] == "setUpData") {
+
+        setCanvas();
+        qDebug() << jsonObj;
         QJsonObject player0Json = jsonObj.value("player0").toObject();
-        player0->setName(player0Json.value("name").toString());
+        player0 = new Player(player0Json.value("name").toString());
         QJsonObject coordinates0 = player0Json.value("m_coordinate").toObject();
         double x0 = coordinates0.value("x").toDouble();
         double y0 = coordinates0.value("y").toDouble();
         player0->setCoordinates(QPoint(x0, y0));
 
         QJsonObject player1Json = jsonObj.value("player1").toObject();
-        player1->setName(player1Json.value("name").toString());
+        player1 = new Player(player1Json.value("name").toString());
         QJsonObject coordinates1 = player1Json.value("m_coordinate").toObject();
         double x1 = coordinates1.value("x").toDouble();
         double y1 = coordinates1.value("y").toDouble();

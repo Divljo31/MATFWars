@@ -96,6 +96,8 @@ private:
 //menjam
     void switchPlayer();
 
+    void setCanvas();
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
