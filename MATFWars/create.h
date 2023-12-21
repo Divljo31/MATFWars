@@ -34,7 +34,7 @@ private slots:
 
 private:
     Ui::Create *ui;
-    WaitingRoom *ptrWaitingRoom;
+    WarGame *ptrWarGame;
     QString backStyle;
     QString createStyle;
 

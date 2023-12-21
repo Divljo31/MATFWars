@@ -314,7 +314,7 @@ void WarGame::clientReceivedMessage(QString msg)
 
     emit cleanUpCanvas();
 
-    if(msg == "Player 2 has connected!") {
+    if (msg == "Player 2 has connected!" and m_fromCreate){
         startWarGame();
     }
 
@@ -404,6 +404,11 @@ void WarGame::sendMessage()
 void WarGame::on_quit_war_button_clicked()
 {
     ptrCheck->show();
+}
+
+void WarGame::setFromCreate(bool newFromCreate)
+{
+    m_fromCreate = newFromCreate;
 }
 
 //menjam

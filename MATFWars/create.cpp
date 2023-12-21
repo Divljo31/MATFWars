@@ -22,7 +22,7 @@ Create::Create(QWidget *parent) :
 Create::~Create()
 {
     delete ui;
-    delete ptrWaitingRoom;
+    delete ptrWarGame;
 }
 
 void Create::on_back_pop1_button_clicked()
@@ -44,9 +44,10 @@ void Create::on_create_pop1_button_clicked()
 
     this->hide();
 
-    ptrWaitingRoom= new WaitingRoom(m_client);
-    //ptrWaitingRoom->setClient(m_client);
-    ptrWaitingRoom->show();
+    ptrWarGame= new WarGame(m_client);
+
+    ptrWarGame->setFromCreate(true);
+    ptrWarGame->show();
 }
 
 //menjam

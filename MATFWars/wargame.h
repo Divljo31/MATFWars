@@ -39,9 +39,9 @@ public:
     void startWarGame();
 
     void createObstacleJsonArray(QJsonArray *obstaclesJson);
-
-
     void extractPlayerJson(QJsonObject jsonObj);
+
+    void setFromCreate(bool newFromCreate);
 
 private:
     Player* generatePlayer(QString name, int width, int height);
@@ -64,6 +64,8 @@ private:
     QGraphicsScene *m_canvas;
     int gridWidth = 30;
     int gridHeight = 18;
+
+    bool m_fromCreate = false;
 
 signals:
     void backWarClicked();
