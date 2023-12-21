@@ -290,6 +290,7 @@ void WarGame::flipCanvas() {
 }
 
 void WarGame::drawCanvas() {
+    qDebug()<< "***drawCanvas***\n";
     PlayerNode *pn0 = new PlayerNode(player0);
     emit newPlayerIsSet(pn0);
 
@@ -315,11 +316,11 @@ void WarGame::clientReceivedMessage(QString msg)
     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
     QJsonObject jsonObj = doc.object();
 
-    if (msg == "Player 2 has connected!" and m_fromCreate){
+    if (msg == "Player 2 has connected!" && m_fromCreate){
         startWarGame();
     }
 
-    else if (jsonObj["type"] == "setUpData") {
+    else if (jsonObj["type"] == "setUpData" && !m_fromCreate) {
 
         setCanvas();
         qDebug() << jsonObj;
@@ -374,8 +375,13 @@ void WarGame::clientReceivedMessage(QString msg)
 
         drawCanvas();
     }
-    else if(jsonObj["type"] == "name"){
+    else if(jsonObj["type"] == "name" && m_fromCreate){
         player1->setName(jsonObj["data"].toString());
+        qDebug() << "\n\n\n" << player1->name();
+
+
+        dynamic_cast<Canvas *>(m_canvas)->update();
+        emit cleanUpCanvas();
         drawCanvas();
     }
     else if(jsonObj["type"] == "func"){
@@ -431,7 +437,6 @@ void WarGame::inputTaken()
     QJsonDocument jsonDocument(msgData);
     QString msgString = jsonDocument.toJson();
     m_client->sendData(msgString);
-
 }
 
 void WarGame::setFromCreate(bool newFromCreate)
