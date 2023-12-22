@@ -3,6 +3,11 @@
 
 #include <QDialog>
 
+// menjam
+#include<QColorDialog>
+#include<QColor>
+#include<QPalette>
+
 namespace Ui {
 class Settings;
 }
@@ -15,8 +20,14 @@ public:
     explicit Settings(QWidget *parent = nullptr);
     ~Settings();
 
+private slots:
+    void on_func_color_button_clicked();
+
 private:
     Ui::Settings *ui;
+
+protected:
+     bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // SETTINGS_H

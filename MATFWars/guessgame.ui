@@ -114,7 +114,8 @@ font: 600 20pt &quot;URW Bookman&quot;;
            </property>
            <property name="styleSheet">
             <string notr="true">border:5px solid;
-border-color: rgb(238, 148, 148);</string>
+border-color: rgb(238, 148, 148);
+</string>
            </property>
           </widget>
          </item>
