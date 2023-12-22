@@ -143,7 +143,7 @@ void WarGame::fireFunction(std::string fString)
             ptrWinner->setWinnerName(player0->name());
             ptrWinner->show();
             ui->leFunctionInput->setDisabled(true);
-            // cleanUp();
+            cleanUp();
         }
         else {
             switchPlayer();
@@ -280,8 +280,10 @@ void WarGame::cleanUp()
     }
     obstacles.clear();
 
-    delete player0;
-    delete player1;
+    if (player0 != nullptr)
+        delete player0;
+    if (player1 != nullptr)
+        delete player1;
 }
 
 void WarGame::switchPlayer()
