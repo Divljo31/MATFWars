@@ -140,8 +140,6 @@ void WarGame::fireFunction(std::string fString)
         switchPlayer();
         if((m_fromCreate && currentPlayer == 0) || (!m_fromCreate && currentPlayer == 1)){
             ui->leFunctionInput->setDisabled(false);
-            ui->leFunctionInput->setStyleSheet("#leFunctionInput { border:5px solid; border-color: rgb(238, 148, 148); background-color: white; color: black }");
-            ui->leFunctionInput->setText("");
         }
 
         //ui->leFunctionInput->setDisabled(false);
@@ -374,8 +372,6 @@ void WarGame::clientReceivedMessage(QString msg)
 
 
         ui->leFunctionInput->setDisabled(true);
-        ui->leFunctionInput->setStyleSheet("#leFunctionInput { border:5px solid; border-color: rgb(238, 148, 148); background-color: gray; color: white }");
-        ui->leFunctionInput->setText("It's the opponent's move!");
 
 
         QJsonObject msgData;
@@ -401,8 +397,6 @@ void WarGame::clientReceivedMessage(QString msg)
     else if(jsonObj["type"] == "func"){
         if((m_fromCreate && currentPlayer == 1) || (!m_fromCreate && currentPlayer == 0)){
             ui->leFunctionInput->setDisabled(true);
-            ui->leFunctionInput->setStyleSheet("#leFunctionInput { border:5px solid; border-color: rgb(238, 148, 148); background-color: gray; color: white }");
-            ui->leFunctionInput->setText("It's the opponent's move!");
         }
 
         fireFunction(jsonObj["data"].toString().toStdString());
