@@ -60,6 +60,7 @@ private:
 private:
     Player* player0;
     Player* player1;
+    Player* playerWinner = nullptr;
     int currentPlayer = 0;
     QSet<Obstacle*> obstacles;
     QGraphicsScene *m_canvas;

@@ -139,10 +139,19 @@ void WarGame::fireFunction(std::string fString)
 
     // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
     QTimer::singleShot(2000, [this, function]() {
-        switchPlayer();
-        if((m_fromCreate && currentPlayer == 0) || (!m_fromCreate && currentPlayer == 1)){
-            ui->leFunctionInput->setDisabled(false);
+        if (playerWinner != nullptr) {
+            ptrWinner->setWinnerName(player0->name());
+            ptrWinner->show();
+            ui->leFunctionInput->setDisabled(true);
+            // cleanUp();
         }
+        else {
+            switchPlayer();
+            if((m_fromCreate && currentPlayer == 0) || (!m_fromCreate && currentPlayer == 1)) {
+                ui->leFunctionInput->setDisabled(false);
+            }
+        }
+
 
         //ui->leFunctionInput->setDisabled(false);
         delete function;
@@ -163,21 +172,12 @@ void WarGame::collisionDetection(Function* function) {
     for (QPointF p : function->points()) {
         if (isPointInCircle(p, player0->coordinate(), player0->diameter() / 2)) {
             function->removePointsAfterCutoff(cutoff);
-            qDebug() << player1->name();
-
-            ptrWinner->setWinnerName(player1->name());
-            ptrWinner->show();
-            this->hide();
-            cleanUp();
+            playerWinner = player1;
         }
 
         if (isPointInCircle(p, player1->coordinate(), player1->diameter() / 2)) {
             function->removePointsAfterCutoff(cutoff);
-            qDebug() << player0->name();
-            ptrWinner->setWinnerName(player0->name());
-            ptrWinner->show();
-            this->hide();
-            cleanUp();
+            playerWinner = player0;
         }
 
         for (Obstacle* obstacle : obstacles) {
