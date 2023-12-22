@@ -23,8 +23,11 @@ public:
 private slots:
     void on_func_color_button_clicked();
 
+    void on_obst_color_button_clicked();
+
 private:
     Ui::Settings *ui;
+    QString funcStyle;
 
 protected:
      bool eventFilter(QObject *watched, QEvent *event) override;
