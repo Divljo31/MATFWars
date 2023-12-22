@@ -15,6 +15,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
 {
     ui->setupUi(this);
     ptrCheck = new Check();
+    ptrWinner = new Winner();
 
 
     ui->chat_textEdit->setReadOnly(true);
@@ -55,6 +56,7 @@ WarGame::~WarGame()
 {
     delete ui;
     delete ptrCheck;
+    //sendToClient(m_client, "destroy");
     cleanUp();
 }
 
@@ -162,13 +164,20 @@ void WarGame::collisionDetection(Function* function) {
         if (isPointInCircle(p, player0->coordinate(), player0->diameter() / 2)) {
             function->removePointsAfterCutoff(cutoff);
             qDebug() << player1->name();
-            return;
+
+            ptrWinner->setWinnerName(player1->name());
+            ptrWinner->show();
+            this->hide();
+            cleanUp();
         }
 
         if (isPointInCircle(p, player1->coordinate(), player1->diameter() / 2)) {
             function->removePointsAfterCutoff(cutoff);
             qDebug() << player0->name();
-            return;
+            ptrWinner->setWinnerName(player0->name());
+            ptrWinner->show();
+            this->hide();
+            cleanUp();
         }
 
         for (Obstacle* obstacle : obstacles) {
@@ -327,20 +336,20 @@ void WarGame::clientReceivedMessage(QString msg)
     else if (jsonObj["type"] == "setUpData" && !m_fromCreate) {
 
         setCanvas();
-        qDebug() << jsonObj;
+//        qDebug() << jsonObj;
         QJsonObject player0Json = jsonObj.value("player0").toObject();
         player0 = new Player(player0Json["m_name"].toString());
         QJsonObject coordinates0 = player0Json.value("m_coordinate").toObject();
         double x0 = coordinates0.value("x").toDouble();
         double y0 = coordinates0.value("y").toDouble();
-        player0->setCoordinates(QPoint(x0, y0));
+        player0->setCoordinates(QPointF(x0, y0));
 
         QJsonObject player1Json = jsonObj.value("player1").toObject();
         player1 = new Player(m_client->name());
         QJsonObject coordinates1 = player1Json.value("m_coordinate").toObject();
         double x1 = coordinates1.value("x").toDouble();
         double y1 = coordinates1.value("y").toDouble();
-        player1->setCoordinates(QPoint(x1, y1));
+        player1->setCoordinates(QPointF(x1, y1));
 
         QJsonArray obstaclesArray = jsonObj.value("obstacles").toArray();
 
@@ -387,7 +396,7 @@ void WarGame::clientReceivedMessage(QString msg)
     }
     else if(jsonObj["type"] == "name" && m_fromCreate){
         player1->setName(jsonObj["data"].toString());
-        qDebug() << "\n\n\n" << player1->name();
+//        qDebug() << "\n\n\n" << player1->name();
 
 
         dynamic_cast<Canvas *>(m_canvas)->update();

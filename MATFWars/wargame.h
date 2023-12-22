@@ -15,6 +15,7 @@
 
 #include "PlayerNode.h"
 #include "check.h"
+#include "winner.h"
 #include <QGraphicsScene>
 
 #include <QJsonArray>
@@ -75,6 +76,7 @@ signals:
     void setCoordinateSystem();
     void cleanUpCanvas();
     void setUpGame(QString setUpDataString);
+    void gameEnded(QString winnerName);
 
 private slots:
     void on_back_war_button_clicked();
@@ -87,6 +89,7 @@ private slots:
 private:
     Ui::WarGame *ui;
     Check *ptrCheck;
+    Winner *ptrWinner;
     
     Client *m_client;
     

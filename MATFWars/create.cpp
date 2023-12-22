@@ -7,14 +7,11 @@ Create::Create(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //ptrWaitingRoom = new WaitingRoom(nullptr);
     //menjam
     ui->create_pop1_button->installEventFilter(this);
     ui->back_pop1_button->installEventFilter(this);
     createStyle=ui->create_pop1_button->styleSheet();
     backStyle=ui->back_pop1_button->styleSheet();
-    //connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
-
 }
 
 

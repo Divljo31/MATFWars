@@ -8,10 +8,20 @@ Winner::Winner(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
 }
 
 Winner::~Winner()
 {
     delete ui;
+}
+
+QString Winner::getWinnerName() const
+{
+    return winnerName;
+}
+
+void Winner::setWinnerName(const QString &newWinnerName)
+{
+    winnerName = newWinnerName;
+    ui->label->setText("winner winner chicken dinner is " + winnerName + "!!!!!!!!");
 }
