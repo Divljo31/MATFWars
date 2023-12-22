@@ -17,6 +17,7 @@ class Canvas : public QGraphicsScene
 {
 public:
     explicit Canvas(QObject *parent = nullptr);
+    ~Canvas();
     double gridWidth() const;
 
 public slots:

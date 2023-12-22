@@ -143,7 +143,7 @@ void WarGame::fireFunction(std::string fString)
             ptrWinner->setWinnerName(player0->name());
             ptrWinner->show();
             ui->leFunctionInput->setDisabled(true);
-            cleanUp();
+            emit cleanUpCanvas();
         }
         else {
             switchPlayer();
