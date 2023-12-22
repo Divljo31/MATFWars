@@ -21,7 +21,8 @@ Join::Join(QWidget *parent) :
 Join::~Join()
 {
     delete ui;
-    delete ptrWarGame;
+    if(ptrWarGame != nullptr)
+        delete ptrWarGame;
 }
 
 void Join::on_back_pop2_button_clicked()

@@ -19,7 +19,8 @@ Create::Create(QWidget *parent) :
 Create::~Create()
 {
     delete ui;
-    delete ptrWarGame;
+    if(ptrWarGame != nullptr)
+        delete ptrWarGame;
 }
 
 void Create::on_back_pop1_button_clicked()

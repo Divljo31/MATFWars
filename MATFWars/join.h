@@ -28,7 +28,7 @@ private slots:
 
 private:
     Ui::Join *ui;
-    WarGame *ptrWarGame;
+    WarGame *ptrWarGame = nullptr;
     Client* m_client;
     
     QString backStyle;
