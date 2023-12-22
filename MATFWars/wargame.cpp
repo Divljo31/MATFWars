@@ -411,7 +411,7 @@ void WarGame::clientReceivedMessage(QString msg)
         }
 
         fireFunction(jsonObj["data"].toString().toStdString());
-        ui->chat_textEdit->append(jsonObj["player"].toString() + " played y = " + jsonObj["function"].toString());
+        ui->chat_textEdit->append(tr("<font color=\"blue\"><i>") + jsonObj["player"].toString() + " played y = " + jsonObj["data"].toString() + tr("</i></font>"));
     }
     else if(jsonObj["type"] == "msg"){
         ui->chat_textEdit->append(tr("<font><b>") + jsonObj["name"].toString() + tr(": </b></font>") + jsonObj["message"].toString());
