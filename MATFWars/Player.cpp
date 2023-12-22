@@ -48,3 +48,13 @@ QJsonObject Player::createJson()
     return playerObject;
 }
 
+int Player::playerID() const
+{
+    return m_playerID;
+}
+
+void Player::setPlayerID(int newPlayerID)
+{
+    m_playerID = newPlayerID;
+}
+

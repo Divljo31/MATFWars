@@ -20,9 +20,13 @@ public:
     QJsonObject createJson();
 
 
+    int playerID() const;
+    void setPlayerID(int newPlayerID);
+
 private:
     QString m_name;
     QPointF m_coordinate;
+    int m_playerID;
     double m_diameter = 1.0;
 };
 

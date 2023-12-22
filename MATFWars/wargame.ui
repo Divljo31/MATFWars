@@ -10,6 +10,12 @@
     <height>650</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MATFWars</string>
   </property>
@@ -70,7 +76,8 @@ font: 600 20pt &quot;URW Bookman&quot;;
              <property name="styleSheet">
               <string notr="true">border:5px solid;
 border-color: rgb(238, 148, 148);
-background-image: url(:/background/whiteBackground.jpg);</string>
+background-color: white;
+color: black;</string>
              </property>
             </widget>
            </item>

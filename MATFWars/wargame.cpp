@@ -138,7 +138,13 @@ void WarGame::fireFunction(std::string fString)
     // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
     QTimer::singleShot(2000, [this, function]() {
         switchPlayer();
-        ui->leFunctionInput->setDisabled(false);
+        if((m_fromCreate && currentPlayer == 0) || (!m_fromCreate && currentPlayer == 1)){
+            ui->leFunctionInput->setDisabled(false);
+            ui->leFunctionInput->setStyleSheet("#leFunctionInput { border:5px solid; border-color: rgb(238, 148, 148); background-color: white; color: black }");
+            ui->leFunctionInput->setText("");
+        }
+
+        //ui->leFunctionInput->setDisabled(false);
         delete function;
     });
 }
@@ -204,7 +210,7 @@ bool WarGame::isPointInCircle(QPointF p, QPointF center, double radius) {
 
 void WarGame::generateObstacles(int width, int height)
 {
-    int numOfObstacles = QRandomGenerator::global()->bounded(10);
+    int numOfObstacles = 1 + QRandomGenerator::global()->bounded(10);
     int generatedObstacles = 0;
     while(generatedObstacles < numOfObstacles) {
         Obstacle* obstacle = new Obstacle();
@@ -290,7 +296,7 @@ void WarGame::flipCanvas() {
 }
 
 void WarGame::drawCanvas() {
-    qDebug()<< "***drawCanvas***\n";
+
     PlayerNode *pn0 = new PlayerNode(player0);
     emit newPlayerIsSet(pn0);
 
@@ -366,12 +372,20 @@ void WarGame::clientReceivedMessage(QString msg)
             obstacles.insert(tmp);
         }
 
+
+        ui->leFunctionInput->setDisabled(true);
+        ui->leFunctionInput->setStyleSheet("#leFunctionInput { border:5px solid; border-color: rgb(238, 148, 148); background-color: gray; color: white }");
+        ui->leFunctionInput->setText("It's the opponent's move!");
+
+
         QJsonObject msgData;
         msgData["type"] = "name";
         msgData["data"] = m_client->name();
         QJsonDocument jsonDocument(msgData);
         QString msgString = jsonDocument.toJson();
         m_client->sendData(msgString);
+
+
 
         drawCanvas();
     }
@@ -385,8 +399,15 @@ void WarGame::clientReceivedMessage(QString msg)
         drawCanvas();
     }
     else if(jsonObj["type"] == "func"){
+        if((m_fromCreate && currentPlayer == 1) || (!m_fromCreate && currentPlayer == 0)){
+            ui->leFunctionInput->setDisabled(true);
+            ui->leFunctionInput->setStyleSheet("#leFunctionInput { border:5px solid; border-color: rgb(238, 148, 148); background-color: gray; color: white }");
+            ui->leFunctionInput->setText("It's the opponent's move!");
+        }
+
         fireFunction(jsonObj["data"].toString().toStdString());
     }
+
 
 //    else if(colonIndex != -1){
 //        QString name = msg.left(colonIndex);
