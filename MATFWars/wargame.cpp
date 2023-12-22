@@ -411,6 +411,10 @@ void WarGame::clientReceivedMessage(QString msg)
         }
 
         fireFunction(jsonObj["data"].toString().toStdString());
+        ui->chat_textEdit->append(jsonObj["player"].toString() + " played y = " + jsonObj["function"].toString());
+    }
+    else if(jsonObj["type"] == "msg"){
+        ui->chat_textEdit->append(tr("<font><b>") + jsonObj["name"].toString() + tr(": </b></font>") + jsonObj["message"].toString());
     }
 
 
@@ -459,6 +463,7 @@ void WarGame::inputTaken()
 {
     QJsonObject msgData;
     msgData["type"] = "func";
+    msgData["player"] = m_client->name();
     msgData["data"] = ui->leFunctionInput->text();
     QJsonDocument jsonDocument(msgData);
     QString msgString = jsonDocument.toJson();
