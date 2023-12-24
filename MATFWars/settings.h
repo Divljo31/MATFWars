@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::Settings *ui;
     QString funcStyle;
-
+    QString obstStyle;
 protected:
      bool eventFilter(QObject *watched, QEvent *event) override;
 };
