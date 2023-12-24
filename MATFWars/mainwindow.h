@@ -35,10 +35,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    WarChoose *ptrWarChoose;
-    ChooseDifficulty *ptrChooseDifficulty;
-    Leaderboard *ptrLeaderboard;
-    Settings *ptrSettings;
+    WarChoose *ptrWarChoose = nullptr;
+    ChooseDifficulty *ptrChooseDifficulty = nullptr;
+    Leaderboard *ptrLeaderboard = nullptr;
+    Settings *ptrSettings = nullptr;
     QString warStyle;
     QString guessStyle;
     QString leaderboardStyle;

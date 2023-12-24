@@ -58,12 +58,12 @@ private:
     QPointF getFirePosition();
 
 private:
-    Player* player0;
-    Player* player1;
+    Player* player0 = nullptr;
+    Player* player1 = nullptr;
     Player* playerWinner = nullptr;
     int currentPlayer = 0;
     QSet<Obstacle*> obstacles;
-    QGraphicsScene *m_canvas;
+    QGraphicsScene *m_canvas  = nullptr;
     int gridWidth = 30;
     int gridHeight = 18;
 
@@ -89,8 +89,8 @@ private slots:
 
 private:
     Ui::WarGame *ui;
-    Check *ptrCheck;
-    Winner *ptrWinner;
+    Check *ptrCheck = nullptr;
+    Winner *ptrWinner = nullptr;
     
     Client *m_client;
     

@@ -67,7 +67,7 @@ private:
     difficulty m_diff = easy;
     QString backStyle;
     QString enterStyle;
-    Result *ptrResult;
+    Result *ptrResult = nullptr;
 
 
 

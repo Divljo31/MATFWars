@@ -31,8 +31,8 @@ private slots:
 
 private:
     Ui::WarChoose *ui;
-    Create *ptrCreate;
-    Join *ptrJoin;
+    Create *ptrCreate = nullptr;
+    Join *ptrJoin = nullptr;
     QString createStyle;
     QString joinStyle;
     QString backStyle;

@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::ChooseDifficulty *ui;
-    GuessGame *ptrGuessGame;
+    GuessGame *ptrGuessGame = nullptr;
     QString goStyle;
 
 protected:
