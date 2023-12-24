@@ -48,6 +48,20 @@ font: 600 20pt &quot;URW Bookman&quot;;
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="congrats_label">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(180, 72, 72);
+font: 600 14pt &quot;URW Bookman&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Congratulations you are on the leaderboard!</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer_2">
@@ -84,7 +98,7 @@ border-color: rgb(238, 148, 148);</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="enter_result_button">
        <property name="styleSheet">
         <string notr="true">color:rgb(180, 72, 72);
 font: 600 17pt &quot;URW Bookman&quot;;

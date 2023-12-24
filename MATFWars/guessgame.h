@@ -32,12 +32,12 @@ class GuessGame : public QDialog
 public:
     explicit GuessGame(QWidget *parent = nullptr);
     void startGuessGame();
+    void setDifficulty(difficulty mode);
     ~GuessGame();
 
 signals:
-
-    //void backGuessClicked();
-
+    void backGuessClicked();
+    void menuGuessFromResult();
     void newFunctionIsSet(FunctionNode*);
 
 private slots:
@@ -54,6 +54,7 @@ protected:
 
 private:
     void readFunctionsFromFile(std::string fileName);
+    void resetScore();
 
 
 private:

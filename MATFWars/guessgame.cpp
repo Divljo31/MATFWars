@@ -8,7 +8,9 @@ GuessGame::GuessGame(QWidget *parent) :
     m_canvas(new Canvas(this))
 {
     ui->setupUi(this);
-    m_timer = new Timer(50);
+    m_timer = new Timer(15);
+
+    ptrResult=new Result();
 
     ui->gvCanvas->setRenderHints(QPainter::Antialiasing);
     ui->gvCanvas->setAlignment(Qt::AlignTop | Qt::AlignLeft);
@@ -17,18 +19,17 @@ GuessGame::GuessGame(QWidget *parent) :
     // FIX: pravi problem ako se oba prikljuce, salju se dupli signali
     // connect(ui->enter_guess_button, &QPushButton::clicked, this, &GuessGame::checkAnswerAndSetNewFunction);
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &GuessGame::checkAnswerAndSetNewFunction);
-
     connect(this, &GuessGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
     connect(m_timer, SIGNAL(secPassed()), this, SLOT(showTime()));
     connect(m_timer, SIGNAL(timerExpired()), this, SLOT(resultWindow()));
 
+    connect(ptrResult, &Result::menuResultClicked, this, &GuessGame::menuGuessFromResult);
+
     ui->enter_guess_button->installEventFilter(this);
     ui->back_guess_button->installEventFilter(this);
     enterStyle=ui->enter_guess_button->styleSheet();
     backStyle=ui->back_guess_button->styleSheet();
-
-    ptrResult=new Result();
 }
 
 void GuessGame::resizeEvent(QResizeEvent *event)
@@ -46,11 +47,13 @@ void GuessGame::resizeEvent(QResizeEvent *event)
 
 void GuessGame::startGuessGame()
 {
+    resetScore();
     m_timer->start();
     m_timer->resetSec();
 
-    // TODO: ovde uzeti difficulty iz prethodnog prozora i postaviti ga, vrv da se prosledi signalom, tj startGuessGame da prima (Difficulty d)
-    // za sad je po defaultu m_diff = easy
+    m_functions.clear();
+    m_usedFunctions.clear();
+
     switch (m_diff) {
     case easy:
         readFunctionsFromFile(":/functionSets/easyFunctionSet.txt");
@@ -60,6 +63,11 @@ void GuessGame::startGuessGame()
         break;
     }
     chooseFunctionIndex();
+}
+
+void GuessGame::setDifficulty(difficulty mode)
+{
+    m_diff = mode;
 }
 
 GuessGame::~GuessGame()
@@ -73,18 +81,16 @@ GuessGame::~GuessGame()
 void GuessGame::on_back_guess_button_clicked()
 {
     m_timer->stopCount();
+
     ui->timer_label->setText(" ");
     this->hide();
-
-
-
-    //emit backGuessClicked();
+    resetScore();
+    emit backGuessClicked();
 }
 
 void GuessGame::showTime()
 {
     ui->timer_label->setText(QString::number((m_timer->getSec()) >= 0 ? (m_timer->getSec()) : 0));
-    ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
 }
 
 void GuessGame::checkAnswerAndSetNewFunction()
@@ -109,6 +115,11 @@ void GuessGame::checkAnswerAndSetNewFunction()
     else {
         ui->gvCanvas->setBackgroundBrush(QBrush(Qt::red));
     }
+
+    QTimer::singleShot(500, [this]() {
+        ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
+    });
+
 
     delete currentFunction;
     delete answerFunction;
@@ -162,6 +173,7 @@ void GuessGame::readFunctionsFromFile(std::string fileName)
     }
 }
 
+
 bool GuessGame::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->enter_guess_button && event->type()==QEvent::Enter){
         ui->enter_guess_button->setCursor(Qt::PointingHandCursor);
@@ -181,8 +193,19 @@ bool GuessGame::eventFilter(QObject *obj, QEvent *event){
     return QDialog::eventFilter(obj,event);
 }
 
+void GuessGame::resetScore()
+{
+    m_score = 0;
+    ui->score_label->setText(QString::number(m_score));
+}
+
+
 void GuessGame::resultWindow()
 {
+    m_timer->stopCount();
+    //m_functions.clear();
+    ui->timer_label->setText(" ");
+    ptrResult->evaluateForLeaderboard(m_score);
     ptrResult->show();
     this->hide();
 }

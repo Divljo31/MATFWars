@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     // menjam
     connect(ptrWarChoose, &WarChoose::backChooseClicked, this, &MainWindow::show);
     //connect(ptrGuessGame, &GuessGame::backGuessClicked, this, &MainWindow::show);
-
+    connect(ptrChooseDifficulty, &ChooseDifficulty::backDifficultyClicked, this, &MainWindow::show);
 
     warStyle=ui->war_game_button->styleSheet();
     guessStyle=ui->guess_game_button->styleSheet();
@@ -65,8 +65,8 @@ void MainWindow::on_war_game_button_clicked()
 
 void MainWindow::on_leaderboard_main_button_clicked()
 {
+    ptrLeaderboard->showLeaderboard();
     ptrLeaderboard->show();
-
 }
 
 
