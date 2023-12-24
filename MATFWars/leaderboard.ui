@@ -93,11 +93,40 @@ color: rgb(246, 206, 206);</string>
      </item>
      <item>
       <widget class="QTextEdit" name="leaderboard_textEdit">
+
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+
        <property name="styleSheet">
         <string notr="true">background-color: rgb(79, 43, 43);
 border:7px solid;
 border-color: rgb(238, 148, 148);
+
 </string>
+<string>
+        font: 600 15pt &quot;URW Bookman&quot;;
+        background-image: url(:/background/backgroundBtns.jpg);
+</string>
+
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="autoFormatting">
+        <set>QTextEdit::AutoNone</set>
+       </property>
+       <property name="tabChangesFocus">
+        <bool>false</bool>
+       </property>
+       <property name="lineWrapMode">
+        <enum>QTextEdit::WidgetWidth</enum>
+       </property>
+       <property name="markdown">
+        <string/>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::TextBrowserInteraction</set>
        </property>
       </widget>
      </item>

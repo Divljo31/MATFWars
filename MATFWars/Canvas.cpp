@@ -1,5 +1,6 @@
 #include "Canvas.h"
-#include "FunctionNode.h"
+#include "Player.h"
+
 
 Canvas::Canvas(QObject *parent)
     :QGraphicsScene(parent),
@@ -7,7 +8,15 @@ Canvas::Canvas(QObject *parent)
 {
 }
 
-QPointF Canvas::translateCoordinates(int logicalX, int logicalY) {
+Canvas::~Canvas() {
+    cleanUp();
+}
+
+double Canvas::scaleToCanvas(double len) {
+    return len*this->width()/gridWidth();
+}
+
+QPointF Canvas::getCanvasCoords(double logicalX, double logicalY) {
     double sceneX = logicalX*this->width()/gridWidth();
     sceneX += this->width()/2;
 
@@ -20,7 +29,8 @@ QPointF Canvas::translateCoordinates(int logicalX, int logicalY) {
 // Function to add a point to the scene
 void Canvas::addPoint(int logicalX, int logicalY) {
     double r = 1.5;
-    QPointF scenePoint = translateCoordinates(logicalX, logicalY);
+    QPointF scenePoint = getCanvasCoords(logicalX, logicalY);
+
     QRectF pointRect(scenePoint.x() - r, scenePoint.y() - r,
                      r * 2, r * 2);
     QGraphicsEllipseItem* point = new QGraphicsEllipseItem(pointRect);
@@ -66,17 +76,74 @@ void Canvas::addCoordinateSystem() {
 
 }
 
+void Canvas::cleanUp()
+{
+    for (ObstacleNode* o : m_obstacleNodes) {
+        this->removeItem(o);
+        delete o;
+    }
+    m_obstacleNodes.clear();
+
+    for (PlayerNode* p : m_playerNodes) {
+        this->removeItem(p);
+        delete p;
+    }
+    m_playerNodes.clear();
+
+    if (m_functionNode != nullptr) {
+        this->removeItem(m_functionNode);
+        delete m_functionNode;
+        m_functionNode = nullptr;
+    }
+}
+
 void Canvas::setFunction(FunctionNode *node)
 {
     if (m_functionNode != nullptr) {
         this->removeItem(m_functionNode);
         delete m_functionNode;
+        m_functionNode = nullptr;
     }
 
     m_functionNode = node;
-
     this->addItem(m_functionNode);
+}
 
+void Canvas::addObstacle(ObstacleNode *obstacleNode)
+{
+    m_obstacleNodes.push_back(obstacleNode);
+
+    QPointF center = obstacleNode->getObstacle()->center();
+
+    QPointF canvasPoint = getCanvasCoords(center.x(), center.y());
+
+    double canvasDiameter = scaleToCanvas(obstacleNode->getObstacle()->diameter());
+
+    double topLeftX = canvasPoint.x() - canvasDiameter/2;
+    double topLeftY = canvasPoint.y() - canvasDiameter/2;
+
+    obstacleNode->setCanvasDiameter(canvasDiameter);
+    obstacleNode->setPos(QPointF(topLeftX, topLeftY));
+
+    this->addItem(obstacleNode);
+}
+
+void Canvas::addPlayer(PlayerNode *playerNode)
+{
+    m_playerNodes.push_back(playerNode);
+
+    QPointF center = playerNode->getPlayer()->coordinate();
+
+    QPointF canvasPoint = getCanvasCoords(center.x(), center.y());
+    double canvasDiameter = scaleToCanvas(playerNode->getPlayer()->diameter());
+
+    double topLeftX = canvasPoint.x() - canvasDiameter/2;
+    double topLeftY = canvasPoint.y() - canvasDiameter/2;
+
+    playerNode->setCanvasDiameter(canvasDiameter);
+    playerNode->setPos(QPointF(topLeftX, topLeftY));
+
+    this->addItem(playerNode);
 }
 
 double Canvas::gridWidth() const

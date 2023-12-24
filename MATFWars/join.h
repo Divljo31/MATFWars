@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "waitingroom.h"
+#include "Client.h"
 
 namespace Ui {
 class Join;
@@ -27,9 +28,12 @@ private slots:
 
 private:
     Ui::Join *ui;
-    WaitingRoom *ptrWaitingRoom;
+    WarGame *ptrWarGame = nullptr;
+    Client* m_client;
+    
     QString backStyle;
     QString joinStyle;
+
 
  //menjam
  protected:

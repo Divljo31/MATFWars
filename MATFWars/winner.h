@@ -18,8 +18,13 @@ public:
     ~Winner();
 
 
+    QString getWinnerName() const;
+    void setWinnerName(const QString &newWinnerName);
+
 private:
     Ui::Winner *ui;
+
+    QString winnerName;
 
 };
 

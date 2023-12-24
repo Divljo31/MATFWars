@@ -6,21 +6,21 @@ Create::Create(QWidget *parent) :
     ui(new Ui::Create)
 {
     ui->setupUi(this);
-    ptrWaitingRoom=new WaitingRoom();
 
     //menjam
     ui->create_pop1_button->installEventFilter(this);
     ui->back_pop1_button->installEventFilter(this);
     createStyle=ui->create_pop1_button->styleSheet();
     backStyle=ui->back_pop1_button->styleSheet();
-    connect(ptrWaitingRoom,&WaitingRoom::backWaitingRoomClicked,this,&Create::show);
-
 }
+
+
 
 Create::~Create()
 {
     delete ui;
-    delete ptrWaitingRoom;
+    if(ptrWarGame != nullptr)
+        delete ptrWarGame;
 }
 
 void Create::on_back_pop1_button_clicked()
@@ -33,8 +33,19 @@ void Create::on_back_pop1_button_clicked()
 
 void Create::on_create_pop1_button_clicked()
 {
+    m_client = new Client(nullptr, "localhost", ui->port_lineEdit->text().toUShort());
+    m_client->setName(ui->name_lineEdit->text());
+
+    //emit(clientCreated(m_client));
+
+    m_client->connect2host();
+
     this->hide();
-    ptrWaitingRoom->show();
+
+    ptrWarGame= new WarGame(m_client);
+
+    ptrWarGame->setFromCreate(true);
+    ptrWarGame->show();
 }
 
 //menjam
@@ -55,6 +66,32 @@ bool Create::eventFilter(QObject *obj, QEvent *event){
         ui->back_pop1_button->setStyleSheet(backStyle);
     }
 
-    return QDialog::eventFilter(obj,event);
+    return QDialog::eventFilter(obj, event);
 }
+
+void Create::gotError(QAbstractSocket::SocketError err)
+{
+    //qDebug() << "got error";
+    QString strError = "unknown";
+    switch (err)
+    {
+    case 0:
+        strError = "Connection was refused";
+        break;
+    case 1:
+        strError = "Remote host closed the connection";
+        break;
+    case 2:
+        strError = "Host address was not found";
+        break;
+    case 5:
+        strError = "Connection timed out";
+        break;
+    default:
+        strError = "Unknown error";
+    }
+
+   // ui->textEdit_log->append(strError);
+}
+
 

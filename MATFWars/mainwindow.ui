@@ -28,6 +28,7 @@
   <property name="styleSheet">
    <string notr="true">#MainWindow{
 background-image: url(:/background/background1.png);
+
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">

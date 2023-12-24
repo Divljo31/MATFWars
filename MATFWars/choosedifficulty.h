@@ -16,14 +16,16 @@ public:
     explicit ChooseDifficulty(QWidget *parent = nullptr);
     ~ChooseDifficulty();
 
+signals:
+    void backDifficultyClicked();
+
 private slots:
     void on_go_difficulty_button_clicked();
-
-
+    void on_back_difficulty_button_clicked();
 
 private:
     Ui::ChooseDifficulty *ui;
-    GuessGame *ptrGuessGame;
+    GuessGame *ptrGuessGame = nullptr;
     QString goStyle;
 
 protected:

@@ -40,10 +40,12 @@ public:
 
     void translatePointsObserverView(double coorX, double coorY);
 
+    void scaleToCanvas(double width, double height, double gridWidth);
+
     // Compares two functions based on points
     bool equals(Function* otherFunction);
 
-    void scaleToCanvas(double width, double height, double gridWidth);
+    void removePointsAfterCutoff(int cutoff);
 
 };
 

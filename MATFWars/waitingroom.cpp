@@ -1,18 +1,21 @@
 #include "waitingroom.h"
 #include "ui_waitingroom.h"
 
-WaitingRoom::WaitingRoom(QWidget *parent) :
+WaitingRoom::WaitingRoom(Client *client, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::WaitingRoom)
+    ui(new Ui::WaitingRoom),
+    m_client(client)
 {
     ui->setupUi(this);
-    ptrWarGame=new WarGame();
+    ui->waitingRoom_textEdit->setReadOnly(true);
+    ptrWarGame = new WarGame(m_client);
 
     //menjam
     ui->back_wait_button->installEventFilter(this);
     ui->play_wait_button->installEventFilter(this);
 
     //menjano!!!
+    connect(m_client, &Client::someMessage, this, &WaitingRoom::clientConnected);
     connect(ptrWarGame,&WarGame::backWarClicked, this, &WaitingRoom::show);
 
     backStyle=ui->back_wait_button->styleSheet();
@@ -28,14 +31,26 @@ WaitingRoom::~WaitingRoom()
 void WaitingRoom::on_play_wait_button_clicked()
 {
     this->hide();
+
     ptrWarGame->show();
+    //ptrWarGame->startWarGame();
 }
 
 
 void WaitingRoom::on_back_wait_button_clicked()
 {
-    emit backWaitingRoomClicked();
-    this->hide();
+    //emit backWaitingRoomClicked();
+    //this->hide();
+}
+
+void WaitingRoom::clientConnected(QString str)
+{
+    ui->waitingRoom_textEdit->append(str);
+}
+
+void WaitingRoom::setClient(Client *newClient)
+{
+    m_client = newClient;
 }
 
 //menjam

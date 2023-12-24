@@ -13,8 +13,10 @@ class WaitingRoom : public QDialog
     Q_OBJECT
 
 public:
-    explicit WaitingRoom(QWidget *parent = nullptr);
+    explicit WaitingRoom(Client *client, QWidget *parent = nullptr);
     ~WaitingRoom();
+
+    void setClient(Client *newClient);
 
 signals:
     void backWaitingRoomClicked();
@@ -24,9 +26,13 @@ private slots:
 
     void on_back_wait_button_clicked();
 
+    void clientConnected(QString str);
+
 private:
     Ui::WaitingRoom *ui;
     WarGame *ptrWarGame;
+    Client *m_client;
+    
     QString playStyle;
     QString backStyle;
 

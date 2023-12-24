@@ -7,8 +7,12 @@ ChooseDifficulty::ChooseDifficulty(QWidget *parent) :
 {
     ui->setupUi(this);
     ptrGuessGame=new GuessGame();
+
     ui->go_difficulty_button->installEventFilter(this);
     goStyle=ui->go_difficulty_button->styleSheet();
+
+    connect(ptrGuessGame, &GuessGame::backGuessClicked, this, &ChooseDifficulty::show);
+    connect(ptrGuessGame, &GuessGame::menuGuessFromResult, this, &ChooseDifficulty::on_back_difficulty_button_clicked);
 }
 
 ChooseDifficulty::~ChooseDifficulty()
@@ -19,10 +23,13 @@ ChooseDifficulty::~ChooseDifficulty()
 
 void ChooseDifficulty::on_go_difficulty_button_clicked()
 {
+    if(ui->easy_radioButton->isChecked())
+        ptrGuessGame->setDifficulty(easy);
+    else
+        ptrGuessGame->setDifficulty(hard);
     ptrGuessGame->show();
     ptrGuessGame->startGuessGame();
     this->hide();
-
 }
 //menjam
 bool ChooseDifficulty::eventFilter(QObject *obj, QEvent *event){
@@ -36,3 +43,10 @@ bool ChooseDifficulty::eventFilter(QObject *obj, QEvent *event){
 
     return QDialog::eventFilter(obj,event);
 }
+
+void ChooseDifficulty::on_back_difficulty_button_clicked()
+{
+    this->hide();
+    emit backDifficultyClicked();
+}
+
