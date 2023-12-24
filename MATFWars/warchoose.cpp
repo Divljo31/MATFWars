@@ -21,6 +21,13 @@ WarChoose::WarChoose(QWidget *parent) :
     createStyle=ui->create_choose_button->styleSheet();
     joinStyle=ui->join_choose_button->styleSheet();
     backStyle=ui->back_choose_button->styleSheet();
+
+    ui->create_choose_button->setDefault(true);
+    ui->create_choose_button->setAutoDefault(true);
+    ui->join_choose_button->setDefault(false);
+    ui->join_choose_button->setAutoDefault(false);
+    ui->back_choose_button->setDefault(false);
+    ui->back_choose_button->setAutoDefault(false);
 }
 
 WarChoose::~WarChoose()

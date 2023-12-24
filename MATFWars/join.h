@@ -2,7 +2,7 @@
 #define JOIN_H
 
 #include <QDialog>
-#include "waitingroom.h"
+#include "wargame.h"
 #include "Client.h"
 
 namespace Ui {

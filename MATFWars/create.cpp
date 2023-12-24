@@ -12,6 +12,12 @@ Create::Create(QWidget *parent) :
     ui->back_pop1_button->installEventFilter(this);
     createStyle=ui->create_pop1_button->styleSheet();
     backStyle=ui->back_pop1_button->styleSheet();
+
+    ui->create_pop1_button->setDefault(false);
+    ui->create_pop1_button->setAutoDefault(false);
+    ui->back_pop1_button->setDefault(false);
+    ui->back_pop1_button->setAutoDefault(false);
+    ui->name_lineEdit->setFocusPolicy(Qt::StrongFocus);
 }
 
 

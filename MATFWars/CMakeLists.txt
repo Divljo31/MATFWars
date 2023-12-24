@@ -45,7 +45,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         wargame.h wargame.cpp wargame.ui
         create.h create.cpp create.ui
         join.h join.cpp join.ui
-        waitingroom.h waitingroom.cpp waitingroom.ui
+
         winner.h winner.cpp winner.ui
         check.h check.cpp check.ui
         warchoose.h warchoose.cpp warchoose.ui
@@ -62,7 +62,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         Client.h Client.cpp
         PlayerNode.h PlayerNode.cpp
-        Confetti.h Confetti.cpp
+
         Client.h Client.cpp
         choosedifficulty.h choosedifficulty.cpp choosedifficulty.ui
         result.h result.cpp result.ui

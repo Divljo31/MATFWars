@@ -16,6 +16,12 @@ Join::Join(QWidget *parent) :
 
     backStyle=ui->back_pop2_button->styleSheet();
     joinStyle=ui->join_pop2_button->styleSheet();
+
+    ui->join_pop2_button->setDefault(false);
+    ui->join_pop2_button->setAutoDefault(false);
+    ui->back_pop2_button->setDefault(false);
+    ui->back_pop2_button->setAutoDefault(false);
+    ui->name_lineEdit->setFocusPolicy(Qt::StrongFocus);
 }
 
 Join::~Join()

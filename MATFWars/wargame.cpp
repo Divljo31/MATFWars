@@ -36,6 +36,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     connect(this, &WarGame::setCoordinateSystem, dynamic_cast<Canvas *>(m_canvas), &Canvas::addCoordinateSystem);
     connect(this, &WarGame::cleanUpCanvas, dynamic_cast<Canvas *>(m_canvas), &Canvas::cleanUp);
 
+    connect(ui->fire_war_button, &QPushButton::clicked, this, &WarGame::inputTaken);
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::inputTaken);
     connect(this, &WarGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
@@ -50,6 +51,17 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     m_canvas->setSceneRect(ui->gvCanvas->rect());
     ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
     ui->gvCanvas->setScene(m_canvas);
+
+
+    ui->back_war_button->setDefault(false);
+    ui->back_war_button->setAutoDefault(false);
+    ui->quit_war_button->setDefault(false);
+    ui->quit_war_button->setAutoDefault(false);
+    ui->chat_send_button->setDefault(false);
+    ui->chat_send_button->setAutoDefault(false);
+    ui->fire_war_button->setDefault(false);
+    ui->fire_war_button->setAutoDefault(false);
+    ui->leFunctionInput->setFocusPolicy(Qt::StrongFocus);
 }
 
 WarGame::~WarGame()

@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include "Confetti.h"
 namespace Ui {
 class Winner;
 }
