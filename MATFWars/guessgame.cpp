@@ -50,6 +50,9 @@ void GuessGame::startGuessGame()
     m_timer->start();
     m_timer->resetSec();
 
+    m_functions.clear();
+    m_usedFunctions.clear();
+
     switch (m_diff) {
     case easy:
         readFunctionsFromFile(":/functionSets/easyFunctionSet.txt");
@@ -77,10 +80,7 @@ GuessGame::~GuessGame()
 void GuessGame::on_back_guess_button_clicked()
 {
     m_timer->stopCount();
-    //TODO: trenutno ako se ponovo pokrene igra samo dodaje
-    //na vec ucitani skup fja novi skup, clear() breakuje program posle
-    //par pokretanja guess gamea
-    //m_functions.clear();
+
     ui->timer_label->setText(" ");
     this->hide();
     resetScore();
@@ -90,7 +90,6 @@ void GuessGame::on_back_guess_button_clicked()
 void GuessGame::showTime()
 {
     ui->timer_label->setText(QString::number((m_timer->getSec()) >= 0 ? (m_timer->getSec()) : 0));
-    ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
 }
 
 void GuessGame::checkAnswerAndSetNewFunction()
@@ -115,6 +114,11 @@ void GuessGame::checkAnswerAndSetNewFunction()
     else {
         ui->gvCanvas->setBackgroundBrush(QBrush(Qt::red));
     }
+
+    QTimer::singleShot(500, [this]() {
+        ui->gvCanvas->setBackgroundBrush(QBrush(Qt::white));
+    });
+
 
     delete currentFunction;
     delete answerFunction;
