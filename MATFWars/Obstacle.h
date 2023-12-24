@@ -4,6 +4,8 @@
 //TODO: id, location, diameter
 #include <QPointF>
 #include <QRandomGenerator>
+#include <QJsonObject>
+#include <QJsonArray>
 
 
 class Obstacle
@@ -23,7 +25,11 @@ public:
 
     double health() const;
 
+    QJsonObject createJson();
     double maxHealth() const;
+
+    void setHealth(double newHealth);
+    void setMaxHealth(double newMaxHealth);
 
 private:
     double m_diameter;

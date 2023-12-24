@@ -21,7 +21,7 @@ signals:
     void smbConnected();
     void newMessage(QString msg);
     void smbDisconnected();
-
+    void allPlayersConnected();
 
 public slots:
 
@@ -32,6 +32,7 @@ public slots:
 
     QString connectClicked();
     void smbConnectedToServer();
+   // void forwardSetUpData(QString setUpDataString);
 
 private:
 

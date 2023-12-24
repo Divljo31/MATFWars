@@ -34,7 +34,7 @@ public slots:
 
     void receivedSomething(QString msg);
     void gotError(QAbstractSocket::SocketError err);
-    void sendClicked(QString msg);
+    void sendData(QString msg);
     void connectClicked();
     void disconnectClicked();
 

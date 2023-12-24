@@ -8,6 +8,10 @@ Canvas::Canvas(QObject *parent)
 {
 }
 
+Canvas::~Canvas() {
+    cleanUp();
+}
+
 double Canvas::scaleToCanvas(double len) {
     return len*this->width()/gridWidth();
 }

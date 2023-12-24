@@ -21,7 +21,8 @@ Join::Join(QWidget *parent) :
 Join::~Join()
 {
     delete ui;
-    delete ptrWaitingRoom;
+    if(ptrWarGame != nullptr)
+        delete ptrWarGame;
 }
 
 void Join::on_back_pop2_button_clicked()
@@ -33,15 +34,14 @@ void Join::on_back_pop2_button_clicked()
 
 void Join::on_join_pop2_button_clicked()
 {
-
-
     m_client = new Client(nullptr, ui->ip_lineEdit->text(), ui->port_lineEdit->text().toUShort());
     m_client->setName(ui->name_lineEdit->text());
     m_client->connect2host();
 
+    ptrWarGame = new WarGame(m_client);
+
     this->hide();
-    ptrWaitingRoom=new WaitingRoom(m_client);
-    ptrWaitingRoom->show();
+    ptrWarGame->show();
 }
 
 //menjam

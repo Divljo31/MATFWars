@@ -15,7 +15,12 @@
 
 #include "PlayerNode.h"
 #include "check.h"
+#include "winner.h"
 #include <QGraphicsScene>
+
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace Ui {
 class WarGame;
@@ -34,6 +39,11 @@ public:
 
     void startWarGame();
 
+    void createObstacleJsonArray(QJsonArray *obstaclesJson);
+    void extractPlayerJson(QJsonObject jsonObj);
+
+    void setFromCreate(bool newFromCreate);
+
 private:
     Player* generatePlayer(QString name, int width, int height);
     void generateObstacles(int width, int height);
@@ -48,13 +58,16 @@ private:
     QPointF getFirePosition();
 
 private:
-    Player* player0;
-    Player* player1;
+    Player* player0 = nullptr;
+    Player* player1 = nullptr;
+    Player* playerWinner = nullptr;
     int currentPlayer = 0;
     QSet<Obstacle*> obstacles;
-    QGraphicsScene *m_canvas;
+    QGraphicsScene *m_canvas  = nullptr;
     int gridWidth = 30;
     int gridHeight = 18;
+
+    bool m_fromCreate = false;
 
 signals:
     void backWarClicked();
@@ -63,17 +76,21 @@ signals:
     void newFunctionIsSet(FunctionNode* functionNode);
     void setCoordinateSystem();
     void cleanUpCanvas();
+    void setUpGame(QString setUpDataString);
+    void gameEnded(QString winnerName);
 
 private slots:
     void on_back_war_button_clicked();
     void on_quit_war_button_clicked();
-    void fireFunction();
+    void inputTaken();
+    void fireFunction(std::string fString);
     void clientReceivedMessage(QString msg);
 
 
 private:
     Ui::WarGame *ui;
-    Check *ptrCheck;
+    Check *ptrCheck = nullptr;
+    Winner *ptrWinner = nullptr;
     
     Client *m_client;
     
@@ -83,6 +100,8 @@ private:
 
 //menjam
     void switchPlayer();
+
+    void setCanvas();
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;

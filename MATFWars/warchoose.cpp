@@ -26,8 +26,10 @@ WarChoose::WarChoose(QWidget *parent) :
 WarChoose::~WarChoose()
 {
     delete ui;
-    delete ptrCreate;
-    delete ptrJoin;
+    if(ptrCreate != nullptr)
+        delete ptrCreate;
+    if(ptrJoin != nullptr)
+        delete ptrJoin;
 }
 
 void WarChoose::on_create_choose_button_clicked()
