@@ -66,6 +66,8 @@ private:
     int m_currentFunctionIndex = -1;
     int m_score = 0;
     difficulty m_diff = easy;
+    int m_pointDiff = 1;
+
     QString backStyle;
     QString enterStyle;
     Result *ptrResult = nullptr;

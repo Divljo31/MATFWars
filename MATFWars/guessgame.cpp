@@ -8,7 +8,7 @@ GuessGame::GuessGame(QWidget *parent) :
     m_canvas(new Canvas(this))
 {
     ui->setupUi(this);
-    m_timer = new Timer(15);
+    m_timer = new Timer(50);
 
     ptrResult=new Result();
 
@@ -17,8 +17,8 @@ GuessGame::GuessGame(QWidget *parent) :
 
     // signali i slotovi
     // FIX: pravi problem ako se oba prikljuce, salju se dupli signali
-    // connect(ui->enter_guess_button, &QPushButton::clicked, this, &GuessGame::checkAnswerAndSetNewFunction);
-    connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &GuessGame::checkAnswerAndSetNewFunction);
+    connect(ui->enter_guess_button, &QPushButton::clicked, this, &GuessGame::checkAnswerAndSetNewFunction);
+    connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &GuessGame::checkAnswerAndSetNewFunction);    
     connect(this, &GuessGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
     connect(m_timer, SIGNAL(secPassed()), this, SLOT(showTime()));
@@ -26,10 +26,18 @@ GuessGame::GuessGame(QWidget *parent) :
 
     connect(ptrResult, &Result::menuResultClicked, this, &GuessGame::menuGuessFromResult);
 
+
+    ui->back_guess_button->setDefault(false);
+    ui->back_guess_button->setAutoDefault(false);
+    ui->enter_guess_button->setDefault(false);
+    ui->enter_guess_button->setAutoDefault(false);
+
     ui->enter_guess_button->installEventFilter(this);
     ui->back_guess_button->installEventFilter(this);
     enterStyle=ui->enter_guess_button->styleSheet();
     backStyle=ui->back_guess_button->styleSheet();
+
+    ui->leFunctionInput->setFocusPolicy(Qt::StrongFocus);
 }
 
 void GuessGame::resizeEvent(QResizeEvent *event)
@@ -42,7 +50,6 @@ void GuessGame::resizeEvent(QResizeEvent *event)
 
     dynamic_cast<Canvas *>(m_canvas)->addCoordinateSystem();
     if (m_currentFunctionIndex != -1) drawCurrentFunction();
-
 }
 
 void GuessGame::startGuessGame()
@@ -54,12 +61,16 @@ void GuessGame::startGuessGame()
     m_functions.clear();
     m_usedFunctions.clear();
 
+    ui->leFunctionInput->setText("");
+
     switch (m_diff) {
     case easy:
         readFunctionsFromFile(":/functionSets/easyFunctionSet.txt");
+        m_pointDiff = 1;
         break;
     case hard:
         readFunctionsFromFile(":/functionSets/hardFunctionSet.txt");
+        m_pointDiff = 2;
         break;
     }
     chooseFunctionIndex();
@@ -104,7 +115,7 @@ void GuessGame::checkAnswerAndSetNewFunction()
 
     if (currentFunction->equals(answerFunction)) {
 
-        m_score++;
+        m_score += m_pointDiff;
 
         int extraTime = 2;
         m_timer->addSec(extraTime);
