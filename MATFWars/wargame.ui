@@ -22,7 +22,6 @@
   <property name="styleSheet">
    <string notr="true">#WarGame{
 	background-image: url(:/background/background2.jpg);
-	
     background-position: center;
     background-origin: content;
     background-clip: content;
@@ -103,9 +102,8 @@ color: black;</string>
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:7px solid;
-border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border:7px solid rgb(238, 148, 148);
+background-color: rgb(238, 148, 148);</string>
              </property>
              <property name="text">
               <string>FIRE</string>
@@ -153,10 +151,9 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
              <property name="styleSheet">
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
-background-image: url(:/background/backgroundBtns.jpg);
 border-radius:10px;
-border:7px solid;
-border-color: rgb(238, 148, 148);</string>
+border:7px solid rgb(238, 148, 148);
+background-color: rgb(238, 148, 148);</string>
              </property>
              <property name="text">
               <string>BACK</string>
@@ -185,9 +182,8 @@ border-color: rgb(238, 148, 148);</string>
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
 border-radius:10px;
-border:7px solid;
-border-color: rgb(238, 148, 148);
-background-image: url(:/background/backgroundBtns.jpg);</string>
+border:7px solid rgb(238, 148, 148);
+background-color: rgb(238, 148, 148);</string>
              </property>
              <property name="text">
               <string>QUIT</string>
@@ -253,7 +249,41 @@ color: black;
             </widget>
            </item>
            <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>10</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QPushButton" name="chat_send_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>70</width>
+               <height>70</height>
+              </size>
+             </property>
              <property name="palette">
               <palette>
                <active>
@@ -457,11 +487,11 @@ color: black;
               <bool>false</bool>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(246, 97, 81);
-color: rgb(38, 38, 38)</string>
+              <string notr="true">border-radius:15px;
+border-image: url(:/background/chat_background.jpg);</string>
              </property>
              <property name="text">
-              <string>Send</string>
+              <string/>
              </property>
              <property name="checkable">
               <bool>false</bool>

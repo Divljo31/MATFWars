@@ -14,7 +14,9 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/background/background2.jpg);</string>
+   <string notr="true">#Result{
+background-image: url(:/background/background2.jpg);
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

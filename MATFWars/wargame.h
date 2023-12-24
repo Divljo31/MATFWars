@@ -97,8 +97,8 @@ private:
     QString backStyle;
     QString fireStyle;
     QString quitStyle;
+    QString chatStyle;
 
-//menjam
     void switchPlayer();
 
     void setCanvas();

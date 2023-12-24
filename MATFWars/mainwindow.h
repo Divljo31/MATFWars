@@ -42,9 +42,7 @@ private:
     QString warStyle;
     QString guessStyle;
     QString leaderboardStyle;
-
-
-
+    QString toolStyle;
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;

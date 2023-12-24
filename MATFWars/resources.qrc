@@ -10,6 +10,7 @@
         <file>clock.png</file>
         <file>whiteBackground.jpg</file>
         <file>backgroundBtns.jpg</file>
+        <file>chat_background.jpg</file>
     </qresource>
     <qresource prefix="/"/>
     <qresource prefix="/functionSets">
