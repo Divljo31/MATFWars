@@ -1,6 +1,9 @@
 #include "settings.h"
 #include "ui_settings.h"
 
+QColor Settings::funcColor=QColor(0,0,255);
+QColor Settings::obstColor=QColor(0,0,255);
+
 Settings::Settings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Settings)
@@ -21,14 +24,18 @@ Settings::~Settings()
 
 void Settings::on_func_color_button_clicked()
 {
-
-    QColor ColorValue=QColorDialog::getColor(Qt::white,this,tr("Select Color"));
+    QColor newColor = QColorDialog::getColor(Qt::white);
+    if (newColor.isValid()) {
+        Settings::funcColor = newColor;
+    }
 }
 
 void Settings::on_obst_color_button_clicked()
 {
-    QColor ColorValue=QColorDialog::getColor(Qt::white,this,tr("Select Color"));
-
+    QColor newColor = QColorDialog::getColor(Qt::white);
+    if (newColor.isValid()) {
+        Settings::obstColor=newColor;
+    }
 }
 
 bool Settings::eventFilter(QObject *obj, QEvent *event){

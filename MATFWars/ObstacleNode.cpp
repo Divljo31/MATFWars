@@ -1,6 +1,8 @@
 #include "ObstacleNode.h"
 #include <QPainter>
 
+#include "settings.h"
+
 ObstacleNode::ObstacleNode(Obstacle * obstacle)
     : QGraphicsItem(),
     m_obstacleNode(obstacle)
@@ -17,7 +19,7 @@ void ObstacleNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-    QColor brushColor = QColor(Qt::darkCyan);
+    QColor brushColor = Settings::obstColor;
     brushColor.setAlpha(255 * m_obstacleNode->health() / m_obstacleNode->maxHealth());
 
     painter->setBrush(brushColor);

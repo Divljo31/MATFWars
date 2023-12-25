@@ -20,6 +20,10 @@ public:
     explicit Settings(QWidget *parent = nullptr);
     ~Settings();
 
+public:
+    static QColor funcColor;
+    static QColor obstColor;
+
 private slots:
     void on_func_color_button_clicked();
 
@@ -29,6 +33,7 @@ private:
     Ui::Settings *ui;
     QString funcStyle;
     QString obstStyle;
+
 protected:
      bool eventFilter(QObject *watched, QEvent *event) override;
 };
