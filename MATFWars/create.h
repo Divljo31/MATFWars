@@ -18,7 +18,6 @@ public:
     explicit Create(QWidget *parent = nullptr);
     ~Create();
 
-    // menjam
     QString lastUserName() const;
     void setLastUserName(const QString &newLastUserName);
 
@@ -38,7 +37,7 @@ private:
     QString backStyle;
     QString createStyle;
 
-//menjam
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 

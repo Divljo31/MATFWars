@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#GuessGame{
-	background-image: url(:/background/background2.jpg);
+	background-color:rgb(79,43,43);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">

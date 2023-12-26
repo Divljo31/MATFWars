@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#Create{
-background-color: rgb(79, 43, 43);
+	border-image: url(:/background/background2.jpg);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -53,7 +53,7 @@ background-color: rgb(79, 43, 43);
       <widget class="QLabel" name="name_label">
        <property name="styleSheet">
         <string notr="true">font: 600 20pt &quot;URW Bookman&quot;;
-color: rgb(180, 72, 72);
+color: rgb(246, 206, 206);
 
 </string>
        </property>
@@ -131,7 +131,7 @@ border-color: rgb(238, 148, 148);</string>
      <item>
       <widget class="QLabel" name="port_label">
        <property name="styleSheet">
-        <string notr="true">color: rgb(180, 72, 72);
+        <string notr="true">color: rgb(246, 206, 206);
 font: 600 20pt &quot;URW Bookman&quot;;
 
 

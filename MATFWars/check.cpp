@@ -9,7 +9,6 @@ Check::Check(QWidget *parent) :
 
     connect(ui->yes_check_button,&QPushButton::clicked,this,&Check::on_yes_check_button_clicked);
 
-    //menjam
     ui->yes_check_button->installEventFilter(this);
     ui->no_check_button->installEventFilter(this);
 
@@ -33,7 +32,6 @@ void Check::on_yes_check_button_clicked()
     QApplication::quit();
 }
 
-//menjam
 bool Check::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->yes_check_button && event->type()==QEvent::Enter){
         ui->yes_check_button->setCursor(Qt::PointingHandCursor);

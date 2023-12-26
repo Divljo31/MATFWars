@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>430</height>
+    <width>595</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>589</width>
-    <height>430</height>
+    <width>595</width>
+    <height>440</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>589</width>
-    <height>430</height>
+    <width>595</width>
+    <height>440</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -103,6 +103,9 @@ color: rgb(246, 206, 206);</string>
 </string>
        </property>
        <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
        <property name="autoFormatting">

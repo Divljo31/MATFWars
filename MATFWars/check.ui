@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#Check{
-background-color: rgb(79, 43, 43);
+	border-image: url(:/background/background2.jpg);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
