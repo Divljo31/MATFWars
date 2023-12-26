@@ -149,7 +149,7 @@ background-image: url(:/background/backgroundBtns.jpg);</string>
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="back_war_button">
+            <widget class="QPushButton" name="help_war_button">
              <property name="styleSheet">
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
@@ -159,7 +159,7 @@ border:7px solid;
 border-color: rgb(238, 148, 148);</string>
              </property>
              <property name="text">
-              <string>BACK</string>
+              <string>HELP</string>
              </property>
             </widget>
            </item>

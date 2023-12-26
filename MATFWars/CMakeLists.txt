@@ -68,6 +68,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         result.h result.cpp result.ui
         txt/leaderboard.txt
         ObstacleNode.h ObstacleNode.cpp
+        help.h help.cpp help.ui
+
+
 
 
 

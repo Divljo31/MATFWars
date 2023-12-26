@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "wargame.h"
 #include "Client.h"
+#include <QMessageBox>
 
 namespace Ui {
 class Join;
@@ -17,6 +18,8 @@ public:
     explicit Join(QWidget *parent = nullptr);
     ~Join();
 
+
+
 signals:
     void backJoinPop2Clicked();
 
@@ -25,6 +28,8 @@ private slots:
     void on_back_pop2_button_clicked();
 
     void on_join_pop2_button_clicked();
+
+    void clientReceivedMessage(QString msg);
 
 private:
     Ui::Join *ui;

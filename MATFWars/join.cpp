@@ -8,6 +8,7 @@ Join::Join(QWidget *parent) :
 
 
     ui->setupUi(this);
+    ui->port_lineEdit->setText("5555");
     ui->ip_lineEdit->setText("localhost");
 
     //menjam
@@ -40,14 +41,36 @@ void Join::on_back_pop2_button_clicked()
 
 void Join::on_join_pop2_button_clicked()
 {
+
     m_client = new Client(nullptr, ui->ip_lineEdit->text(), ui->port_lineEdit->text().toUShort());
     m_client->setName(ui->name_lineEdit->text());
     m_client->connect2host();
 
-    ptrWarGame = new WarGame(m_client);
+    QJsonObject question;
+    question["type"] = "question";
+    QJsonDocument jsonDocument(question);
+    QString questionString = jsonDocument.toJson();
+    m_client->sendData(questionString);
 
-    this->hide();
-    ptrWarGame->show();
+    connect(m_client, &Client::someMessage, this, &Join::clientReceivedMessage);
+
+}
+
+void Join::clientReceivedMessage(QString msg)
+{
+
+    if (msg == "true"){
+        ptrWarGame = new WarGame(m_client);
+
+        this->hide();
+        ptrWarGame->show();
+    }else if (msg == "false"){
+        QMessageBox dialog;
+        m_client->closeConnection();
+        dialog.setText("A game has not been created at this address. \nPlease go back and try again.");
+        dialog.setWindowTitle("Error");
+        dialog.exec();
+    }
 }
 
 //menjam
