@@ -87,10 +87,24 @@ void MainWindow::smbConnectedToServer()
 
 void MainWindow::gotNewMesssage(QString msg)
 {
+    QByteArray jsonData = msg.toUtf8();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonData);
+    QJsonObject jsonObj = doc.object();
+
+    if(jsonObj["type"] == "gameCreated"){
+        server->gameInSession = true;
+    }else if(jsonObj["type"] == "question" && server->gameInSession == true)
+        server->sendToClient(server->getClients()[1], "true");
+    else if(jsonObj["type"] == "question" && server->gameInSession == false)
+        server->sendToClient(server->getClients()[0], "false");
     ui->textEdit_log->append(QString("New message: %1").arg(msg));
+
 }
 
 void MainWindow::disconnection()
 {
     ui->textEdit_log->append(QString("Somebody has disconnected"));
+    if(server->gameInSession){
+        QTimer::singleShot(7000, [this]{on_pushButton_stopServer_clicked();});
+    }
 }

@@ -71,6 +71,7 @@ WarGame::~WarGame()
     delete ptrCheck;
     delete ptrHelp;
     delete ptrWinner;
+    delete m_client;
     //sendToClient(m_client, "destroy");
     cleanUp();
 }
@@ -116,7 +117,6 @@ void WarGame::startWarGame()
     setUpData["player0"] = player0Json;
     setUpData["player1"] = player1Json;
     setUpData["obstacles"] = obstaclesArray;
-
     QJsonDocument jsonDocument(setUpData);
     QString setUpDataString = jsonDocument.toJson();
 
@@ -340,7 +340,12 @@ void WarGame::clientReceivedMessage(QString msg)
     if (msg == "Player 2 has connected!" && m_fromCreate){
         startWarGame();
     }
-
+    else if (msg == "Somebody has disconnected!"){
+        ptrWinner->setWinnerName(m_client->name());
+        ptrWinner->show();
+        ui->leFunctionInput->setDisabled(true);
+        emit cleanUpCanvas();
+    }
     else if (jsonObj["type"] == "setUpData" && !m_fromCreate) {
 
         setCanvas();

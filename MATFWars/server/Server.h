@@ -2,6 +2,9 @@
 #define SERVER_H
 
 #include "../Client.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+
 #include <QObject>
 
 class Server : public QTcpServer
@@ -15,6 +18,7 @@ public:
     QList<QTcpSocket *> getClients();
 
     QTcpServer *m_server;
+    bool gameInSession = false;
 
 signals:
 
