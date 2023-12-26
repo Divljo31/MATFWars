@@ -5,6 +5,7 @@
 #include <QEnterEvent>
 #include "wargame.h"
 #include "Client.h"
+#include <QMessageBox>
 
 namespace Ui {
 class Create;

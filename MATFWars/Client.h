@@ -56,7 +56,7 @@ private:
     QString m_name;
     QString m_host;
     quint16 m_port;
-    bool m_status;
+    bool m_status = false;
     quint16 m_NextBlockSize;
     QTimer *m_timeoutTimer;
 

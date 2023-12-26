@@ -3,7 +3,7 @@
 
 Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) : m_NextBlockSize(0){
 
-    m_status = false;
+    //m_status = false;
     m_socket = new QTcpSocket();
 
     m_host = hostAddress;
@@ -166,7 +166,6 @@ void Client::readyRead()
 
 void Client::connected()
 {
-
     m_status = true;
 }
 
