@@ -63,6 +63,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     ui->fire_war_button->setDefault(false);
     ui->fire_war_button->setAutoDefault(false);
     ui->leFunctionInput->setFocusPolicy(Qt::StrongFocus);
+
 }
 
 WarGame::~WarGame()
@@ -130,6 +131,7 @@ void WarGame::fireFunction(std::string fString)
 
     ui->leFunctionInput->setText("");
     ui->leFunctionInput->setDisabled(true);
+    ui->fire_war_button->setDisabled(true);
 
     QPointF firePosition = getFirePosition();
     Function* function = new Function(fString, firePosition.x());
@@ -146,18 +148,20 @@ void WarGame::fireFunction(std::string fString)
 
     emit newFunctionIsSet(node);
 
-    // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
+
     QTimer::singleShot(2000, [this, function]() {
         if (playerWinner != nullptr) {
             ptrWinner->setWinnerName(player0->name());
             ptrWinner->show();
             ui->leFunctionInput->setDisabled(true);
+            ui->fire_war_button->setDisabled(true);
             emit cleanUpCanvas();
         }
         else {
             switchPlayer();
             if((m_fromCreate && currentPlayer == 0) || (!m_fromCreate && currentPlayer == 1)) {
                 ui->leFunctionInput->setDisabled(false);
+                ui->fire_war_button->setDisabled(false);
             }
         }
 
@@ -172,7 +176,7 @@ QPointF WarGame::getFirePosition() {
         return QPointF(player1->coordinate().x() + player1->diameter()/2, player1->coordinate().y());
 }
 
-// TODO: ako se pogodi -> kraj partije
+
 void WarGame::collisionDetection(Function* function) {
     int cutoff = 0;
 
@@ -344,6 +348,7 @@ void WarGame::clientReceivedMessage(QString msg)
         ptrWinner->setWinnerName(m_client->name());
         ptrWinner->show();
         ui->leFunctionInput->setDisabled(true);
+        ui->fire_war_button->setDisabled(true);
         emit cleanUpCanvas();
     }
     else if (jsonObj["type"] == "setUpData" && !m_fromCreate) {
@@ -393,6 +398,7 @@ void WarGame::clientReceivedMessage(QString msg)
 
 
         ui->leFunctionInput->setDisabled(true);
+        ui->fire_war_button->setDisabled(true);
 
 
         QJsonObject msgData;
@@ -417,13 +423,15 @@ void WarGame::clientReceivedMessage(QString msg)
     else if(jsonObj["type"] == "func"){
         if((m_fromCreate && currentPlayer == 1) || (!m_fromCreate && currentPlayer == 0)){
             ui->leFunctionInput->setDisabled(true);
+            ui->fire_war_button->setDisabled(true);
         }
 
         fireFunction(jsonObj["data"].toString().toStdString());
         ui->chat_textEdit->append(tr("<font color=\"blue\"><i>") + jsonObj["player"].toString() + " played y = " + jsonObj["data"].toString() + tr("</i></font>"));
     }
     else if(jsonObj["type"] == "msg"){
-        ui->chat_textEdit->append(tr("<font><b>") + jsonObj["name"].toString() + tr(": </b></font>") + jsonObj["message"].toString());
+        if(jsonObj["message"].toString() != "")
+            ui->chat_textEdit->append(tr("<font><b>") + jsonObj["name"].toString() + tr(": </b></font>") + jsonObj["message"].toString());
     }
 
 }

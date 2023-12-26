@@ -105,6 +105,6 @@ void MainWindow::disconnection()
 {
     ui->textEdit_log->append(QString("Somebody has disconnected"));
     if(server->gameInSession){
-        QTimer::singleShot(7000, [this]{on_pushButton_stopServer_clicked();});
+        QTimer::singleShot(3000, [this]{on_pushButton_stopServer_clicked();});
     }
 }
