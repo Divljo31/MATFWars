@@ -97,9 +97,8 @@ color: rgb(246, 206, 206);</string>
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string>
-        font: 600 15pt &quot;URW Bookman&quot;;
-        background-image: url(:/background/backgroundBtns.jpg);
+        <string notr="true"> font: 600 15pt &quot;URW Bookman&quot;;
+background-color: rgb(238, 148, 148);
 </string>
        </property>
        <property name="verticalScrollBarPolicy">

@@ -11,6 +11,7 @@
         <file>whiteBackground.jpg</file>
         <file>backgroundBtns.jpg</file>
         <file>chat_background.jpg</file>
+        <file>confetti.png</file>
     </qresource>
     <qresource prefix="/"/>
     <qresource prefix="/functionSets">

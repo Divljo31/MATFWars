@@ -26,7 +26,7 @@ QString Winner::getWinnerName() const
 void Winner::setWinnerName(const QString &newWinnerName)
 {
     winnerName = newWinnerName;
-    ui->label->setText("Congratulations " + winnerName + " !");
+    ui->label->setText("Congratulations " + winnerName + "!");
 }
 
 void Winner::on_quit_winner_button_clicked()

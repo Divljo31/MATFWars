@@ -6,6 +6,12 @@ Result::Result(QWidget *parent) :
     ui(new Ui::Result)
 {
     ui->setupUi(this);
+
+    ui->enter_result_button->installEventFilter(this);
+    ui->menu_result_button->installEventFilter(this);
+    enterStyle=ui->enter_result_button->styleSheet();
+    menuStyle=ui->menu_result_button->styleSheet();
+
 }
 
 Result::~Result()
@@ -109,3 +115,21 @@ void Result::on_enter_result_button_clicked()
     }
 }
 
+bool Result::eventFilter(QObject *obj, QEvent *event){
+    if(obj==ui->enter_result_button && event->type()==QEvent::Enter){
+        ui->enter_result_button->setCursor(Qt::PointingHandCursor);
+        ui->enter_result_button->setStyleSheet(enterStyle+"border:7px solid rgb(180, 72, 72);");
+    }
+    else if(obj==ui->menu_result_button && event->type()==QEvent::Enter){
+        ui->menu_result_button->setCursor(Qt::PointingHandCursor);
+        ui->menu_result_button->setStyleSheet(menuStyle+"border:7px solid rgb(180, 72, 72);");
+    }
+    else if(obj==ui->enter_result_button && event->type()==QEvent::Leave){
+        ui->enter_result_button->setStyleSheet(enterStyle);
+    }
+    else if(obj==ui->menu_result_button && event->type()==QEvent::Leave){
+        ui->menu_result_button->setStyleSheet(menuStyle);
+    }
+
+    return QDialog::eventFilter(obj,event);
+}
