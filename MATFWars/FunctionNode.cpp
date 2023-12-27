@@ -26,6 +26,7 @@ void FunctionNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     QPen pen;
     pen.setColor(currentColor);
     pen.setWidth(2);
+
     painter->setPen(pen);
     painter->drawPolyline(m_functionNode->points());
 }
