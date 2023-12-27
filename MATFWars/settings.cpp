@@ -1,8 +1,8 @@
 #include "settings.h"
 #include "ui_settings.h"
 
-QColor Settings::funcColor=QColor(0,0,255);
-QColor Settings::obstColor=QColor(0,0,255);
+QColor Settings::funcColor = QColor(0,0,255);
+QColor Settings::obstColor = QColor(Qt::darkCyan);
 
 Settings::Settings(QWidget *parent) :
     QDialog(parent),
