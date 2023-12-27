@@ -23,7 +23,7 @@ public:
 private:
     Ui::Winner *ui;
 
-    QString winnerName;
+    QString winnerName = "";
 
 };
 

@@ -345,11 +345,14 @@ void WarGame::clientReceivedMessage(QString msg)
         startWarGame();
     }
     else if (msg == "Somebody has disconnected!"){
-        ptrWinner->setWinnerName(m_client->name());
-        ptrWinner->show();
-        ui->leFunctionInput->setDisabled(true);
-        ui->fire_war_button->setDisabled(true);
-        emit cleanUpCanvas();
+        if(ptrWinner->getWinnerName() == ""){
+            ui->chat_textEdit->append("The other player has disconnected.");
+            ptrWinner->setWinnerName(m_client->name());
+            ptrWinner->show();
+            ui->leFunctionInput->setDisabled(true);
+            ui->fire_war_button->setDisabled(true);
+            emit cleanUpCanvas();
+        }
     }
     else if (jsonObj["type"] == "setUpData" && !m_fromCreate) {
 

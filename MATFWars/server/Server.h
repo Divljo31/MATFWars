@@ -35,14 +35,12 @@ public slots:
     void gotDisconnection();
     qint64 sendToClient(QTcpSocket *socket, const QString &str);
 
-    QString connectClicked();
     void smbConnectedToServer();
-   // void forwardSetUpData(QString setUpDataString);
 
 private:
 
     quint16 m_nNextBlockSize;
-    QList<QTcpSocket*> m_clients = nullptr;
+    QList<QTcpSocket*> m_clients;
 
 };
 
