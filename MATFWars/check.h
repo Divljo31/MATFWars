@@ -2,6 +2,7 @@
 #define CHECK_H
 
 #include <QDialog>
+#include "Client.h"
 
 namespace Ui {
 class Check;

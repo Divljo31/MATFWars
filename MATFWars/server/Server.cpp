@@ -8,6 +8,14 @@ Server::Server(QObject *parent) : m_nNextBlockSize(0)
     connect(this, &QTcpServer::newConnection, this, &Server::smbConnectedToServer);
 }
 
+Server::~Server()
+{
+    delete m_server;
+
+}
+
+
+
 QList<QTcpSocket *> Server::getClients()
 {
 
@@ -102,21 +110,6 @@ qint64 Server::sendToClient(QTcpSocket *socket, const QString &str)
     out << quint16(arrBlock.size() - sizeof(quint16));
 
     return socket->write(arrBlock);
-}
-
-
-QString Server::connectClicked()
-{
-
-    if (!this->m_server->listen(QHostAddress::Any, 6547)) // set this to written port in ui
-    {
-        return "Error! The port is taken by some other service" ;
-    }
-    else
-    {
-        connect(m_server, &QTcpServer::newConnection, this, &Server::newConnection);
-        return "Server started, port is openned";
-    }
 }
 
 void Server::smbConnectedToServer()

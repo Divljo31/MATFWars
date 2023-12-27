@@ -16,6 +16,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     ui->setupUi(this);
     ptrCheck = new Check();
     ptrWinner = new Winner();
+    ptrHelp = new Help();
 
 
     ui->chat_textEdit->setReadOnly(true);
@@ -26,8 +27,8 @@ WarGame::WarGame(Client *client, QWidget *parent) :
 
     ui->fire_war_button->installEventFilter(this);
     ui->quit_war_button->installEventFilter(this);
-    ui->back_war_button->installEventFilter(this);
     ui->chat_send_button->installEventFilter(this);
+    ui->help_war_button->installEventFilter(this);
 
     connect(ptrCheck,&Check::noButtonClicked,this,&WarGame::show);
     connect(this, &WarGame::newPlayerIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::addPlayer);
@@ -39,7 +40,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &WarGame::inputTaken);
     connect(this, &WarGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
 
-    backStyle=ui->back_war_button->styleSheet();
+    backStyle=ui->help_war_button->styleSheet();
     quitStyle=ui->quit_war_button->styleSheet();
     fireStyle=ui->fire_war_button->styleSheet();
     chatStyle=ui->chat_send_button->styleSheet();
@@ -52,8 +53,8 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     ui->gvCanvas->setScene(m_canvas);
 
 
-    ui->back_war_button->setDefault(false);
-    ui->back_war_button->setAutoDefault(false);
+    ui->help_war_button->setDefault(false);
+    ui->help_war_button->setAutoDefault(false);
     ui->quit_war_button->setDefault(false);
     ui->quit_war_button->setAutoDefault(false);
     ui->chat_send_button->setDefault(false);
@@ -61,12 +62,16 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     ui->fire_war_button->setDefault(false);
     ui->fire_war_button->setAutoDefault(false);
     ui->leFunctionInput->setFocusPolicy(Qt::StrongFocus);
+
 }
 
 WarGame::~WarGame()
 {
     delete ui;
     delete ptrCheck;
+    delete ptrHelp;
+    delete ptrWinner;
+    delete m_client;
     //sendToClient(m_client, "destroy");
     cleanUp();
 }
@@ -112,26 +117,20 @@ void WarGame::startWarGame()
     setUpData["player0"] = player0Json;
     setUpData["player1"] = player1Json;
     setUpData["obstacles"] = obstaclesArray;
-
     QJsonDocument jsonDocument(setUpData);
     QString setUpDataString = jsonDocument.toJson();
-    //qDebug() << setUpDataString.toStdString();
 
     m_client->sendData(setUpDataString);
 
-//    drawCanvas();
 }
 
-//void WarGame::sendSetUpData(QString setUpDataString){
-
-//    m_client->sendMsg(setUpDataString);
-//}
 
 void WarGame::fireFunction(std::string fString)
 {
 
     ui->leFunctionInput->setText("");
     ui->leFunctionInput->setDisabled(true);
+    ui->fire_war_button->setDisabled(true);
 
     QPointF firePosition = getFirePosition();
     Function* function = new Function(fString, firePosition.x());
@@ -148,23 +147,23 @@ void WarGame::fireFunction(std::string fString)
 
     emit newFunctionIsSet(node);
 
-    // ako izadjem iz igrice onda se svj uradi ovo i pomesaju se igraci, mora bolje resenje
+
     QTimer::singleShot(2000, [this, function]() {
         if (playerWinner != nullptr) {
             ptrWinner->setWinnerName(player0->name());
             ptrWinner->show();
             ui->leFunctionInput->setDisabled(true);
+            ui->fire_war_button->setDisabled(true);
             emit cleanUpCanvas();
         }
         else {
             switchPlayer();
             if((m_fromCreate && currentPlayer == 0) || (!m_fromCreate && currentPlayer == 1)) {
                 ui->leFunctionInput->setDisabled(false);
+                ui->fire_war_button->setDisabled(false);
             }
         }
 
-
-        //ui->leFunctionInput->setDisabled(false);
         delete function;
     });
 }
@@ -176,7 +175,7 @@ QPointF WarGame::getFirePosition() {
         return QPointF(player1->coordinate().x() + player1->diameter()/2, player1->coordinate().y());
 }
 
-// TODO: ako se pogodi -> kraj partije
+
 void WarGame::collisionDetection(Function* function) {
     int cutoff = 0;
 
@@ -329,11 +328,10 @@ void WarGame::drawCanvas() {
     }
 }
 
-void WarGame::on_back_war_button_clicked()
+void WarGame::on_help_war_button_clicked()
 {
-    cleanUp();
-    emit backWarClicked();
-    this->hide();
+    ptrHelp->show();
+    ptrHelp->setWindowState(Qt::WindowState::WindowActive);
 }
 
 void WarGame::clientReceivedMessage(QString msg)
@@ -345,11 +343,19 @@ void WarGame::clientReceivedMessage(QString msg)
     if (msg == "Player 2 has connected!" && m_fromCreate){
         startWarGame();
     }
-
+    else if (msg == "Somebody has disconnected!"){
+        if(ptrWinner->getWinnerName() == ""){
+            ui->chat_textEdit->append("The other player has disconnected.");
+            ptrWinner->setWinnerName(m_client->name());
+            ptrWinner->show();
+            ui->leFunctionInput->setDisabled(true);
+            ui->fire_war_button->setDisabled(true);
+            emit cleanUpCanvas();
+        }
+    }
     else if (jsonObj["type"] == "setUpData" && !m_fromCreate) {
 
         setCanvas();
-//        qDebug() << jsonObj;
         QJsonObject player0Json = jsonObj.value("player0").toObject();
         player0 = new Player(player0Json["m_name"].toString());
         QJsonObject coordinates0 = player0Json.value("m_coordinate").toObject();
@@ -382,8 +388,8 @@ void WarGame::clientReceivedMessage(QString msg)
             double centerX = center.value("x").toDouble();
             double centerY = center.value("y").toDouble();
             double diameter = obstacle.value("m_diameter").toDouble();
-            int health = obstacle.value("m_health").toInt();
-            int maxHealth = obstacle.value("m_maxHealth").toInt();
+            double health = obstacle.value("m_health").toDouble();
+            double maxHealth = obstacle.value("m_maxHealth").toDouble();
             tmp->setCenter(QPointF(centerX, centerY));
             tmp->setDiameter(diameter);
             tmp->setHealth(health);
@@ -394,6 +400,7 @@ void WarGame::clientReceivedMessage(QString msg)
 
 
         ui->leFunctionInput->setDisabled(true);
+        ui->fire_war_button->setDisabled(true);
 
 
         QJsonObject msgData;
@@ -409,7 +416,6 @@ void WarGame::clientReceivedMessage(QString msg)
     }
     else if(jsonObj["type"] == "name" && m_fromCreate){
         player1->setName(jsonObj["data"].toString());
-//        qDebug() << "\n\n\n" << player1->name();
 
 
         dynamic_cast<Canvas *>(m_canvas)->update();
@@ -419,24 +425,17 @@ void WarGame::clientReceivedMessage(QString msg)
     else if(jsonObj["type"] == "func"){
         if((m_fromCreate && currentPlayer == 1) || (!m_fromCreate && currentPlayer == 0)){
             ui->leFunctionInput->setDisabled(true);
+            ui->fire_war_button->setDisabled(true);
         }
 
         fireFunction(jsonObj["data"].toString().toStdString());
         ui->chat_textEdit->append(tr("<font color=\"blue\"><i>") + jsonObj["player"].toString() + " played y = " + jsonObj["data"].toString() + tr("</i></font>"));
     }
     else if(jsonObj["type"] == "msg"){
-        ui->chat_textEdit->append(tr("<font><b>") + jsonObj["name"].toString() + tr(": </b></font>") + jsonObj["message"].toString());
+        if(jsonObj["message"].toString() != "")
+            ui->chat_textEdit->append(tr("<font><b>") + jsonObj["name"].toString() + tr(": </b></font>") + jsonObj["message"].toString());
     }
 
-
-//    else if(colonIndex != -1){
-//        QString name = msg.left(colonIndex);
-//        QString msgText = msg.right(msg.length() - colonIndex - 1);
-//        ui->chat_textEdit->append(tr("<font><b>") + name + tr(": </b>")+ msgText + tr("</font>"));
-//    }
-//    else{
-//        ui->chat_textEdit->append(msg);
-//    }
 }
 
 void WarGame::setClient(Client *newClient)
@@ -495,13 +494,13 @@ bool WarGame::eventFilter(QObject *obj, QEvent *event){
         ui->quit_war_button->setCursor(Qt::PointingHandCursor);
         ui->quit_war_button->setStyleSheet(quitStyle+"border: 7px solid rgb(180, 72, 72);");
     }
-    else if(obj==ui->back_war_button && event->type()==QEvent::Enter){
-        ui->back_war_button->setCursor(Qt::PointingHandCursor);
-        ui->back_war_button->setStyleSheet(backStyle+"border: 7px solid rgb(180, 72, 72);");
-    }
     else if(obj==ui->chat_send_button && event->type()==QEvent::Enter){
         ui->chat_send_button->setCursor(Qt::PointingHandCursor);
         ui->chat_send_button->setStyleSheet(chatStyle+"border: 3px solid;");
+    }
+    else if(obj==ui->help_war_button && event->type()==QEvent::Enter){
+        ui->help_war_button->setCursor(Qt::PointingHandCursor);
+        ui->help_war_button->setStyleSheet(backStyle+"border: 7px solid rgb(180, 72, 72);");
     }
     else if(obj==ui->fire_war_button && event->type()==QEvent::Leave){
         ui->fire_war_button->setStyleSheet(fireStyle);
@@ -509,11 +508,12 @@ bool WarGame::eventFilter(QObject *obj, QEvent *event){
     else if(obj==ui->quit_war_button && event->type()==QEvent::Leave){
         ui->quit_war_button->setStyleSheet(quitStyle);
     }
-    else if(obj==ui->back_war_button && event->type()==QEvent::Leave){
-        ui->back_war_button->setStyleSheet(backStyle);
-    }
     else if(obj==ui->chat_send_button && event->type()==QEvent::Leave){
         ui->chat_send_button->setStyleSheet(chatStyle);
+    }
+    else if(obj==ui->help_war_button && event->type()==QEvent::Leave){
+        ui->help_war_button->setStyleSheet(backStyle);
+
     }
 
     return QDialog::eventFilter(obj,event);

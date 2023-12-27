@@ -3,7 +3,7 @@
 
 Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) : m_NextBlockSize(0){
 
-    m_status = false;
+    //m_status = false;
     m_socket = new QTcpSocket();
 
     m_host = hostAddress;
@@ -21,6 +21,12 @@ Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) :
     connect(m_socket, &QTcpSocket::disconnected, this, &Client::closeConnection);
 
 
+}
+
+Client::~Client()
+{
+    delete m_socket;
+    delete m_timeoutTimer;
 }
 
 
@@ -70,7 +76,6 @@ void Client::connect2host()
     m_socket->connectToHost(m_host, m_port);
     connect(m_socket, &QTcpSocket::connected, this, &Client::connected);
     connect(m_socket, &QTcpSocket::readyRead, this, &Client::readyRead);
-
 }
 
 
@@ -166,7 +171,6 @@ void Client::readyRead()
 
 void Client::connected()
 {
-
     m_status = true;
 }
 
@@ -178,6 +182,7 @@ void Client::connectionTimeout()
     {
         m_socket->abort();
         emit someError("timeout");
+        delete m_timeoutTimer;
     }
 }
 

@@ -24,11 +24,12 @@ private slots:
 
 private:
     Ui::Winner *ui;
-    QString winnerName;
     QString quitStyle;
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
+
+    QString winnerName = "";
 
 };
 

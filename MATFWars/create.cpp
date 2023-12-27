@@ -6,6 +6,7 @@ Create::Create(QWidget *parent) :
     ui(new Ui::Create)
 {
     ui->setupUi(this);
+    ui->port_lineEdit->setText("5555");
 
     ui->create_pop1_button->installEventFilter(this);
     ui->back_pop1_button->installEventFilter(this);
@@ -44,10 +45,15 @@ void Create::on_create_pop1_button_clicked()
     //emit(clientCreated(m_client));
 
     m_client->connect2host();
-
     this->hide();
 
     ptrWarGame= new WarGame(m_client);
+
+    QJsonObject gameCreated;
+    gameCreated["type"] = "gameCreated";
+    QJsonDocument jsonDocument(gameCreated);
+    QString createString = jsonDocument.toJson();
+    m_client->sendData(createString);
 
     ptrWarGame->setFromCreate(true);
     ptrWarGame->show();

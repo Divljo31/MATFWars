@@ -16,6 +16,8 @@
 #include "PlayerNode.h"
 #include "check.h"
 #include "winner.h"
+#include "help.h"
+
 #include <QGraphicsScene>
 
 #include <QJsonArray>
@@ -70,7 +72,7 @@ private:
     bool m_fromCreate = false;
 
 signals:
-    void backWarClicked();
+    void helpWarClicked();
     void newPlayerIsSet(PlayerNode* playerNode);
     void newObstacleIsSet(ObstacleNode* obstacleNode);
     void newFunctionIsSet(FunctionNode* functionNode);
@@ -80,7 +82,7 @@ signals:
     void gameEnded(QString winnerName);
 
 private slots:
-    void on_back_war_button_clicked();
+    void on_help_war_button_clicked();
     void on_quit_war_button_clicked();
     void inputTaken();
     void fireFunction(std::string fString);
@@ -91,6 +93,7 @@ private:
     Ui::WarGame *ui;
     Check *ptrCheck = nullptr;
     Winner *ptrWinner = nullptr;
+    Help *ptrHelp = nullptr;
     
     Client *m_client;
     

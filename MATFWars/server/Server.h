@@ -2,6 +2,9 @@
 #define SERVER_H
 
 #include "../Client.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+
 #include <QObject>
 
 class Server : public QTcpServer
@@ -11,10 +14,12 @@ class Server : public QTcpServer
 public:
 
     explicit Server(QObject *parent = nullptr);
+    ~Server();
 
     QList<QTcpSocket *> getClients();
 
-    QTcpServer *m_server;
+    QTcpServer *m_server = nullptr;
+    bool gameInSession = false;
 
 signals:
 
@@ -30,9 +35,7 @@ public slots:
     void gotDisconnection();
     qint64 sendToClient(QTcpSocket *socket, const QString &str);
 
-    QString connectClicked();
     void smbConnectedToServer();
-   // void forwardSetUpData(QString setUpDataString);
 
 private:
 

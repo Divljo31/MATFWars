@@ -228,25 +228,7 @@ background-color: rgb(238, 148, 148);</string>
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="back_war_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>3</horstretch>
-               <verstretch>3</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>30</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>50</height>
-              </size>
-             </property>
+            <widget class="QPushButton" name="help_war_button">
              <property name="styleSheet">
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;
@@ -255,7 +237,7 @@ border:7px solid rgb(238, 148, 148);
 background-color: rgb(238, 148, 148);</string>
              </property>
              <property name="text">
-              <string>BACK</string>
+              <string>HELP</string>
              </property>
             </widget>
            </item>
