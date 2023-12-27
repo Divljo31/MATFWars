@@ -16,12 +16,18 @@ public:
     explicit Winner(QWidget *parent = nullptr);
     ~Winner();
 
-
     QString getWinnerName() const;
     void setWinnerName(const QString &newWinnerName);
 
+private slots:
+    void on_quit_winner_button_clicked();
+
 private:
     Ui::Winner *ui;
+    QString quitStyle;
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
     QString winnerName = "";
 

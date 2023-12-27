@@ -25,10 +25,9 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     connect(ui->chat_send_button, &QPushButton::clicked, this, &WarGame::sendMessage);
     connect(ui->chat_lineEdit, &QLineEdit::returnPressed, this, &WarGame::sendMessage);
 
-
-    //menjam
     ui->fire_war_button->installEventFilter(this);
     ui->quit_war_button->installEventFilter(this);
+    ui->chat_send_button->installEventFilter(this);
     ui->help_war_button->installEventFilter(this);
 
     connect(ptrCheck,&Check::noButtonClicked,this,&WarGame::show);
@@ -44,7 +43,7 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     backStyle=ui->help_war_button->styleSheet();
     quitStyle=ui->quit_war_button->styleSheet();
     fireStyle=ui->fire_war_button->styleSheet();
-
+    chatStyle=ui->chat_send_button->styleSheet();
 
     ui->gvCanvas->setRenderHints(QPainter::Antialiasing);
     ui->gvCanvas->setAlignment(Qt::AlignTop | Qt::AlignLeft);
@@ -486,7 +485,6 @@ void WarGame::setFromCreate(bool newFromCreate)
     m_fromCreate = newFromCreate;
 }
 
-//menjam
 bool WarGame::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->fire_war_button && event->type()==QEvent::Enter){
         ui->fire_war_button->setCursor(Qt::PointingHandCursor);
@@ -495,18 +493,23 @@ bool WarGame::eventFilter(QObject *obj, QEvent *event){
     else if(obj==ui->quit_war_button && event->type()==QEvent::Enter){
         ui->quit_war_button->setCursor(Qt::PointingHandCursor);
         ui->quit_war_button->setStyleSheet(quitStyle+"border: 7px solid rgb(180, 72, 72);");
-
+    }
+    else if(obj==ui->chat_send_button && event->type()==QEvent::Enter){
+        ui->chat_send_button->setCursor(Qt::PointingHandCursor);
+        ui->chat_send_button->setStyleSheet(chatStyle+"border: 3px solid;");
     }
     else if(obj==ui->help_war_button && event->type()==QEvent::Enter){
         ui->help_war_button->setCursor(Qt::PointingHandCursor);
         ui->help_war_button->setStyleSheet(backStyle+"border: 7px solid rgb(180, 72, 72);");
-
     }
     else if(obj==ui->fire_war_button && event->type()==QEvent::Leave){
         ui->fire_war_button->setStyleSheet(fireStyle);
     }
     else if(obj==ui->quit_war_button && event->type()==QEvent::Leave){
         ui->quit_war_button->setStyleSheet(quitStyle);
+    }
+    else if(obj==ui->chat_send_button && event->type()==QEvent::Leave){
+        ui->chat_send_button->setStyleSheet(chatStyle);
     }
     else if(obj==ui->help_war_button && event->type()==QEvent::Leave){
         ui->help_war_button->setStyleSheet(backStyle);

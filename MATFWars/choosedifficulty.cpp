@@ -9,7 +9,9 @@ ChooseDifficulty::ChooseDifficulty(QWidget *parent) :
     ptrGuessGame=new GuessGame();
 
     ui->go_difficulty_button->installEventFilter(this);
+    ui->back_difficulty_button->installEventFilter(this);
     goStyle=ui->go_difficulty_button->styleSheet();
+    backStyle=ui->back_difficulty_button->styleSheet();
 
     connect(ptrGuessGame, &GuessGame::backGuessClicked, this, &ChooseDifficulty::show);
     connect(ptrGuessGame, &GuessGame::menuGuessFromResult, this, &ChooseDifficulty::on_back_difficulty_button_clicked);
@@ -31,14 +33,21 @@ void ChooseDifficulty::on_go_difficulty_button_clicked()
     ptrGuessGame->startGuessGame();
     this->hide();
 }
-//menjam
+
 bool ChooseDifficulty::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->go_difficulty_button && event->type()==QEvent::Enter){
         ui->go_difficulty_button->setCursor(Qt::PointingHandCursor);
         ui->go_difficulty_button->setStyleSheet(goStyle+"border:4px solid rgb(180, 72, 72);");
     }
+    else if(obj==ui->back_difficulty_button && event->type()==QEvent::Enter){
+        ui->back_difficulty_button->setCursor(Qt::PointingHandCursor);
+        ui->back_difficulty_button->setStyleSheet(backStyle+"border:4px solid rgb(180, 72, 72);");
+    }
     else if(obj==ui->go_difficulty_button && event->type()==QEvent::Leave){
         ui->go_difficulty_button->setStyleSheet(goStyle);
+    }
+    else if(obj==ui->back_difficulty_button && event->type()==QEvent::Leave){
+        ui->back_difficulty_button->setStyleSheet(backStyle);
     }
 
     return QDialog::eventFilter(obj,event);

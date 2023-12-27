@@ -5,8 +5,8 @@
 <li> &nbsp; 22 &nbsp; Benjamin Banneker </li>
 <li> &nbsp; 16 &nbsp; Bogdan Gavrilovic </li>
 <li> &nbsp; 15 &nbsp; Michael Jordan </li>
+<li> &nbsp; 04 &nbsp; tamara </li>
 <li> &nbsp; 03 &nbsp; Gottfried Leibniz </li>
 <li> &nbsp; 02 &nbsp; Pythagoras </li>
-<li> &nbsp; 01 &nbsp; Srinivasa Ramanujan </li>
 <li> &nbsp; 01 &nbsp; player </li>
 <ol>

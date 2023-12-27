@@ -8,7 +8,6 @@ Create::Create(QWidget *parent) :
     ui->setupUi(this);
     ui->port_lineEdit->setText("5555");
 
-    //menjam
     ui->create_pop1_button->installEventFilter(this);
     ui->back_pop1_button->installEventFilter(this);
     createStyle=ui->create_pop1_button->styleSheet();
@@ -60,7 +59,6 @@ void Create::on_create_pop1_button_clicked()
     ptrWarGame->show();
 }
 
-//menjam
 bool Create::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->create_pop1_button && event->type()==QEvent::Enter){
         ui->create_pop1_button->setCursor(Qt::PointingHandCursor);

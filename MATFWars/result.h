@@ -37,9 +37,14 @@ private slots:
 private:
     void loadLeaderboardMembers();
 
+protected:
+      bool eventFilter(QObject *watched, QEvent *event) override;
+
 private:
     Ui::Result *ui;
     std::vector<std::pair<int,std::string>> m_leaderboardMembers;
+    QString menuStyle;
+    QString enterStyle;
 };
 
 #endif // RESULT_H
