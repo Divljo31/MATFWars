@@ -15,10 +15,12 @@ class Client : public QObject
 
 public:
     explicit Client(QObject *parent, const QString hostAddress, quint16 portNumber);
+     ~Client();
+
     bool getStatus();
 
 
-    QTcpSocket *m_socket;
+    QTcpSocket *m_socket = nullptr;
 
     QString host() const;
     void setHost(const QString &newHost);
@@ -58,7 +60,7 @@ private:
     quint16 m_port;
     bool m_status = false;
     quint16 m_NextBlockSize;
-    QTimer *m_timeoutTimer;
+    QTimer *m_timeoutTimer = nullptr;
 
 };
 

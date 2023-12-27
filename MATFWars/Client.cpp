@@ -23,6 +23,12 @@ Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) :
 
 }
 
+Client::~Client()
+{
+    delete m_socket;
+    delete m_timeoutTimer;
+}
+
 
 bool Client::getStatus()
 {

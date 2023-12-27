@@ -386,8 +386,8 @@ void WarGame::clientReceivedMessage(QString msg)
             double centerX = center.value("x").toDouble();
             double centerY = center.value("y").toDouble();
             double diameter = obstacle.value("m_diameter").toDouble();
-            int health = obstacle.value("m_health").toInt();
-            int maxHealth = obstacle.value("m_maxHealth").toInt();
+            double health = obstacle.value("m_health").toDouble();
+            double maxHealth = obstacle.value("m_maxHealth").toDouble();
             tmp->setCenter(QPointF(centerX, centerY));
             tmp->setDiameter(diameter);
             tmp->setHealth(health);
