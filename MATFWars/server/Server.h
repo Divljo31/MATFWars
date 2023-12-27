@@ -14,10 +14,11 @@ class Server : public QTcpServer
 public:
 
     explicit Server(QObject *parent = nullptr);
+    ~Server();
 
     QList<QTcpSocket *> getClients();
 
-    QTcpServer *m_server;
+    QTcpServer *m_server = nullptr;
     bool gameInSession = false;
 
 signals:
@@ -41,7 +42,7 @@ public slots:
 private:
 
     quint16 m_nNextBlockSize;
-    QList<QTcpSocket*> m_clients;
+    QList<QTcpSocket*> m_clients = nullptr;
 
 };
 

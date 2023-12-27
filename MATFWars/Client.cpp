@@ -183,6 +183,7 @@ void Client::connectionTimeout()
     {
         m_socket->abort();
         emit someError("timeout");
+        delete m_timeoutTimer;
     }
 }
 

@@ -8,6 +8,14 @@ Server::Server(QObject *parent) : m_nNextBlockSize(0)
     connect(this, &QTcpServer::newConnection, this, &Server::smbConnectedToServer);
 }
 
+Server::~Server()
+{
+    delete m_server;
+    delete m_clients;
+}
+
+
+
 QList<QTcpSocket *> Server::getClients()
 {
 
