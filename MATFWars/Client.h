@@ -19,7 +19,6 @@ public:
 
     bool getStatus();
 
-
     QTcpSocket *m_socket = nullptr;
 
     QString host() const;
@@ -29,6 +28,8 @@ public:
 
     QString name() const;
     void setName(const QString &newName);
+
+    bool inGame = true;
 
 public slots:
     void closeConnection();
