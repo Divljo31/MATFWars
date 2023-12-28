@@ -11,6 +11,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Network)
+
 
 set(TEST_SOURCES
         main.cpp
@@ -43,14 +47,24 @@ set(CPP_SOURCES
 
         ../Function.h
         ../Function.cpp
+
+        ../Obstacle.cpp
+        ../Obstacle.h
+
+        ../Player.cpp
+        ../Player.h
 )
 
 
 add_executable( tests ${TEST_SOURCES} ${CPP_SOURCES} catch.hpp
   main.cpp
   function_tests.cpp
+  obstacle_tests.cpp
+  player_tests.cpp
+
+
 )
-target_link_libraries(tests Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(tests Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets)
 
 include(GNUInstallDirs)
 install(TARGETS tests

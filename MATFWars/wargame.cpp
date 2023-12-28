@@ -26,7 +26,6 @@ WarGame::WarGame(Client *client, QWidget *parent) :
     connect(ui->chat_lineEdit, &QLineEdit::returnPressed, this, &WarGame::sendMessage);
 
 
-    //menjam
     ui->fire_war_button->installEventFilter(this);
     ui->quit_war_button->installEventFilter(this);
     ui->help_war_button->installEventFilter(this);
@@ -73,7 +72,7 @@ WarGame::~WarGame()
     delete ptrHelp;
     delete ptrWinner;
     delete m_client;
-    //sendToClient(m_client, "destroy");
+
     cleanUp();
 }
 
@@ -196,7 +195,6 @@ void WarGame::collisionDetection(Function* function) {
 
                 function->removePointsAfterCutoff(cutoff);
                 obstacle->gotHit();
-               // qDebug() << obstacle->health();
 
                 if (!obstacle->isAlive()) {
                     obstacles.remove(obstacle);
@@ -269,7 +267,7 @@ Player* WarGame::generatePlayer(QString name, int width, int height)
 // x-> width, y -> height, playerOrObstacle -> procenat ekrana gde moze da se generise
 QPointF WarGame::randomPoint(int width, int height, double areaPercent)
 {
-    //if generatePlayer is the caller function, then playerOrObstacle = 1.0, else  playerOrObstacle = 2.0
+
     float xCoord = QRandomGenerator::global()->generateDouble();
     xCoord = -width / 2 + xCoord * areaPercent * width;
 
@@ -486,7 +484,7 @@ void WarGame::setFromCreate(bool newFromCreate)
     m_fromCreate = newFromCreate;
 }
 
-//menjam
+
 bool WarGame::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->fire_war_button && event->type()==QEvent::Enter){
         ui->fire_war_button->setCursor(Qt::PointingHandCursor);

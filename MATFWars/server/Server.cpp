@@ -14,8 +14,6 @@ Server::~Server()
 
 }
 
-
-
 QList<QTcpSocket *> Server::getClients()
 {
 
@@ -117,13 +115,4 @@ void Server::smbConnectedToServer()
 
     emit smbConnected();
 }
-
-
-
-
-
-
-
-
-
 

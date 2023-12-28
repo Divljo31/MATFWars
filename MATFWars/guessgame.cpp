@@ -210,6 +210,11 @@ void GuessGame::resetScore()
     ui->score_label->setText(QString::number(m_score));
 }
 
+difficulty GuessGame::getDifficulty() const
+{
+    return m_diff;
+}
+
 
 void GuessGame::resultWindow()
 {

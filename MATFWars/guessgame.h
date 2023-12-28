@@ -33,7 +33,10 @@ public:
     explicit GuessGame(QWidget *parent = nullptr);
     void startGuessGame();
     void setDifficulty(difficulty mode);
+    difficulty getDifficulty() const;
     ~GuessGame();
+
+    difficulty diff() const;
 
 signals:
     void backGuessClicked();
