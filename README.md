@@ -1,6 +1,12 @@
 # MATFWars
 
-Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i učenje funkcija i njihovih grafova. 
+## Opis igre 
+
+Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i učenje funkcija i njihovih grafova. Moguće je izabrati jednu od dve igrice: War game i Guessing game. War game predstavlja mulitplayer igricu gde je cilj odgovarajućom matematičkom funkcijom pogoditi protivnika uz prepreke. Guessing game predstavlja singleplayer igricu različitih težina, gde je cilj pogoditi iscrtanu funkciju u određenom vremenu. 
+
+## Demo snimak :movie_camera: 
+link: 
+
 
 Članovi:
  - <a href="https://gitlab.com/miletaj">Mileta Jovanović 32/2020</a>
