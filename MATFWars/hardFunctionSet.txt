@@ -1,3 +1,35 @@
-exp(x)+1
-log(x/2)
-cos(x/3)
+sin(x)*cos(x)
+1/sin(x)
+atan(x)
+log(x)
+exp(x)
+sqrt(x)
+sign(x)
+sin(x)/2
+cos(x)/2
+2^x
+3^x
+x/3
+1/x^2
+1/x^3
+1/sqrt(x)
+sin(x) + cos(x)
+x + sin(x)
+x + cos(x)
+exp(x)-x
+exp(x)+x
+x^2-x
+exp(-x)
+1-exp(x)
+sin(2*x)
+sin(x)-cos(x)
+sqrt(x^3)
+(x^3)/2
+1/exp(x)
+log(abs(x))
+sin(abs(x))
+(log(x))^2
+atan(x) + 1
+exp(x / 2)
+sqrt(x+1)
+sqrt(x+3)

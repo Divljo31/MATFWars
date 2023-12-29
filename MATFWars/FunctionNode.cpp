@@ -2,6 +2,9 @@
 #include "Function.h"
 #include <iostream>
 #include <QPainter>
+
+#include "settings.h"
+
 using namespace std;
 FunctionNode::FunctionNode(Function *function, double width, double height)
     : QGraphicsItem()
@@ -19,6 +22,11 @@ void FunctionNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
-    painter->setPen(Qt::darkBlue);
+    QColor currentColor = Settings::funcColor;
+    QPen pen;
+    pen.setColor(currentColor);
+    pen.setWidth(2);
+
+    painter->setPen(pen);
     painter->drawPolyline(m_functionNode->points());
 }

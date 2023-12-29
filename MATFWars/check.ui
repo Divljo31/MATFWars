@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>500</height>
+    <width>700</width>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -27,15 +27,31 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#Check{
-background-color: rgb(79, 43, 43);
+	border-image: url(:/background/background2.jpg);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>30</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <widget class="QLabel" name="sure_label">
      <property name="styleSheet">
       <string notr="true">font: 600 35pt &quot;URW Bookman&quot;;
-color:rgb(180, 72, 72);</string>
+color: rgb(246, 206, 206);</string>
      </property>
      <property name="text">
       <string>ARE YOU SURE?</string>
@@ -164,6 +180,22 @@ border-radius:10px;</string>
       </spacer>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

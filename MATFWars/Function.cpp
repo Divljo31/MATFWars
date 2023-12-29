@@ -134,6 +134,21 @@ void Function::removePointsAfterCutoff(int cutoff) {
     }
 }
 
+void Function::cutOffNan() {
+    auto isInvalid = [](const QPointF &point) {
+        return qIsNaN(point.x()) || qIsNaN(point.y());
+    };
+
+    // Iterate and remove invalid points
+    for (int i = 0; i < m_points.size(); ) {
+        if (isInvalid(m_points[i])) {
+            m_points.removeAt(i);
+        } else {
+            ++i;
+        }
+    }
+}
+
 
 
 

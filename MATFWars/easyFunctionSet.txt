@@ -1,16 +1,44 @@
+sin(x)
+cos(x)
+tan(x)
+asin(x)
+acos(x)
+atan(x)
 log(x)
-exp(x)-1
-x*sin(x)
-cos(x)+3
-sin(x)/cos(x)
+exp(x)
 sqrt(x)
+sign(x)
+abs(x)
+x
+-x
+-x/2
+-3*x
+x/2
+2*x
+3*x
+sin(x)+1
+cos(x)-1
+abs(sin(x))
+abs(cos(x))
+-sqrt(x)
+-log(x)
 1/x
-sin(x)/2
-2
+x^2
 x^3
 x^4
 -x^2
-x
--x
-x/2
-2*x
+-x^3
+-x^4
+x^3 + 2
+x^4 - 2
+-x^2 +1
+-x^3 - 1
+exp(-x)
+2*sin(x)
+2*cos(x)
+sin(x)/2
+cos(x)/2
+2^x
+3^x
+x/3
+-x/3

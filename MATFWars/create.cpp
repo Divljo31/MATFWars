@@ -8,7 +8,6 @@ Create::Create(QWidget *parent) :
     ui->setupUi(this);
     ui->port_lineEdit->setText("5555");
 
-    //menjam
     ui->create_pop1_button->installEventFilter(this);
     ui->back_pop1_button->installEventFilter(this);
     createStyle=ui->create_pop1_button->styleSheet();
@@ -46,21 +45,35 @@ void Create::on_create_pop1_button_clicked()
     //emit(clientCreated(m_client));
 
     m_client->connect2host();
-    this->hide();
 
-    ptrWarGame= new WarGame(m_client);
+    QTimer::singleShot(50, [this]() {
+        if(m_client->inGame) {
+            this->hide();
 
-    QJsonObject gameCreated;
-    gameCreated["type"] = "gameCreated";
-    QJsonDocument jsonDocument(gameCreated);
-    QString createString = jsonDocument.toJson();
-    m_client->sendData(createString);
+            ptrWarGame= new WarGame(m_client);
 
-    ptrWarGame->setFromCreate(true);
-    ptrWarGame->show();
+            QJsonObject gameCreated;
+            gameCreated["type"] = "gameCreated";
+            QJsonDocument jsonDocument(gameCreated);
+            QString createString = jsonDocument.toJson();
+            m_client->sendData(createString);
+
+            ptrWarGame->setFromCreate(true);
+            ptrWarGame->show();
+        }
+        else {
+            QMessageBox dialog;
+            m_client->closeConnection();
+            dialog.setText("A server is not listening at this port. \nPlease go back and start a server.");
+            dialog.setWindowTitle("Error");
+            dialog.exec();
+        }
+    });
+
+
+
 }
 
-//menjam
 bool Create::eventFilter(QObject *obj, QEvent *event){
     if(obj==ui->create_pop1_button && event->type()==QEvent::Enter){
         ui->create_pop1_button->setCursor(Qt::PointingHandCursor);
