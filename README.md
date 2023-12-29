@@ -16,7 +16,7 @@ Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i u
 
 # Korisćene biblioteke :books:
 - Qt >= 6.0
--  muparser link: https://beltoforion.de/en/muparser/. Po preporuci kreatora biblioteke, integrisana je u sam kod u src/lib/muparser
+-  muparser link: https://beltoforion.de/en/muparser/. Po preporuci kreatora biblioteke, integrisana je u sam kod u src/lib/muparser.
 
 ## Instalacija :hammer:
 - Preuzeti i instalirati [*Qt* i *Qt Creator*](https://www.qt.io/download)
