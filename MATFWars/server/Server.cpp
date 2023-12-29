@@ -11,7 +11,6 @@ Server::Server(QObject *parent) : m_nNextBlockSize(0)
 Server::~Server()
 {
     delete m_server;
-    delete m_clients;
 }
 
 

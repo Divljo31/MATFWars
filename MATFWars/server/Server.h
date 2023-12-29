@@ -42,7 +42,7 @@ public slots:
 private:
 
     quint16 m_nNextBlockSize;
-    QList<QTcpSocket*> m_clients = nullptr;
+    QList<QTcpSocket*> m_clients;
 
 };
 
