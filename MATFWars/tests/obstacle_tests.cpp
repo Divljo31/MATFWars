@@ -21,7 +21,7 @@ TEST_CASE("Funkcije u klasi Obstacle", "[Obstacle]") {
         REQUIRE(center == expectedCenter);
     }
 
-    SECTION("setCenter() postavlja tacku centra", "[Obstacle]") {
+    SECTION("setCenter postavlja tacku centra", "[Obstacle]") {
         Obstacle obstacle;
         QPointF newCenter(10, 20);
 
@@ -41,7 +41,7 @@ TEST_CASE("Funkcije u klasi Obstacle", "[Obstacle]") {
     }
 
 
-    SECTION("setDiameter() postavlja vrednost diameter", "[Obstacle]") {
+    SECTION("setDiameter postavlja vrednost diameter", "[Obstacle]") {
         Obstacle obstacle;
         double newDiameter = 15.5;
 
