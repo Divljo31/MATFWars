@@ -158,6 +158,9 @@ void GuessGame::drawCurrentFunction()
     const auto functionString = m_functions[m_currentFunctionIndex];
 
     Function* newFunction = new Function(functionString);
+    newFunction->cutOffNan();
+//    qDebug() << QString::fromStdString(functionString);
+//    qDebug() << newFunction->points();
     newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
     newFunction->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 

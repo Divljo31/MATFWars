@@ -17,9 +17,13 @@ class Join : public QDialog
 public:
     explicit Join(QWidget *parent = nullptr);
     ~Join();
-
-
-
+    
+    
+    
+    void popUpShow();
+    
+    void showPopUp();
+    
 signals:
     void backJoinPop2Clicked();
 

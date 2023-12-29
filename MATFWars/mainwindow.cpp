@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     warStyle=ui->war_game_button->styleSheet();
     guessStyle=ui->guess_game_button->styleSheet();
     leaderboardStyle=ui->leaderboard_main_button->styleSheet();
+    toolStyle=ui->tool_button->styleSheet();
 }
 
 
@@ -92,6 +93,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     }
     else if(obj==ui->tool_button && event->type()==QEvent::Enter){
         ui->tool_button->setCursor(Qt::PointingHandCursor);
+        ui->tool_button->setStyleSheet(toolStyle+"border: 5px solid;");
     }
     else if(obj==ui->war_game_button && event->type()==QEvent::Leave){
         ui->war_game_button->setStyleSheet(warStyle);
@@ -102,6 +104,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     else if(obj==ui->leaderboard_main_button && event->type()==QEvent::Leave){
         ui->leaderboard_main_button->setStyleSheet(leaderboardStyle);
     }
+    else if(obj==ui->tool_button && event->type()==QEvent::Leave){
+        ui->tool_button->setStyleSheet(toolStyle);
+    }
+
 
     return QMainWindow::eventFilter(obj,event);
 }

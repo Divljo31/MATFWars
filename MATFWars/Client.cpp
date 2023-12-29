@@ -108,6 +108,7 @@ void Client::gotError(QAbstractSocket::SocketError err)
         strError = "Unknown error";
     }
 
+    inGame = false;
     emit someError(strError);
 }
 

@@ -27,6 +27,7 @@ private:
     Ui::ChooseDifficulty *ui;
     GuessGame *ptrGuessGame = nullptr;
     QString goStyle;
+    QString backStyle;
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;

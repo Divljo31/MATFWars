@@ -12,14 +12,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>500</width>
+    <width>700</width>
     <height>300</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>500</height>
+    <width>700</width>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#Settings{
-background-image: url(:/background/background2.jpg);
+border-image: url(:/background/background2.jpg);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">

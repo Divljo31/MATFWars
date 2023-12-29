@@ -47,6 +47,8 @@ public:
 
     void removePointsAfterCutoff(int cutoff);
 
+    void cutOffNan();
+
 };
 
 #endif // FUNCTION_H

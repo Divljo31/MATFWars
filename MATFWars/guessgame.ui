@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#GuessGame{
-	background-image: url(:/background/background2.jpg);
+	background-color:rgb(79,43,43);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -40,6 +40,12 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>450</height>
+        </size>
        </property>
        <property name="styleSheet">
         <string notr="true">border:7px solid;
@@ -64,12 +70,12 @@ border-color: rgb(238, 148, 148);</string>
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType">
-      <enum>QSizePolicy::Maximum</enum>
+      <enum>QSizePolicy::Fixed</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>15</width>
-       <height>15</height>
+       <width>20</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>
@@ -225,7 +231,7 @@ font: 600 20pt &quot;URW Bookman&quot;;
            <property name="maximumSize">
             <size>
              <width>800</width>
-             <height>70</height>
+             <height>60</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -272,7 +278,7 @@ background-color: rgb(238, 148, 148);
            <property name="maximumSize">
             <size>
              <width>800</width>
-             <height>70</height>
+             <height>60</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -302,6 +308,22 @@ background-color: rgb(238, 148, 148);</string>
           </spacer>
          </item>
         </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
