@@ -14,6 +14,10 @@ Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i u
 - [![c_plus_plus](https://img.shields.io/badge/Language-C%2B%2B-red)](https://www.cplusplus.com/)  *C++17*  <br>
 - [![qt6](https://img.shields.io/badge/Framework-Qt6-blue)](https://doc.qt.io/qt-6/)  *Qt6* <br>
 
+# Korisćene biblioteke :books:
+- Qt >= 6.0
+-  muparser link: https://beltoforion.de/en/muparser/. Po preporuci kreatora biblioteke, integrisana je u sam kod u src/lib/muparser
+
 ## Instalacija :hammer:
 - Preuzeti i instalirati [*Qt* i *Qt Creator*](https://www.qt.io/download)
 
