@@ -17,6 +17,8 @@ Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i u
 ## Instalacija :hammer:
 - Preuzeti i instalirati [*Qt* i *Qt Creator*](https://www.qt.io/download)
 
+## Preuzimanje i pokretanje :wrench:
+
 ## Članovi :computer:
  - <a href="https://gitlab.com/miletaj">Mileta Jovanović 32/2020</a>
  - <a href="https://gitlab.com/Divljo31">Nemanja Divljaković 56/2020</a>
