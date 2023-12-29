@@ -14,9 +14,10 @@ Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i u
 - [![c_plus_plus](https://img.shields.io/badge/Language-C%2B%2B-red)](https://www.cplusplus.com/)  *C++17*  <br>
 - [![qt6](https://img.shields.io/badge/Framework-Qt6-blue)](https://doc.qt.io/qt-6/)  *Qt6* <br>
 
+## Instalacija :hammer:
+- Preuzeti i instalirati [*Qt* i *Qt Creator*](https://www.qt.io/download)
 
-
-Članovi:
+## Developers :personal_computer:
  - <a href="https://gitlab.com/miletaj">Mileta Jovanović 32/2020</a>
  - <a href="https://gitlab.com/Divljo31">Nemanja Divljaković 56/2020</a>
  - <a href="https://gitlab.com/tamarabaranin">Tamara Baranin 137/2020</a>
