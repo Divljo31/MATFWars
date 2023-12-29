@@ -76,7 +76,7 @@ background-image: url(:/background/background1.png);
         <property name="font">
          <font>
           <family>URW Bookman</family>
-          <pointsize>60</pointsize>
+          <pointsize>50</pointsize>
           <italic>false</italic>
           <bold>true</bold>
           <underline>false</underline>
@@ -91,7 +91,7 @@ background-image: url(:/background/background1.png);
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 600 60pt &quot;URW Bookman&quot;;
+         <string notr="true">font: 600 50pt &quot;URW Bookman&quot;;
 selection-color: rgb(180, 72, 72);
 padding:10px;
 border:10px inset ;
@@ -111,7 +111,7 @@ border-radius:10px</string>
          <number>0</number>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700; color:#783d3d;&quot;&gt;CHOOSE GAME:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700; color:#783d3d;&quot;&gt;CHOOSE A GAME:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
