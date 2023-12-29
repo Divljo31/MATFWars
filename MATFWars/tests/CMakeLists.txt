@@ -60,6 +60,7 @@ add_executable( tests ${TEST_SOURCES} ${CPP_SOURCES} catch.hpp
   main.cpp
   function_tests.cpp
   player_tests.cpp
+  obstacle_tests.cpp
 )
 target_link_libraries(tests Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets)
 
