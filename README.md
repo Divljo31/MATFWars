@@ -1,4 +1,4 @@
-# MATFWars
+# MATFWars :chart_with_upwards_trend:
 
 ## Opis igre 
 
@@ -6,6 +6,8 @@ Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i u
 
 ## Demo snimak :movie_camera: 
 link: 
+
+## Okruženje
 
 
 Članovi:
