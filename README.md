@@ -7,7 +7,13 @@ Multiplayer matematičke igrice koje na zabavan način podstiču razumevanje i u
 ## Demo snimak :movie_camera: 
 link: 
 
-## Okruženje
+## Okruženje 
+- [![qtCreator](https://img.shields.io/badge/IDE-Qt_Creator-olivia)](https://www.qt.io/download) <br>
+
+## Programski jezik
+- [![c_plus_plus](https://img.shields.io/badge/Language-C%2B%2B-red)](https://www.cplusplus.com/)  *C++17*  <br>
+- [![qt6](https://img.shields.io/badge/Framework-Qt6-blue)](https://doc.qt.io/qt-6/)  *Qt6* <br>
+
 
 
 Članovi:
