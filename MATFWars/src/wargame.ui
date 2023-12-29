@@ -229,6 +229,24 @@ background-color: rgb(238, 148, 148);</string>
            </item>
            <item>
             <widget class="QPushButton" name="help_war_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>3</horstretch>
+               <verstretch>3</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>30</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>50</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">color:rgb(180, 72, 72);
 font: 600 25pt &quot;URW Bookman&quot;;

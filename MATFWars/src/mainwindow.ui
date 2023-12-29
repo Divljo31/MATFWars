@@ -260,11 +260,11 @@ color: rgb(180, 72, 72);
          <string notr="true">border-radius:10px;
 color: rgb(180, 72, 72);
 border-image: url(:/background/btn2.jpg);
-font: 600 35pt &quot;URW Bookman&quot;;
+font: 600 30pt &quot;URW Bookman&quot;;
 </string>
         </property>
         <property name="text">
-         <string>Guess game</string>
+         <string>Guessing game</string>
         </property>
        </widget>
       </item>
