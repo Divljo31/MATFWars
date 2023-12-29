@@ -1,7 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "../Client.h"
+#include "../src/Client.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 

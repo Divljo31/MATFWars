@@ -22,47 +22,43 @@ set(TEST_SOURCES
 )
 
 set(CPP_SOURCES
-        ../lib/muparser/muParser.cpp
-        ../lib/muparser/muParser.h
-        ../lib/muparser/muParserBase.cpp
-        ../lib/muparser/muParserBase.h
-        ../lib/muparser/muParserBytecode.cpp
-        ../lib/muparser/muParserBytecode.h
-        ../lib/muparser/muParserCallback.cpp
-        ../lib/muparser/muParserCallback.h
-        ../lib/muparser/muParserDef.h
-        ../lib/muparser/muParserDLL.cpp
-        ../lib/muparser/muParserDLL.h
-        ../lib/muparser/muParserError.cpp
-        ../lib/muparser/muParserError.h
-        ../lib/muparser/muParserFixes.h
-        ../lib/muparser/muParserInt.cpp
-        ../lib/muparser/muParserInt.h
-        ../lib/muparser/muParserTemplateMagic.h
-        ../lib/muparser/muParserTest.cpp
-        ../lib/muparser/muParserTest.h
-        ../lib/muparser/muParserToken.h
-        ../lib/muparser/muParserTokenReader.cpp
-        ../lib/muparser/muParserTokenReader.h
+        ../src/lib/muparser/muParser.cpp
+        ../src/lib/muparser/muParser.h
+        ../src/lib/muparser/muParserBase.cpp
+        ../src/lib/muparser/muParserBase.h
+        ../src/lib/muparser/muParserBytecode.cpp
+        ../src/lib/muparser/muParserBytecode.h
+        ../src/lib/muparser/muParserCallback.cpp
+        ../src/lib/muparser/muParserCallback.h
+        ../src/lib/muparser/muParserDef.h
+        ../src/lib/muparser/muParserDLL.cpp
+        ../src/lib/muparser/muParserDLL.h
+        ../src/lib/muparser/muParserError.cpp
+        ../src/lib/muparser/muParserError.h
+        ../src/lib/muparser/muParserFixes.h
+        ../src/lib/muparser/muParserInt.cpp
+        ../src/lib/muparser/muParserInt.h
+        ../src/lib/muparser/muParserTemplateMagic.h
+        ../src/lib/muparser/muParserTest.cpp
+        ../src/lib/muparser/muParserTest.h
+        ../src/lib/muparser/muParserToken.h
+        ../src/lib/muparser/muParserTokenReader.cpp
+        ../src/lib/muparser/muParserTokenReader.h
 
-        ../Function.h
-        ../Function.cpp
+        ../src/Function.h
+        ../src/Function.cpp
 
-        ../Obstacle.cpp
-        ../Obstacle.h
+        ../src/Obstacle.cpp
+        ../src/Obstacle.h
 
-        ../Player.cpp
-        ../Player.h
+        ../src/Player.cpp
+        ../src/Player.h
 )
 
 
 add_executable( tests ${TEST_SOURCES} ${CPP_SOURCES} catch.hpp
   main.cpp
   function_tests.cpp
-  obstacle_tests.cpp
-  player_tests.cpp
-
-
 )
 target_link_libraries(tests Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets)
 

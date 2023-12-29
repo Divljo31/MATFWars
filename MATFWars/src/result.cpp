@@ -49,7 +49,7 @@ void Result::loadLeaderboardMembers()
 {
     QString appDirPath = QCoreApplication::applicationDirPath();
 
-    std::ifstream file(appDirPath.toStdString() + "/../MATFWars/txt/leaderboard.txt");
+    std::ifstream file(appDirPath.toStdString() + "/../MATFWars/resources/txt/leaderboard.txt");
 
     std::regex pattern("<li> &nbsp; (\\d+) &nbsp; (.+?) </li>");
 
@@ -95,7 +95,7 @@ void Result::on_enter_result_button_clicked()
 
     QString appDirPath = QCoreApplication::applicationDirPath();
 
-    std::ofstream outputFile(appDirPath.toStdString() + "/../MATFWars/txt/leaderboard.txt");
+    std::ofstream outputFile(appDirPath.toStdString() + "/../MATFWars/resources/txt/leaderboard.txt");
 
     if (outputFile.is_open()) {
 

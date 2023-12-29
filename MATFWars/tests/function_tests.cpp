@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "../Function.h"
+#include "../src/Function.h"
 #include <QList>
 
 TEST_CASE("Testiranje konstruktora funkcije", "[class]") {
