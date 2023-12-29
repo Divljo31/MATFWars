@@ -16,7 +16,7 @@ Leaderboard::~Leaderboard()
 
 void Leaderboard::showLeaderboard()
 {
-    QString filePath = QCoreApplication::applicationDirPath() + "/../MATFWars/txt/leaderboard.txt";
+    QString filePath = QCoreApplication::applicationDirPath() + "/../MATFWars/resources/txt/leaderboard.txt";
 
     QFile file(filePath);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))

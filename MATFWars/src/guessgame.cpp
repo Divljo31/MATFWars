@@ -8,7 +8,7 @@ GuessGame::GuessGame(QWidget *parent) :
     m_canvas(new Canvas(this))
 {
     ui->setupUi(this);
-    m_timer = new Timer(50);
+    m_timer = new Timer(45);
 
     ptrResult=new Result();
 

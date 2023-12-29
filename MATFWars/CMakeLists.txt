@@ -15,67 +15,55 @@ find_package(Qt6 REQUIRED COMPONENTS Network)
 
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+        src/main.cpp
+        src/mainwindow.cpp
+        src/mainwindow.h
+        src/mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MATFWars
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        Player.h Player.cpp
-        Function.h Function.cpp
+        src/Player.h src/Player.cpp
+        src/Function.h src/Function.cpp
+        src/Obstacle.h src/Obstacle.cpp
+        src/lib/muparser/muParser.cpp src/lib/muparser/muParser.h
+        src/lib/muparser/muParserBase.cpp src/lib/muparser/muParserBase.h
+        src/lib/muparser/muParserBytecode.cpp src/lib/muparser/muParserBytecode.h
+        src/lib/muparser/muParserCallback.cpp src/lib/muparser/muParserCallback.h
+        src/lib/muparser/muParserDef.h src/lib/muparser/muParserDLL.cpp
+        src/lib/muparser/muParserDLL.h src/lib/muparser/muParserError.cpp
+        src/lib/muparser/muParserError.h src/lib/muparser/muParserFixes.h
+        src/lib/muparser/muParserInt.cpp src/lib/muparser/muParserInt.h
+        src/lib/muparser/muParserTemplateMagic.h src/lib/muparser/muParserTest.cpp
+        src/lib/muparser/muParserTest.h src/lib/muparser/muParserToken.h
+        src/lib/muparser/muParserTokenReader.cpp src/lib/muparser/muParserTokenReader.h
+        src/guessgame.h src/guessgame.cpp src/guessgame.ui
+        src/wargame.h src/wargame.cpp src/wargame.ui
+        src/create.h src/create.cpp src/create.ui
+        src/join.h src/join.cpp src/join.ui
+        src/winner.h src/winner.cpp src/winner.ui
+        src/check.h src/check.cpp src/check.ui
+        src/warchoose.h src/warchoose.cpp src/warchoose.ui
+        src/FunctionNode.h src/FunctionNode.cpp
+        src/Canvas.h src/Canvas.cpp
+        src/settings.h src/settings.cpp src/settings.ui
+        src/leaderboard.h src/leaderboard.cpp src/leaderboard.ui
 
-        Obstacle.h Obstacle.cpp
-        lib/muparser/muParser.cpp lib/muparser/muParser.h
-        lib/muparser/muParserBase.cpp lib/muparser/muParserBase.h
-        lib/muparser/muParserBytecode.cpp lib/muparser/muParserBytecode.h
-        lib/muparser/muParserCallback.cpp lib/muparser/muParserCallback.h
-        lib/muparser/muParserDef.h lib/muparser/muParserDLL.cpp
-        lib/muparser/muParserDLL.h lib/muparser/muParserError.cpp
-        lib/muparser/muParserError.h lib/muparser/muParserFixes.h
-        lib/muparser/muParserInt.cpp lib/muparser/muParserInt.h
-        lib/muparser/muParserTemplateMagic.h lib/muparser/muParserTest.cpp
-        lib/muparser/muParserTest.h lib/muparser/muParserToken.h
-        lib/muparser/muParserTokenReader.cpp lib/muparser/muParserTokenReader.h
+        src/Timer.h src/Timer.cpp
+        src/Difficulty.h
+        src/Client.h src/Client.cpp
+        src/PlayerNode.h src/PlayerNode.cpp
+        src/Client.h src/Client.cpp
+        src/choosedifficulty.h src/choosedifficulty.cpp src/choosedifficulty.ui
+        src/result.h src/result.cpp src/result.ui
 
-        guessgame.h guessgame.cpp guessgame.ui
-        wargame.h wargame.cpp wargame.ui
-        create.h create.cpp create.ui
-        join.h join.cpp join.ui
+        src/ObstacleNode.h src/ObstacleNode.cpp
+        src/help.h src/help.cpp src/help.ui
 
-        winner.h winner.cpp winner.ui
-        check.h check.cpp check.ui
-        warchoose.h warchoose.cpp warchoose.ui
-        FunctionNode.h FunctionNode.cpp
-        Canvas.h Canvas.cpp
-
-        settings.h settings.cpp settings.ui
-        leaderboard.h leaderboard.cpp leaderboard.ui
-        resources.qrc
-        Timer.h Timer.cpp
-
-
-        Difficulty.h
-
-        Client.h Client.cpp
-        PlayerNode.h PlayerNode.cpp
-
-        Client.h Client.cpp
-        choosedifficulty.h choosedifficulty.cpp choosedifficulty.ui
-        result.h result.cpp result.ui
-        txt/leaderboard.txt
-        ObstacleNode.h ObstacleNode.cpp
-        help.h help.cpp help.ui
-
-
-
-
-
-
-
+        resources/resources.qrc
+        resources/txt/leaderboard.txt
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MATFWars APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
