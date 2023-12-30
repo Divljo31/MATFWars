@@ -62,4 +62,73 @@ TEST_CASE("Funkcije u klasi Obstacle", "[Obstacle]") {
         REQUIRE(flippedCenter.y() == Approx(initialCenter.y()).epsilon(0.001));
 
     }
+
+    SECTION("gotHit() smanjuje health za 1", "[Obstacle]") {
+        int initialHealth = 5;
+        Obstacle obstacle;
+        obstacle.setHealth(initialHealth);
+
+        obstacle.gotHit();
+        int expectedHealth = initialHealth - 1;
+        REQUIRE(obstacle.health() == expectedHealth);
+
+    }
+
+    SECTION("isAlive() vraca status na osnovu health-a", "[Obstacle]") {
+
+        Obstacle obstacle;
+        obstacle.setHealth(1);
+        REQUIRE(obstacle.isAlive() == true);
+
+        SECTION("isAlive() vraca false","[Obstacle]"){
+            Obstacle obstacle;
+            obstacle.setHealth(0);
+            REQUIRE(obstacle.isAlive() == false);
+        }
+
+    }
+
+    SECTION("health() vraca vrednost health", "[Obstacle]") {
+        double initialHealth = 10.0;
+        Obstacle obstacle;
+        obstacle.setHealth(initialHealth);
+
+        double health = obstacle.health();
+        REQUIRE(health == Approx(initialHealth).epsilon(0.001));
+    }
+
+    SECTION("Obstacle health i max health funkcionalnost", "[Obstacle]") {
+        Obstacle obstacle;
+
+        double newHealth = 50.0;
+        obstacle.setHealth(newHealth);
+        REQUIRE(obstacle.health() == Approx(newHealth).epsilon(0.001));
+
+
+        double newMaxHealth = 100.0;
+        obstacle.setMaxHealth(newMaxHealth);
+        REQUIRE(obstacle.maxHealth() == Approx(newMaxHealth).epsilon(0.001));
+
+    }
+
+    SECTION("maxHealth() vraca maxHealth", "[Obstacle]") {
+        double initialMaxHealth = 100.0;
+        Obstacle obstacle;
+        obstacle.setMaxHealth(initialMaxHealth);
+
+
+        double maxHealth = obstacle.maxHealth();
+        REQUIRE(maxHealth == Approx(initialMaxHealth).epsilon(0.001));
+
+    }
+
+    SECTION("generateDiameter() vraca diameter u odredjenom intervalu", "[Obstacle]") {
+        Obstacle obstacle;
+
+
+        double diameter = obstacle.generateDiameter();
+        REQUIRE(diameter >= 1.5);
+        REQUIRE(diameter <= 1.5 + 10 * 10);
+
+    }
 }
