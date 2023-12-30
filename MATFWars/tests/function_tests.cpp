@@ -131,6 +131,19 @@ TEST_CASE("Testiranje konstruktora funkcije", "[class]") {
 
         REQUIRE(f.points().size() == 1000);
     }
+
+    SECTION("cutOffNan izbacuje sve tacke u kojima se pojavljuje negativna vrednost, u slucaju da na negativnom domenu uzmemo sqrt izbacuje se sve tacke") {
+        Function f("sqrt(x)", -10, -5);
+        f.cutOffNan();
+        REQUIRE(f.points().size() == 0);
+    }
+
+    SECTION("cutOffNan izbacuje sve tacke u kojima se pojavljuje negativna vrednost, "
+            "u slucaju za domen [-5, 5] i sqrt prva x tacka ce biti veca jednaka od nule") {
+        Function f("sqrt(x)", -10, 10);
+        f.cutOffNan();
+        REQUIRE(f.points().first().x() >= 0);
+    }
 }
 
 
