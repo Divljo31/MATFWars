@@ -150,7 +150,7 @@ void WarGame::fireFunction(std::string fString)
 
     QTimer::singleShot(2000, [this, function]() {
         if (playerWinner != nullptr) {
-            ptrWinner->setWinnerName(player0->name());
+            ptrWinner->setWinnerName(playerWinner->name());
             ptrWinner->show();
             ui->leFunctionInput->setDisabled(true);
             ui->fire_war_button->setDisabled(true);
