@@ -3,7 +3,6 @@
 
 Client::Client(QObject *parent, const QString hostAddress, quint16 portNumber) : m_NextBlockSize(0){
 
-    //m_status = false;
     m_socket = new QTcpSocket();
 
     m_host = hostAddress;
@@ -42,7 +41,6 @@ void Client::closeConnection()
 
     m_timeoutTimer->stop();
 
-    //qDebug() << tcpSocket->state();
     disconnect(m_socket, &QTcpSocket::connected, 0, 0);
     disconnect(m_socket, &QTcpSocket::readyRead, 0, 0);
 
@@ -88,7 +86,6 @@ void Client::receivedSomething(QString msg)
 void Client::gotError(QAbstractSocket::SocketError err)
 {
 
-    //qDebug() << "got error";
     QString strError = "unknown";
     switch (err)
     {
@@ -117,7 +114,7 @@ void Client::sendData(QString msg)
 
     QByteArray arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
-    //out.setVersion(QDataStream::Qt_5_10);
+
     out << quint16(0) << msg;
 
     out.device()->seek(0);
@@ -146,7 +143,6 @@ void Client::readyRead()
 {
 
     QDataStream in(m_socket);
-    //in.setVersion(QDataStream::Qt_5_10);
     for (;;)
     {
         if (!m_NextBlockSize)
@@ -178,7 +174,6 @@ void Client::connected()
 void Client::connectionTimeout()
 {
 
-    //qDebug() << m_socket->state();
     if(m_socket->state() == QAbstractSocket::ConnectingState)
     {
         m_socket->abort();

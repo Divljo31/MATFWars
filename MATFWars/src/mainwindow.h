@@ -24,12 +24,9 @@ public:
 private slots:
     void on_war_game_button_clicked();
 
-    //void on_guess_game_button_clicked();
-
     void on_leaderboard_main_button_clicked();
 
     void on_tool_button_clicked();
-
 
     void on_guess_game_button_clicked();
 

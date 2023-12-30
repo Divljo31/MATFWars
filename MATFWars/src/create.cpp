@@ -31,7 +31,6 @@ Create::~Create()
 
 void Create::on_back_pop1_button_clicked()
 {
-    //menjam
     emit backCreatePop1Clicked();
     this->hide();
 }
@@ -41,8 +40,6 @@ void Create::on_create_pop1_button_clicked()
 {
     m_client = new Client(nullptr, "localhost", ui->port_lineEdit->text().toUShort());
     m_client->setName(ui->name_lineEdit->text());
-
-    //emit(clientCreated(m_client));
 
     m_client->connect2host();
 
@@ -96,7 +93,7 @@ bool Create::eventFilter(QObject *obj, QEvent *event){
 
 void Create::gotError(QAbstractSocket::SocketError err)
 {
-    //qDebug() << "got error";
+
     QString strError = "unknown";
     switch (err)
     {
@@ -116,7 +113,7 @@ void Create::gotError(QAbstractSocket::SocketError err)
         strError = "Unknown error";
     }
 
-   // ui->textEdit_log->append(strError);
+
 }
 
 

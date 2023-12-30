@@ -44,7 +44,6 @@ private:
     QString joinStyle;
 
 
- //menjam
  protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 

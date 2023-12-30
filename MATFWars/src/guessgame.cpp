@@ -15,8 +15,6 @@ GuessGame::GuessGame(QWidget *parent) :
     ui->gvCanvas->setRenderHints(QPainter::Antialiasing);
     ui->gvCanvas->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
-    // signali i slotovi
-    // FIX: pravi problem ako se oba prikljuce, salju se dupli signali
     connect(ui->enter_guess_button, &QPushButton::clicked, this, &GuessGame::checkAnswerAndSetNewFunction);
     connect(ui->leFunctionInput, &QLineEdit::returnPressed, this, &GuessGame::checkAnswerAndSetNewFunction);    
     connect(this, &GuessGame::newFunctionIsSet, dynamic_cast<Canvas *>(m_canvas), &Canvas::setFunction);
@@ -159,8 +157,7 @@ void GuessGame::drawCurrentFunction()
 
     Function* newFunction = new Function(functionString);
     newFunction->cutOffNan();
-//    qDebug() << QString::fromStdString(functionString);
-//    qDebug() << newFunction->points();
+
     newFunction->scaleToCanvas(m_canvas->width(), m_canvas->height(), dynamic_cast<Canvas *>(m_canvas)->gridWidth());
     newFunction->translatePointsObserverView(m_canvas->width()/2, m_canvas->height()/2);
 
@@ -222,7 +219,7 @@ difficulty GuessGame::getDifficulty() const
 void GuessGame::resultWindow()
 {
     m_timer->stopCount();
-    //m_functions.clear();
+
     ui->timer_label->setText(" ");
     ptrResult->evaluateForLeaderboard(m_score);
     ptrResult->show();

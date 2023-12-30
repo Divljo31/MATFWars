@@ -1,7 +1,6 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
-//TODO: id, location, diameter
 #include <QPointF>
 #include <QRandomGenerator>
 #include <QJsonObject>

@@ -31,7 +31,6 @@ private:
     QString noStyle;
 
 
-//menjam
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 

@@ -264,7 +264,7 @@ Player* WarGame::generatePlayer(QString name, int width, int height)
     return player;
 }
 
-// x-> width, y -> height, playerOrObstacle -> procenat ekrana gde moze da se generise
+// x-> width, y -> height, areaPercent -> procenat ekrana gde moze da se generise
 QPointF WarGame::randomPoint(int width, int height, double areaPercent)
 {
 

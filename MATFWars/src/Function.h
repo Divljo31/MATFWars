@@ -16,7 +16,7 @@ private:
     // Evaluates the function at a given x value
     double eval(double val_x);
 
-    // Generates a linearly spaced QVector of x-coordinates from x = 0, to x = end
+    // Generates a linearly spaced QVector of x-coordinates
     QVector<double> getXCoords(double start, double end, int num);
 
     // Generates a linearly spaced QVector of y-coordinates corresponding to the x-coordinates
@@ -26,12 +26,9 @@ private:
     void setPoints(double start, double end, int num);
 
 public:
-    // Constructs a function based on input string function, with coordinate origin in (coorX, coorY)
-    // starting from x = 0, until x = endX, with numX linspaced coordinates
+    // Constructs a function based on input string function
     Function(std::string function, double startX = -15, double endX = 15, int numX = 1000);
 
-    // Destructor (if needed, uncomment)
-    // ~Function();
 
     QVector<QPointF> points();
 

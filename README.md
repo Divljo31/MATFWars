@@ -21,7 +21,8 @@ Matematičke igrice koje na zabavan način podstiču razumevanje i učenje funkc
 - Preuzeti i instalirati [*Qt* i *Qt Creator*](https://www.qt.io/download)
 
 ## Preuzimanje i pokretanje :wrench:
-- Za WarGame potrebno je posebno otvoriti i pokrenuti CMake fajl u server folderu.
+1. `git clone git@gitlab.com:matf-bg-ac-rs/course-rs/projects-2023-2024/MATFWars.git`
+2. Za WarGame potrebno je posebno otvoriti i pokrenuti CMake fajl u server folderu.
 
 ## Članovi :computer:
  - <a href="https://gitlab.com/miletaj">Mileta Jovanović 32/2020</a>

@@ -18,7 +18,6 @@ public:
     explicit WarChoose(QWidget *parent = nullptr);
     ~WarChoose();
 
-// menjano
 signals:
     void backChooseClicked();
 
@@ -37,7 +36,6 @@ private:
     QString joinStyle;
     QString backStyle;
 
-//menjam
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
 

@@ -2,8 +2,6 @@
 #define SETTINGS_H
 
 #include <QDialog>
-
-// menjam
 #include<QColorDialog>
 #include<QColor>
 #include<QPalette>

@@ -11,9 +11,7 @@ double Function::eval(double val_x) {
         m_varX = val_x;
         return m_parser.Eval();
     } catch (mu::Parser::exception_type &e) {
-        // std::cerr << e.GetMsg() << std::endl;
         return 0;
-        //TODO: show invalid function message
     }
 }
 
@@ -34,7 +32,7 @@ QVector<double> Function::getXCoords(double start, double end, int num) {
     xCoords[num - 1] = end;
 
     return xCoords;
-};
+}
 
 QVector<double> Function::getYCoords(double start, double end, int num) {
     QVector<double> xCoords = getXCoords(start, end, num);
@@ -60,14 +58,13 @@ void Function::setPoints(double start, double end, int num) {
         m_points.append(QPointF(x, y));
     }
 
-    // TODO: mozda ovde da bude i translatePoints
 }
 
 QVector<QPointF> Function::points() {
     return m_points;
 }
 
-// ovo koristimo za pointOfView igraca koji puca, bez fixedY bi bilo iz pointOfView posmatraca!!!!!!!!!!!
+// ovo koristimo za pointOfView igraca koji puca, bez fixedY bi bilo iz pointOfView posmatraca!
 void Function::translatePointsPlayerView(double coorX, double coorY) {
 
     double fixedY = points().at(0).y();
@@ -91,13 +88,12 @@ void Function::translatePointsObserverView(double coorX, double coorY) {
     }
 }
 
-// MOZDA za war game treba da bude drugaciji gridWidth, u smislu da se ne koristi ceo vec samo jedan deo njega
+
 void Function::scaleToCanvas(double width, double height, double gridWidth) {
     for (QPointF &point : m_points) {
         double currentX = point.x();
         double currentY = point.y();
 
-        // ovo 30 je ustvari sirina canvasa
         point.setX(currentX*width/gridWidth);
 
         point.setY(-currentY*width/gridWidth);
@@ -115,7 +111,6 @@ bool Function::equals(Function* other) {
     for (int i = 0; i < this->points().size(); ++i) {
 
         if (std::isnan(this->points().at(i).y()) && std::isnan(other->points().at(i).y())){
-           // std::cout << "yeet" << std::endl;
             continue;
         }
 
@@ -139,7 +134,6 @@ void Function::cutOffNan() {
         return qIsNaN(point.x()) || qIsNaN(point.y());
     };
 
-    // Iterate and remove invalid points
     for (int i = 0; i < m_points.size(); ) {
         if (isInvalid(m_points[i])) {
             m_points.removeAt(i);

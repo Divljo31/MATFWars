@@ -9,7 +9,6 @@
 #include "Player.h"
 #include "Obstacle.h"
 
-//menjano
 #include <QLineEdit>
 #include <QPushButton>
 

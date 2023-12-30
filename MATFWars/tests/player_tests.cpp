@@ -3,9 +3,9 @@
 #include <QString>
 #include <QPointF>
 
-TEST_CASE("Functions in Player class", "[Player]") {
+TEST_CASE("Funkcije u klasi Player", "[Player]") {
 
-    SECTION("Functions in Player class", "[Player]") {
+    SECTION("name vraca ocekivano ime", "[Player]") {
         QString expectedName = "John Doe";
         Player player(expectedName);
 
@@ -13,7 +13,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
         REQUIRE(name == expectedName);
     }
 
-    SECTION("setName updates the player's name", "[Player]") {
+    SECTION("setName azurira igracevo ime", "[Player]") {
         Player player;
         QString newName = "Alice Smith";
 
@@ -21,7 +21,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
         REQUIRE(player.name() == newName);
     }
 
-    SECTION("coordinate returns the correct player coordinates", "[Player]") {
+    SECTION("coordinate vraca ispravne koordinate igraca", "[Player]") {
         QPointF expectedCoordinate(10.0, 20.0);
         Player player;
         player.setCoordinates(expectedCoordinate);
@@ -30,7 +30,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
         REQUIRE(coordinate == expectedCoordinate);
     }
 
-    SECTION("setCoordinates updates the player's coordinates", "[Player]") {
+    SECTION("setCoordinates azurira koordinate igraca", "[Player]") {
         Player player;
         QPointF newCoordinates(30.0, 40.0);
 
@@ -38,7 +38,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
         REQUIRE(player.coordinate() == newCoordinates);
     }
 
-    SECTION("player diameter returns the correct diameter value", "[Player]") {
+    SECTION("diameter vraca tacnu vrednost poluprecnika", "[Player]") {
         Player player;
         double initialDiameter = 1.0;
 
@@ -47,7 +47,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
 
     }
 
-    SECTION("flipX inverts the x-coordinate of the player", "[Player]") {
+    SECTION("flipX invertuje x-koordinatu igraca", "[Player]") {
         QPointF initialCoordinate(10, 20);
         Player player;
         player.setCoordinates(initialCoordinate);
@@ -61,7 +61,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
 
     }
 
-    SECTION("playerID returns the correct player ID", "[Player]") {
+    SECTION("playerID vraca ispravan ID igraca", "[Player]") {
         int initialPlayerID = 42;
         Player player;
         player.setPlayerID(initialPlayerID);
@@ -70,7 +70,7 @@ TEST_CASE("Functions in Player class", "[Player]") {
         REQUIRE(playerID == initialPlayerID);
     }
 
-    SECTION("setPlayerID updates the player's ID", "[Player]") {
+    SECTION("setPlayerID azurira ID igraca", "[Player]") {
         Player player;
         int newPlayerID = 123;
 
